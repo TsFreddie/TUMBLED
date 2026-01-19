@@ -276,6 +276,18 @@ if (operation === "build" || operation === "buildbold") {
       }
     }
 
+    if (bufferHeight === 0 || bufferWidth === 0) {
+      builder.addGlyph(codepoint, {
+        advance,
+        top: 0,
+        left: 0,
+        width: 0,
+        height: 0,
+        data: [],
+      });
+      continue;
+    }
+
     let top = bufferHeight;
     let left = bufferWidth;
     let right = 0;

@@ -276,7 +276,7 @@ if (operation === "build" || operation === "buildbold") {
       }
     }
 
-    if (bufferHeight === 0 || bufferWidth === 0) {
+    if (bufferHeight === 0 || bufferWidth === (bold ? 1 : 0)) {
       builder.addGlyph(codepoint, {
         advance,
         top: 0,

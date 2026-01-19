@@ -11,7 +11,7 @@ In the root directory of the tumbled project, run:
 ```bash
 bun install
 bun run ./scripts/combine.ts
-bun run ./scripts/extract_unifont.ts
+bun run ./scripts/extract.ts
 ```
 
 To run the tool:

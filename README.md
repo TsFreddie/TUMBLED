@@ -28,6 +28,14 @@ We set our limit to 9000 to both reduce the design work and leave extra spaces f
 
 ## Preview
 
+TUMBLED_14
+
+![TUMBLED_14 Preview](./images/TUMBLED_14.png)
+
+TUMBLED_14_BOLD
+
+![TUMBLED_14_BOLD Preview](./images/TUMBLED_14_BOLD.png)
+
 TUMBLED_24
 
 ![TUMBLED_24 Preview](./images/TUMBLED_24.png)
@@ -46,4 +54,6 @@ Generated font are licensed under OFL 1.1.
 
 [Unifont](https://unifoundry.com/unifont/index.html) ([OFL 1.1](https://unifoundry.com/OFL-1.1.txt) Licensed) is used both as a design reference for TUMBLED_24, and as a glyph availability reference for other fonts.
 
-A [FREQUENCY](./data/FREQUENCY) file derived from "[Chinese character list from 2.5 billion words corpus ordered by frequency](https://faculty.blcu.edu.cn/xinghb/zh_CN/article/167473/content/1437.htm)" is used as a reference to reduce the number of glyphs (specifically in [通用规范汉字表（二级）](./pages/extra)) supported.
+[Ark Pixel Font](https://github.com/TakWolf/ark-pixel-font) ([OFL 1.1](https://unifoundry.com/OFL-1.1.txt) Licensed) is used directly as the design for TUMBLED_14.
+
+A [FREQUENCY](./data/FREQUENCY) file derived from "[Chinese character list from 2.5 billion words corpus ordered by frequency](https://faculty.blcu.edu.cn/xinghb/zh_CN/article/167473/content/1437.htm)" is used as a reference to reduce the number of glyphs supported.

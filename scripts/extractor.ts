@@ -26,7 +26,9 @@ export class FontExtractor {
       return false;
     }
 
-    const c = createCanvas(fontSize, fontSize);
+    // double the canvas just in case
+    const canvasSize = fontSize * 2;
+    const c = createCanvas(canvasSize, canvasSize);
     const ctx = c.getContext("2d");
     const render = glyph.path
       .scale(1, -1)
@@ -37,17 +39,19 @@ export class FontExtractor {
     ctx.scale(scale, scale);
     render(ctx as any);
     ctx.fill();
-    const data = ctx.getImageData(0, 0, fontSize, fontSize);
+    const data = ctx.getImageData(0, 0, canvasSize, canvasSize);
+
+    const advance = Math.round(glyph.advanceWidth * scale);
 
     // Find bounding box
-    let left = fontSize;
-    let top = fontSize;
+    let left = canvasSize;
+    let top = canvasSize;
     let right = -1;
     let bottom = -1;
 
-    for (let i = 0; i < fontSize; i++) {
-      for (let j = 0; j < fontSize; j++) {
-        const index = (i * fontSize + j) * 4 + 3;
+    for (let i = 0; i < canvasSize; i++) {
+      for (let j = 0; j < canvasSize; j++) {
+        const index = (i * canvasSize + j) * 4 + 3;
         if (data.data[index] !== 0) {
           if (j < left) left = j;
           if (j > right) right = j;
@@ -61,8 +65,8 @@ export class FontExtractor {
     if (right === -1) {
       left = 0;
       top = 0;
-      right = fontSize - 1;
-      bottom = fontSize - 1;
+      right = 0;
+      bottom = 0;
     }
 
     let shapeLines = [];
@@ -70,7 +74,7 @@ export class FontExtractor {
     for (let i = top; i <= bottom; i++) {
       let line = "";
       for (let j = left; j <= right; j++) {
-        const index = (i * fontSize + j) * 4 + 3;
+        const index = (i * canvasSize + j) * 4 + 3;
         line += data.data[index] === 0 ? " " : "#";
       }
       shapeLines.push(line.trimEnd());
@@ -80,6 +84,7 @@ export class FontExtractor {
       shape: shapeLines.join("\n"),
       top,
       left,
+      advance,
     };
   }
 }

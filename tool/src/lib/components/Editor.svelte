@@ -700,6 +700,7 @@
 
 	const populateInput = (s: string) => {
 		addingShapeName = s;
+		navigator.clipboard.writeText(s);
 	};
 
 	const appendInput = (s: string) => {

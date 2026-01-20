@@ -1,8 +1,11 @@
 <script lang="ts">
-	import { loadProject, saveGlyph, saveShape } from '$lib';
+	import { loadProject, saveGlyph, saveShape, renameShape } from '$lib';
 	import type { Glyph, Project, Shape, ShapeLookup } from '$lib/server/loader';
 	import { onMount } from 'svelte';
 	import { glyphProgressStore } from '$lib/stores/glyphProgress';
+	import { SEQS } from '$lib/seq';
+
+	const SUFFIXES = ['-', '+'];
 
 	interface ShapeLayer {
 		lookup: ShapeLookup;
@@ -43,6 +46,10 @@
 	let shapeSaveCallback: (shape: Shape | undefined) => void = () => {};
 	let regularSaveCallback: () => void = () => {};
 	let renderKey = $state(0);
+
+	// Rename state
+	let renamingShapeIndex = $state<number>(-1);
+	let newShapeName = $state<string>('');
 
 	// Grid editor state
 	let isDragging = $state<boolean>(false);
@@ -558,6 +565,59 @@
 		}
 	};
 
+	const startRenameShape = (index: number) => {
+		renamingShapeIndex = index;
+		newShapeName = shapes[index].lookup.name;
+	};
+
+	const cancelRenameShape = () => {
+		renamingShapeIndex = -1;
+		newShapeName = '';
+	};
+
+	const confirmRenameShape = async () => {
+		if (!project || renamingShapeIndex === -1) return;
+
+		const oldName = shapes[renamingShapeIndex].lookup.name;
+		const newName = newShapeName.trim();
+
+		if (!newName || newName === oldName) {
+			cancelRenameShape();
+			return;
+		}
+
+		// Check if new name already exists
+		if (shapes.some((shape, idx) => shape.lookup.name === newName && idx !== renamingShapeIndex)) {
+			alert('Shape name already exists');
+			return;
+		}
+
+		try {
+			// Call the rename API via lib/index.ts
+			await renameShape(project.name, oldName, newName);
+
+			// Update client-side state
+			shapes[renamingShapeIndex].lookup.name = newName;
+
+			// Sort shapes alphabetically
+			shapes.sort((a, b) => {
+				if (a.lookup.name < b.lookup.name) return -1;
+				if (a.lookup.name > b.lookup.name) return 1;
+				return 0;
+			});
+
+			// Update activeShape index if needed
+			if (activeShape === renamingShapeIndex) {
+				activeShape = shapes.findIndex((shape) => shape.lookup.name === newName);
+			}
+
+			cancelRenameShape();
+		} catch (error) {
+			console.error('Error renaming shape:', error);
+			alert('Failed to rename shape');
+		}
+	};
+
 	onMount(() => {
 		let rendering = true;
 		if (canvas) {
@@ -637,6 +697,14 @@
 			window.removeEventListener('mouseup', handleGlobalMouseUp);
 		};
 	});
+
+	const populateInput = (s: string) => {
+		addingShapeName = s;
+	};
+
+	const appendInput = (s: string) => {
+		addingShapeName += s;
+	};
 </script>
 
 <dialog
@@ -697,7 +765,25 @@
 				</div>
 				<div class="flex gap-2">
 					<div class="w-18 font-bold">Glyph:</div>
-					{glyphName}
+					<!-- svelte-ignore a11y_click_events_have_key_events -->
+					<!-- svelte-ignore a11y_no_static_element_interactions -->
+					<span
+						class="cursor-pointer text-blue-600 hover:text-blue-800 hover:underline"
+						onclick={() => populateInput(glyphName)}
+					>
+						{glyphName}
+					</span>
+				</div>
+				<div class="flex gap-2">
+					<div class="w-18 font-bold">Code:</div>
+					<!-- svelte-ignore a11y_click_events_have_key_events -->
+					<!-- svelte-ignore a11y_no_static_element_interactions -->
+					<span
+						class="cursor-pointer text-blue-600 hover:text-blue-800 hover:underline"
+						onclick={() => populateInput(String(codepoint))}
+					>
+						{codepoint}
+					</span>
 				</div>
 				<div class="flex gap-2">
 					<input
@@ -711,6 +797,28 @@
 						disabled={readonly || shapeMode}
 						onclick={addShape}>Add</button
 					>
+				</div>
+				<div class="flex flex-wrap gap-1">
+					{#each SEQS[codepoint] || [] as part}
+						<!-- svelte-ignore a11y_click_events_have_key_events -->
+						<!-- svelte-ignore a11y_no_static_element_interactions -->
+						<div
+							class="cursor-pointer rounded bg-zinc-200 px-1 text-blue-600 hover:text-blue-800 hover:underline"
+							onclick={() => populateInput(part)}
+						>
+							{part}
+						</div>
+					{/each}
+					{#each SUFFIXES as suffix}
+						<!-- svelte-ignore a11y_click_events_have_key_events -->
+						<!-- svelte-ignore a11y_no_static_element_interactions -->
+						<div
+							class="cursor-pointer rounded bg-zinc-200 px-1 text-blue-600 hover:text-blue-800 hover:underline"
+							onclick={() => appendInput(suffix)}
+						>
+							{suffix}
+						</div>
+					{/each}
 				</div>
 				<div class="flex gap-2">
 					<div class="w-18 font-bold">Advance:</div>
@@ -729,7 +837,20 @@
 					>
 						<div class="flex gap-2">
 							<div class="w-18 font-bold">Shape:</div>
-							<span>{shape.lookup.name}</span>
+							{#if renamingShapeIndex === index}
+								<input
+									class="min-w-0 grow rounded border border-zinc-500 px-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+									type="text"
+									bind:value={newShapeName}
+									onkeydown={(e) => {
+										if (e.key === 'Enter') confirmRenameShape();
+										if (e.key === 'Escape') cancelRenameShape();
+									}}
+									readonly={readonly || shapeMode}
+								/>
+							{:else}
+								<span>{shape.lookup.name}</span>
+							{/if}
 						</div>
 						<div class="flex gap-2">
 							<div class="w-18 font-bold">Left:</div>
@@ -776,20 +897,40 @@
 							<button
 								class="rounded bg-slate-500 px-3 text-white hover:bg-slate-600 disabled:opacity-50"
 								onclick={() => (activeShape = index)}
-								disabled={activeShape === index}>Active</button
+								disabled={activeShape === index}>A</button
 							>
 							<button
 								class="rounded px-3 text-white hover:brightness-110 disabled:opacity-50"
 								class:bg-blue-500={shape.visible}
 								class:bg-zinc-500={!shape.visible}
 								onclick={() => (shape.visible = !shape.visible)}
-								disabled={readonly || shapeMode}>Visible</button
+								disabled={readonly || shapeMode}>V</button
 							>
 							<button
 								class="rounded bg-red-500 px-3 text-white hover:bg-red-600 disabled:opacity-50"
 								onclick={() => removeShape(index)}
-								disabled={readonly || shapeMode}>Remove</button
+								disabled={readonly || shapeMode}>DEL</button
 							>
+						</div>
+						<div class="flex gap-2">
+							{#if renamingShapeIndex === index}
+								<button
+									class="rounded bg-green-500 px-3 text-white hover:bg-green-600 disabled:opacity-50"
+									onclick={confirmRenameShape}
+									disabled={readonly || shapeMode}>Save</button
+								>
+								<button
+									class="rounded bg-zinc-500 px-3 text-white hover:bg-zinc-600 disabled:opacity-50"
+									onclick={cancelRenameShape}
+									disabled={readonly || shapeMode}>Cancel</button
+								>
+							{:else}
+								<button
+									class="rounded bg-amber-500 px-3 text-white hover:bg-amber-600 disabled:opacity-50"
+									onclick={() => startRenameShape(index)}
+									disabled={readonly || shapeMode}>RN</button
+								>
+							{/if}
 						</div>
 					</div>
 				{/each}

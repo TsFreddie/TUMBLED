@@ -81,6 +81,42 @@ export const saveGlyph = async (font: string, codepoint: number, glyph: Glyph) =
 	}
 };
 
+export const renameShape = async (font: string, oldName: string, newName: string) => {
+	const project = projects.get(font);
+	if (!project) throw new Error(`Project ${font} not loaded`);
+
+	const formData = new FormData();
+	formData.append(
+		'data',
+		new Blob([
+			pack({ projectPath: `${BASE_PATH}/${font}`, oldName, newName }) as Uint8Array<ArrayBuffer>
+		])
+	);
+
+	const response = await fetch('/api/shape/rename', {
+		method: 'POST',
+		body: formData
+	});
+	if (!response.ok) {
+		throw new Error(`Failed to rename shape: ${response.statusText}`);
+	}
+
+	// Update client-side project state
+	if (project.shapes[oldName]) {
+		project.shapes[newName] = project.shapes[oldName];
+		delete project.shapes[oldName];
+
+		// Update all glyphs that reference this shape
+		for (const glyph of project.glyphs) {
+			for (const shape of glyph.shapes) {
+				if (shape.name === oldName) {
+					shape.name = newName;
+				}
+			}
+		}
+	}
+};
+
 const renderShapes = (
 	canvas: HTMLCanvasElement,
 	width: number,

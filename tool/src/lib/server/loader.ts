@@ -94,6 +94,34 @@ export const deleteGlyph = (filePath: string) => {
 	if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
 };
 
+// batch rename shape and replace all existing references
+export const renameShape = (projectPath: string, oldName: string, newName: string) => {
+	const oldFilePath = path.join(projectPath, 'shapes', `${oldName}.txt`);
+	const newFilePath = path.join(projectPath, 'shapes', `${newName}.txt`);
+	if (fs.existsSync(newFilePath)) {
+		throw new Error(`Shape ${newName} already exists`);
+	}
+	fs.renameSync(oldFilePath, newFilePath);
+
+	// read all glyphs
+	const glyphDir = path.join(projectPath, 'glyphs');
+	const glyphFiles = fs.readdirSync(glyphDir);
+	glyphFiles.forEach((file) => {
+		const filePath = path.join(glyphDir, file);
+		const glyph = loadGlyph(filePath);
+		let changed = false;
+		glyph.shapes.forEach((shape) => {
+			if (shape.name === oldName) {
+				shape.name = newName;
+				changed = true;
+			}
+		});
+		if (changed) {
+			saveGlyph(filePath, glyph);
+		}
+	});
+};
+
 export const saveGlyph = (filePath: string, glyph: Glyph) => {
 	const lines = [`${glyph.advance}`];
 	for (const shape of glyph.shapes) {

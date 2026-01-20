@@ -137,10 +137,13 @@
 
 		// Draw preview pixels when shift is pressed
 		if (isShiftPressed && previewPixels.size > 0) {
+			const activeShapeData = shapes[activeShape];
+			const offsetX = activeShapeData ? activeShapeData.lookup.offsetLeft : 0;
+			const offsetY = activeShapeData ? activeShapeData.lookup.offsetTop : 0;
 			for (const pixelKey of previewPixels) {
 				const [px, py] = pixelKey.split(',').map(Number);
-				const canvasX = px + baseLeft;
-				const canvasY = py;
+				const canvasX = px + baseLeft + offsetX;
+				const canvasY = py + offsetY;
 				if (canvasX >= 0 && canvasX < size && canvasY >= 0 && canvasY < size) {
 					ctx.fillStyle = fillMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.5)';
 					ctx.fillRect(canvasX * gridSize, canvasY * gridSize, gridSize, gridSize);
@@ -363,8 +366,11 @@
 		if (readonly) return;
 
 		const { x, y } = getGridCoordinates(event);
-		const actualX = x - baseLeft;
-		const actualY = y;
+		const activeShapeData = shapes[activeShape];
+		const offsetX = activeShapeData ? activeShapeData.lookup.offsetLeft : 0;
+		const offsetY = activeShapeData ? activeShapeData.lookup.offsetTop : 0;
+		const actualX = x - baseLeft - offsetX;
+		const actualY = y - offsetY;
 
 		isDragging = true;
 		startX = actualX;
@@ -397,8 +403,11 @@
 
 		if (!isDragging || readonly) return;
 
-		const actualX = x - baseLeft;
-		const actualY = y;
+		const activeShapeData = shapes[activeShape];
+		const offsetX = activeShapeData ? activeShapeData.lookup.offsetLeft : 0;
+		const offsetY = activeShapeData ? activeShapeData.lookup.offsetTop : 0;
+		const actualX = x - baseLeft - offsetX;
+		const actualY = y - offsetY;
 		currentX = actualX;
 		currentY = actualY;
 

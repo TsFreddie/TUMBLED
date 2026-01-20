@@ -8,6 +8,7 @@
 	let editor: Editor;
 
 	let reference = $state<Project>();
+	let referenceFontName = $state<string>('unifont');
 	let project = $state<Project>();
 	let projectGlyphs = $state<Record<number, Glyph>>({});
 	let fontName = $state<string>('');
@@ -102,7 +103,7 @@
 	};
 
 	onMount(async () => {
-		reference = await loadProject('unifont');
+		reference = await loadProject(referenceFontName);
 	});
 
 	const openReference = (codepoint: number) => {
@@ -124,129 +125,160 @@
 <svelte:window onkeydown={handleKeyDown} />
 
 {#if reference}
-	<div class="flex gap-2 p-2">
-		<input
-			type="text"
-			class="w-64 text-2xl font-bold"
-			bind:value={fontName}
-			placeholder="Unifont"
-			onkeydown={async (ev) => {
-				if (ev.code === 'Enter') {
-					const target = ev.currentTarget;
-					if (project) {
-						unloadProject(project.name);
-					}
-					try {
-						if (fontName) {
-							project = await loadProject(fontName);
-							updateProjectGlyphs();
-						} else {
+	{#key reference}
+		<div class="flex gap-2 p-2">
+			<input
+				type="text"
+				class="w-64 text-2xl font-bold"
+				bind:value={fontName}
+				placeholder="Unifont"
+				onkeydown={async (ev) => {
+					if (ev.code === 'Enter') {
+						const target = ev.currentTarget;
+						if (project) {
+							unloadProject(project.name);
+						}
+						try {
+							if (fontName) {
+								project = await loadProject(fontName);
+								updateProjectGlyphs();
+							} else {
+								project = undefined;
+								updateProjectGlyphs();
+							}
+						} catch (e) {
+							console.error(e);
 							project = undefined;
 							updateProjectGlyphs();
 						}
-					} catch (e) {
-						console.error(e);
-						project = undefined;
-						updateProjectGlyphs();
-					}
 
-					target.blur();
-				}
-			}}
-			onblur={async () => {
-				if (project) {
-					fontName = project.name;
-				} else {
-					fontName = '';
-				}
-			}}
-		/>
-		<div class="flex gap-2">
-			<button
-				class="rounded {bold
-					? 'bg-purple-700'
-					: 'bg-purple-500'} px-3 py-1 text-white hover:bg-purple-600"
-				onclick={toggleBold}>{bold ? 'Bold: On' : 'Bold: Off'}</button
-			>
-			{#if filter}
-				<div class="h-8 w-8">
+						target.blur();
+					}
+				}}
+				onblur={async () => {
+					if (project) {
+						fontName = project.name;
+					} else {
+						fontName = '';
+					}
+				}}
+			/>
+			<div class="flex gap-2">
+				<div class="flex items-center gap-2">
+					<span class="font-bold">Reference:</span>
+					<input
+						type="text"
+						class="w-32 rounded border border-zinc-500 px-2"
+						bind:value={referenceFontName}
+						onkeydown={async (ev) => {
+							if (ev.code === 'Enter') {
+								const target = ev.currentTarget;
+
+								if (referenceFontName) {
+									reference = await loadProject(referenceFontName);
+								} else {
+									reference = await loadProject("unifont");
+								}
+								clearFilter();
+
+								target.blur();
+							}
+						}}
+						onblur={async () => {
+							if (reference) {
+								referenceFontName = reference.name;
+							} else {
+								referenceFontName = 'OOPS';
+							}
+						}}
+					/>
+				</div>
+				<button
+					class="rounded {bold
+						? 'bg-purple-700'
+						: 'bg-purple-500'} px-3 py-1 text-white hover:bg-purple-600"
+					onclick={toggleBold}>{bold ? 'Bold: On' : 'Bold: Off'}</button
+				>
+				{#if filter}
+					<div class="h-8 w-8">
+						<canvas
+							class="h-full"
+							use:render={{
+								bold: false,
+								width: filter.left + filter.width,
+								height: filter.top + filter.height,
+								shapes: [filter]
+							}}
+						></canvas>
+					</div>
+					<button
+						class="rounded bg-red-500 px-3 py-1 text-white hover:bg-red-600"
+						onclick={clearFilter}>Clear</button
+					>
+					<div>Hits: {filterStats.hit} / {reference.glyphs.length}</div>
+				{/if}
+				<button
+					class="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-600"
+					onclick={editFilter}>Edit Filter</button
+				>
+				{#if filter && project}
+					<button
+						class="rounded bg-green-500 px-3 py-1 text-white hover:bg-green-600"
+						onclick={() => (showBatchDialog = true)}>Batch Add Shape</button
+					>
+				{/if}
+			</div>
+		</div>
+		<div class="flex flex-wrap overflow-x-hidden">
+			{#each reference.glyphs as glyph, index}
+				{@const projectGlyph = projectGlyphs[glyph.codepoint]}
+				{@const renderProject = projectGlyph ? project : reference}
+				{@const renderGlyph = projectGlyph || glyph}
+				{@const size = glyphSize(renderProject!.height)}
+				{@const filtered = filterStats.set[index]}
+				<button
+					class="flex h-16 w-16 cursor-pointer items-center justify-center border hover:bg-blue-100"
+					class:bg-zinc-300={!projectGlyph}
+					class:opacity-50={filtered}
+					aria-label={String.fromCodePoint(glyph.codepoint)}
+					onclick={(ev) => {
+						if (ev.ctrlKey) {
+							editor.setReference(reference!.shapes[glyph.shapes[0].name]);
+						} else {
+							if (project) {
+								editProjectGlyph(glyph.codepoint);
+							} else {
+								openReference(glyph.codepoint);
+							}
+						}
+					}}
+				>
+					<div class="absolute text-xs text-transparent">
+						{String.fromCodePoint(renderGlyph.codepoint)}
+					</div>
 					<canvas
 						class="h-full"
 						use:render={{
-							bold: false,
-							width: filter.left + filter.width,
-							height: filter.top + filter.height,
-							shapes: [filter]
+							bold,
+							width: renderGlyph.advance,
+							height: size,
+							shapes: renderGlyph.shapes.map((shape) => {
+								const shapeData = renderProject!.shapes[shape.name];
+								if (!shapeData) {
+									return undefined;
+								}
+								return {
+									...shapeData,
+									top: shapeData.top + shape.offsetTop,
+									left: shapeData.left + shape.offsetLeft
+								};
+							})
 						}}
 					></canvas>
-				</div>
-				<button
-					class="rounded bg-red-500 px-3 py-1 text-white hover:bg-red-600"
-					onclick={clearFilter}>Clear</button
-				>
-				<div>Hits: {filterStats.hit} / {reference.glyphs.length}</div>
-			{/if}
-			<button
-				class="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-600"
-				onclick={editFilter}>Edit Filter</button
-			>
-			{#if filter && project}
-				<button
-					class="rounded bg-green-500 px-3 py-1 text-white hover:bg-green-600"
-					onclick={() => (showBatchDialog = true)}>Batch Add Shape</button
-				>
-			{/if}
+				</button>
+			{/each}
 		</div>
-	</div>
-	<div class="flex flex-wrap overflow-x-hidden">
-		{#each reference.glyphs as glyph, index}
-			{@const projectGlyph = projectGlyphs[glyph.codepoint]}
-			{@const renderProject = projectGlyph ? project : reference}
-			{@const renderGlyph = projectGlyph || glyph}
-			{@const size = glyphSize(renderProject!.height)}
-			{@const filtered = filterStats.set[index]}
-			<button
-				class="flex h-16 w-16 cursor-pointer items-center justify-center border hover:bg-blue-100"
-				class:bg-zinc-300={!projectGlyph}
-				class:opacity-50={filtered}
-				aria-label={String.fromCodePoint(glyph.codepoint)}
-				onclick={(ev) => {
-					if (ev.ctrlKey) {
-						editor.setReference(reference!.shapes[glyph.shapes[0].name]);
-					} else {
-						if (project) {
-							editProjectGlyph(glyph.codepoint);
-						} else {
-							openReference(glyph.codepoint);
-						}
-					}
-				}}
-			>
-				<div class="absolute text-xs text-transparent">
-					{String.fromCodePoint(renderGlyph.codepoint)}
-				</div>
-				<canvas
-					class="h-full"
-					use:render={{
-						bold,
-						width: renderGlyph.advance,
-						height: size,
-						shapes: renderGlyph.shapes.map((shape) => {
-							const shapeData = renderProject!.shapes[shape.name];
-							if (!shapeData) {
-								return undefined;
-							}
-							return {
-								...shapeData,
-								top: shapeData.top + shape.offsetTop,
-								left: shapeData.left + shape.offsetLeft
-							};
-						})
-					}}
-				></canvas>
-			</button>
-		{/each}
-	</div>
+	{/key}
 {/if}
 
 <Editor bind:this={editor}></Editor>

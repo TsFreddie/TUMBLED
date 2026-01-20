@@ -4,6 +4,7 @@
 	import BatchDialog from '$lib/components/BatchDialog.svelte';
 	import type { Glyph, Project, Shape } from '$lib/server/loader';
 	import { onMount } from 'svelte';
+	import { glyphProgressStore } from '$lib/stores/glyphProgress';
 
 	let editor: Editor;
 
@@ -15,6 +16,10 @@
 	const glyphSize = (height: number) => height + Math.floor(height / 2);
 	let filter = $state<Shape>();
 	let bold = $state<boolean>(false);
+
+	// Progress tracking state
+	let lastClickedCodepoint = $state<number | null>(null);
+	let bookmarks = $state<number[]>([]);
 
 	const updateProjectGlyphs = () => {
 		projectGlyphs = {};
@@ -104,6 +109,8 @@
 
 	onMount(async () => {
 		reference = await loadProject(referenceFontName);
+		// Set initial project name in progress store
+		glyphProgressStore.setProjectName(referenceFontName);
 	});
 
 	const openReference = (codepoint: number) => {
@@ -120,6 +127,21 @@
 			updateProjectGlyphs();
 		});
 	};
+
+	// Initialize progress store subscription
+	onMount(() => {
+		// Subscribe to progress store changes
+		const unsubscribe = glyphProgressStore.subscribe(() => {
+			lastClickedCodepoint = glyphProgressStore.getLastClickedCodepoint();
+			bookmarks = glyphProgressStore.getBookmarks();
+		});
+
+		// Initial load
+		lastClickedCodepoint = glyphProgressStore.getLastClickedCodepoint();
+		bookmarks = glyphProgressStore.getBookmarks();
+
+		return unsubscribe;
+	});
 </script>
 
 <svelte:window onkeydown={handleKeyDown} />
@@ -142,9 +164,13 @@
 							if (fontName) {
 								project = await loadProject(fontName);
 								updateProjectGlyphs();
+								// Update progress store with new project name
+								glyphProgressStore.setProjectName(fontName);
 							} else {
 								project = undefined;
 								updateProjectGlyphs();
+								// Reset to reference project
+								glyphProgressStore.setProjectName(referenceFontName);
 							}
 						} catch (e) {
 							console.error(e);
@@ -180,6 +206,8 @@
 									reference = await loadProject('unifont');
 								}
 								clearFilter();
+								// Update progress store with new reference project name
+								glyphProgressStore.setProjectName(referenceFontName || 'unifont');
 
 								target.blur();
 							}
@@ -236,15 +264,24 @@
 				{@const renderGlyph = projectGlyph || glyph}
 				{@const size = glyphSize(renderProject!.height)}
 				{@const filtered = filterStats.set[index]}
+				{@const isLastClicked = lastClickedCodepoint === glyph.codepoint}
+				{@const isBookmarked = bookmarks.includes(glyph.codepoint)}
 				<button
-					class="flex h-16 w-16 cursor-pointer items-center justify-center border hover:bg-blue-100"
+					class="flex h-16 w-16 cursor-pointer items-center justify-center border hover:bg-blue-100 relative"
 					class:bg-zinc-300={!projectGlyph}
 					class:opacity-50={filtered}
+					class:ring-2={isLastClicked || isBookmarked}
+					class:ring-yellow-400={isLastClicked}
+					class:ring-green-400={isBookmarked && !isLastClicked}
+					class:ring-orange-400={isLastClicked && isBookmarked}
 					aria-label={String.fromCodePoint(glyph.codepoint)}
 					onclick={(ev) => {
 						if (ev.ctrlKey) {
 							editor.setReference(reference!.shapes[glyph.shapes[0].name]);
 						} else {
+							// Track last clicked glyph
+							glyphProgressStore.setLastClickedCodepoint(glyph.codepoint);
+							
 							if (project) {
 								editProjectGlyph(glyph.codepoint);
 							} else {
@@ -252,10 +289,18 @@
 							}
 						}
 					}}
+					oncontextmenu={(ev) => {
+						ev.preventDefault();
+						// Toggle bookmark on right-click
+						glyphProgressStore.toggleBookmark(glyph.codepoint);
+					}}
 				>
 					<div class="absolute text-xs text-transparent">
 						{String.fromCodePoint(renderGlyph.codepoint)}
 					</div>
+					{#if isBookmarked}
+						<div class="absolute top-0 right-0 w-3 h-3 bg-green-500 rounded-full"></div>
+					{/if}
 					<canvas
 						class="h-full"
 						use:render={{

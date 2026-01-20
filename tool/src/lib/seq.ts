@@ -75,6 +75,15 @@ export const SEQS = Object.fromEntries(
 					const [top, bottom] = process(part);
 					addUnique(possibleParts, top + '^');
 					addUnique(possibleParts, bottom + 'v');
+				} else if (
+					part.startsWith('⿸') ||
+					part.startsWith('⿹') ||
+					part.startsWith('⿺') ||
+					part.startsWith('⿴')
+				) {
+					const [outside, inside] = process(part);
+					addUnique(possibleParts, outside + 'o');
+					addUnique(possibleParts, inside + 'i');
 				}
 			}
 			return [char.codePointAt(0)!, possibleParts] as [number, string[]];

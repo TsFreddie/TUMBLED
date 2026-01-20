@@ -112,8 +112,8 @@
 		// Draw reference font
 		if (referenceFontVisible) {
 			ctx.fillStyle = '#55000088';
-			ctx.font = `${(size / 2 - 1) * gridSize}px Microsoft YaHei UI Light`;
-			ctx.fillText(glyphName, gridSize, (baseline - 0.5) * gridSize);
+			ctx.font = `${(size / 2) * gridSize}px Microsoft YaHei UI Light`;
+			ctx.fillText(glyphName, gridSize * 0.5, (baseline - 0.5) * gridSize);
 		}
 
 		// Draw reference shape

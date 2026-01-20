@@ -267,13 +267,14 @@
 				{@const isLastClicked = lastClickedCodepoint === glyph.codepoint}
 				{@const isBookmarked = bookmarks.includes(glyph.codepoint)}
 				<button
-					class="flex h-16 w-16 cursor-pointer items-center justify-center border hover:bg-blue-100 relative"
+					class="relative flex h-16 w-16 cursor-pointer items-center justify-center border hover:bg-blue-100"
 					class:bg-zinc-300={!projectGlyph}
 					class:opacity-50={filtered}
 					class:ring-2={isLastClicked || isBookmarked}
 					class:ring-yellow-400={isLastClicked}
 					class:ring-green-400={isBookmarked && !isLastClicked}
 					class:ring-orange-400={isLastClicked && isBookmarked}
+					class:ring-inset={isLastClicked || isBookmarked}
 					aria-label={String.fromCodePoint(glyph.codepoint)}
 					onclick={(ev) => {
 						if (ev.ctrlKey) {
@@ -281,7 +282,7 @@
 						} else {
 							// Track last clicked glyph
 							glyphProgressStore.setLastClickedCodepoint(glyph.codepoint);
-							
+
 							if (project) {
 								editProjectGlyph(glyph.codepoint);
 							} else {
@@ -299,7 +300,7 @@
 						{String.fromCodePoint(renderGlyph.codepoint)}
 					</div>
 					{#if isBookmarked}
-						<div class="absolute top-0 right-0 w-3 h-3 bg-green-500 rounded-full"></div>
+						<div class="absolute top-0 right-0 h-3 w-3 rounded-full bg-green-500"></div>
 					{/if}
 					<canvas
 						class="h-full"

@@ -2,6 +2,7 @@
 	import { loadProject, saveGlyph, saveShape } from '$lib';
 	import type { Glyph, Project, Shape, ShapeLookup } from '$lib/server/loader';
 	import { onMount } from 'svelte';
+	import { glyphProgressStore } from '$lib/stores/glyphProgress';
 
 	interface ShapeLayer {
 		lookup: ShapeLookup;
@@ -29,6 +30,9 @@
 	let topRef = $state<number>(0);
 	let readonly = $state<boolean>(false);
 	let shapeMode = $state<boolean>(false);
+
+	// Progress store subscription
+	let topRefFromStore = $state<number>(0);
 
 	let referenceShape = $state<Shape | undefined>();
 	let referenceShapeVisible = $state<boolean>(true);
@@ -212,6 +216,9 @@
 			size = project.height + Math.floor(project.height / 2);
 			baseline = project.height;
 			advance = glyph.advance;
+			// Load topRef from progress store
+			topRefFromStore = glyphProgressStore.getTopRef();
+			topRef = topRefFromStore;
 			shapes = $state.snapshot(glyph.shapes).map((lookup) => {
 				const shape = project!.shapes[lookup.name];
 				if (!shape) {
@@ -565,6 +572,14 @@
 			};
 			animate();
 		}
+
+		// Watch for topRef changes and save to store
+		$effect(() => {
+			if (topRef !== topRefFromStore) {
+				glyphProgressStore.setTopRef(topRef);
+				topRefFromStore = topRef;
+			}
+		});
 
 		const onModalClose = async () => {
 			if (shapeMode) {

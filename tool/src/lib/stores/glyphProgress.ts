@@ -6,6 +6,7 @@
 interface GlyphProgressData {
 	lastClickedCodepoint: number | null;
 	bookmarks: number[];
+	topRef: number;
 }
 
 const STORAGE_PREFIX = 'glyph_progress_';
@@ -14,7 +15,8 @@ class GlyphProgressStore {
 	private projectName: string | null = null;
 	private data: GlyphProgressData = {
 		lastClickedCodepoint: null,
-		bookmarks: []
+		bookmarks: [],
+		topRef: 0
 	};
 	private listeners: Set<() => void> = new Set();
 
@@ -23,12 +25,12 @@ class GlyphProgressStore {
 	 */
 	setProjectName(name: string | null) {
 		if (this.projectName === name) return;
-		
+
 		// Save current data before switching
 		if (this.projectName) {
 			this.save();
 		}
-		
+
 		this.projectName = name;
 		this.load();
 		this.notify();
@@ -55,7 +57,8 @@ class GlyphProgressStore {
 		if (!this.projectName) {
 			this.data = {
 				lastClickedCodepoint: null,
-				bookmarks: []
+				bookmarks: [],
+				topRef: 0
 			};
 			return;
 		}
@@ -64,17 +67,23 @@ class GlyphProgressStore {
 			const stored = localStorage.getItem(this.getStorageKey());
 			if (stored) {
 				this.data = JSON.parse(stored);
+				// Ensure topRef exists for backwards compatibility
+				if (typeof this.data.topRef === 'undefined') {
+					this.data.topRef = 0;
+				}
 			} else {
 				this.data = {
 					lastClickedCodepoint: null,
-					bookmarks: []
+					bookmarks: [],
+					topRef: 0
 				};
 			}
 		} catch (error) {
 			console.error('Failed to load glyph progress:', error);
 			this.data = {
 				lastClickedCodepoint: null,
-				bookmarks: []
+				bookmarks: [],
+				topRef: 0
 			};
 		}
 	}
@@ -96,7 +105,7 @@ class GlyphProgressStore {
 	 * Notify all listeners of data changes
 	 */
 	private notify() {
-		this.listeners.forEach(listener => listener());
+		this.listeners.forEach((listener) => listener());
 	}
 
 	/**
@@ -119,6 +128,22 @@ class GlyphProgressStore {
 	 */
 	setLastClickedCodepoint(codepoint: number | null) {
 		this.data.lastClickedCodepoint = codepoint;
+		this.save();
+		this.notify();
+	}
+
+	/**
+	 * Get the topRef value
+	 */
+	getTopRef(): number {
+		return this.data.topRef;
+	}
+
+	/**
+	 * Set the topRef value
+	 */
+	setTopRef(value: number) {
+		this.data.topRef = value;
 		this.save();
 		this.notify();
 	}
@@ -186,7 +211,8 @@ class GlyphProgressStore {
 	clearAll() {
 		this.data = {
 			lastClickedCodepoint: null,
-			bookmarks: []
+			bookmarks: [],
+			topRef: 0
 		};
 		this.save();
 		this.notify();
@@ -209,7 +235,7 @@ class GlyphProgressStore {
 	clearAllProjects() {
 		try {
 			const keys = Object.keys(localStorage);
-			keys.forEach(key => {
+			keys.forEach((key) => {
 				if (key.startsWith(STORAGE_PREFIX)) {
 					localStorage.removeItem(key);
 				}

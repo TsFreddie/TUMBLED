@@ -177,7 +177,7 @@
 								if (referenceFontName) {
 									reference = await loadProject(referenceFontName);
 								} else {
-									reference = await loadProject("unifont");
+									reference = await loadProject('unifont');
 								}
 								clearFilter();
 

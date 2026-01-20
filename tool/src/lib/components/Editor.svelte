@@ -735,6 +735,29 @@
 							/>
 						</div>
 						<div class="flex gap-2">
+							<div class="w-18 font-bold">Pos:</div>
+							<input
+								class="w-20 rounded border border-zinc-500 px-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+								type="number"
+								readonly={readonly || shapeMode}
+								bind:value={shape.left}
+								oninput={() => {
+									shape.dirty = true;
+									renderKey++;
+								}}
+							/>
+							<input
+								class="w-20 rounded border border-zinc-500 px-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+								type="number"
+								readonly={readonly || shapeMode}
+								bind:value={shape.top}
+								oninput={() => {
+									shape.dirty = true;
+									renderKey++;
+								}}
+							/>
+						</div>
+						<div class="flex gap-2">
 							<button
 								class="rounded bg-slate-500 px-3 text-white hover:bg-slate-600 disabled:opacity-50"
 								onclick={() => (activeShape = index)}

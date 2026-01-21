@@ -40,6 +40,10 @@
 		if (e.key === 'b' || e.key === 'B') {
 			toggleBold();
 		}
+
+		if (e.key === 'q' || e.key === 'Q') {
+			quickResolve();
+		}
 	};
 
 	let filterStats = $state({
@@ -143,13 +147,14 @@
 			const current = (lastClickedIndex + i + 1) % reference.glyphs.length;
 
 			// skip existing glyphs
-			if (project.glyphs[current]) continue;
+			const codepoint = reference.glyphs[current].codepoint;
+			if (projectGlyphs[codepoint]) continue;
 
-			const seq = SEQS[reference.glyphs[current].codepoint];
+			const seq = SEQS[codepoint];
 			if (!seq) continue;
 
 			let possible = true;
-			for (const part in seq) {
+			for (const part of seq) {
 				if (!project.shapes[part]) {
 					possible = false;
 					break;
@@ -159,7 +164,14 @@
 			if (possible) {
 				lastClickedCodepoint = reference.glyphs[current].codepoint;
 				glyphProgressStore.setLastClickedCodepoint(lastClickedCodepoint);
-				// TODO: find the element and scroll to it by querying aria-label
+				console.log('FOUND', lastClickedCodepoint);
+				// Find the element and scroll to it by querying aria-label
+				const element = document.querySelector(
+					`[aria-label="${String.fromCodePoint(lastClickedCodepoint)}"]`
+				);
+				if (element) {
+					element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+				}
 				return;
 			}
 		}
@@ -292,6 +304,11 @@
 						onclick={() => (showBatchDialog = true)}>Batch Add Shape</button
 					>
 				{/if}
+
+				<button
+					class="rounded bg-purple-500 px-3 py-1 text-white hover:bg-purple-600"
+					onclick={quickResolve}>Quick Resolve</button
+				>
 			</div>
 		</div>
 		<div class="flex flex-wrap overflow-x-hidden">

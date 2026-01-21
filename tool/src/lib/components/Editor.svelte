@@ -710,7 +710,11 @@
 				removeShape(existing);
 				addShape(keys[next]);
 			} else {
-				addShape(s);
+				if (project.shapes[s]) {
+					addShape(s);
+				} else if (keys.length > 0) {
+					addShape(keys[0]);
+				}
 			}
 
 			return;

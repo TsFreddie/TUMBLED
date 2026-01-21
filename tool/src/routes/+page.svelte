@@ -143,6 +143,15 @@
 			(glyph) => glyph.codepoint === lastClickedCodepoint
 		);
 
+		const shapeKeys = new Set(
+			Object.keys(project.shapes).map((s) => {
+				while (s.endsWith('+') || s.endsWith('-')) {
+					s = s.slice(0, -1);
+				}
+				return s;
+			})
+		);
+
 		for (let i = 0; i < reference.glyphs.length; i++) {
 			const current = (lastClickedIndex + i + 1) % reference.glyphs.length;
 
@@ -155,7 +164,7 @@
 
 			let possible = true;
 			for (const part of seq) {
-				if (!project.shapes[part]) {
+				if (!shapeKeys.has(part)) {
 					possible = false;
 					break;
 				}

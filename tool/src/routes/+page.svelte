@@ -247,7 +247,7 @@
 					}
 				}}
 			/>
-			<div class="flex gap-2">
+			<div class="flex gap-2 items-center">
 				<div class="flex items-center gap-2">
 					<span class="font-bold">Reference:</span>
 					<input
@@ -318,6 +318,10 @@
 					class="rounded bg-purple-500 px-3 py-1 text-white hover:bg-purple-600"
 					onclick={quickResolve}>Quick Resolve</button
 				>
+
+				{#if project}
+					<div>{project.glyphs.length} / {reference.glyphs.length} ({Math.floor((project.glyphs.length / reference.glyphs.length) * 100)}%)</div>
+				{/if}
 			</div>
 		</div>
 		<div class="flex flex-wrap overflow-x-hidden">

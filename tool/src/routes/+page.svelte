@@ -18,6 +18,9 @@
 	let filter = $state<Shape>();
 	let bold = $state<boolean>(false);
 
+	let goto = $state<string>('');
+	let seqFilter = $state<string>('');
+
 	// Progress tracking state
 	let lastClickedCodepoint = $state<number | null>(null);
 	let bookmarks = $state<number[]>([]);
@@ -37,12 +40,44 @@
 			return;
 		}
 
-		if (e.key === 'b' || e.key === 'B') {
-			toggleBold();
-		}
+		const key = e.key.toLowerCase();
 
-		if (e.key === 'q' || e.key === 'Q') {
+		if (key === 'b') {
+			toggleBold();
+		} else if (key === 'q') {
 			quickResolve();
+		} else if (key === 'g' && e.ctrlKey) {
+			document.getElementById('goto-field')?.focus();
+			e.preventDefault();
+		} else if (key === "i") {
+			if (e.ctrlKey) {
+				document.getElementById('seq-filter-field')?.focus();
+				e.preventDefault();
+			} else {
+				findNextSeq();
+			}
+		}
+	};
+
+	const findNextSeq = () => {
+		if (!reference) return;
+		if (!seqFilter) return;
+
+		const currentIndex = reference.glyphs.findIndex((glyph) => glyph.codepoint === lastClickedCodepoint);
+		const length = reference.glyphs.length;	
+	
+		for (let i = 0; i < length; i++) {
+			const index = (currentIndex + i + 1) % length;
+			const codepoint = reference.glyphs[index].codepoint;
+			const seq = SEQS[codepoint];
+			if (!seq) continue;
+			for (const part of seq) {
+				if (part.includes(seqFilter)) {
+					lastClickedCodepoint = codepoint;
+					scrollToCodepoint(codepoint);
+					return;
+				}
+			}
 		}
 	};
 
@@ -56,7 +91,7 @@
 		const indices: number[] = [];
 		if (!reference) return indices;
 		for (let i = 0; i < reference.glyphs.length; i++) {
-			if (!filterStats.set[i]) {
+			if (filterStats.set[i]) {
 				indices.push(i);
 			}
 		}
@@ -85,7 +120,6 @@
 			const glyph = reference.glyphs[i];
 			if (checkFilter(filter, reference, glyph)) {
 				filterStats.hit++;
-			} else {
 				filterStats.set[i] = true;
 			}
 		}
@@ -133,6 +167,13 @@
 		});
 	};
 
+	const scrollToCodepoint = (codepoint: number) => {
+		const element = document.querySelector(`[aria-label="${String.fromCodePoint(codepoint)}"]`);
+		if (element) {
+			element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		}
+	};
+
 	// quickly find the next character that might be
 	// already finished using the IDS database
 	const quickResolve = () => {
@@ -173,14 +214,7 @@
 			if (possible) {
 				lastClickedCodepoint = reference.glyphs[current].codepoint;
 				glyphProgressStore.setLastClickedCodepoint(lastClickedCodepoint);
-				console.log('FOUND', lastClickedCodepoint);
-				// Find the element and scroll to it by querying aria-label
-				const element = document.querySelector(
-					`[aria-label="${String.fromCodePoint(lastClickedCodepoint)}"]`
-				);
-				if (element) {
-					element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-				}
+				scrollToCodepoint(lastClickedCodepoint);
 				return;
 			}
 		}
@@ -247,27 +281,15 @@
 					}
 				}}
 			/>
-			<div class="flex gap-2 items-center">
+			<div class="flex items-center gap-2">
 				<div class="flex items-center gap-2">
-					<span class="font-bold">Reference:</span>
+					<span class="font-bold">Ref:</span>
 					<input
 						type="text"
 						class="w-32 rounded border border-zinc-500 px-2"
 						bind:value={referenceFontName}
 						onkeydown={async (ev) => {
 							if (ev.code === 'Enter') {
-								const target = ev.currentTarget;
-
-								if (referenceFontName) {
-									reference = await loadProject(referenceFontName);
-								} else {
-									reference = await loadProject('unifont');
-								}
-								clearFilter();
-								// Update progress store with new reference project name
-								glyphProgressStore.setProjectName(referenceFontName || 'unifont');
-
-								target.blur();
 							}
 						}}
 						onblur={async () => {
@@ -275,6 +297,45 @@
 								referenceFontName = reference.name;
 							} else {
 								referenceFontName = 'OOPS';
+							}
+						}}
+					/>
+					<span class="font-bold">Goto:</span>
+					<input
+						type="text"
+						class="w-32 rounded border border-zinc-500 px-2"
+						id="goto-field"
+						bind:value={goto}
+						onkeydown={async (ev) => {
+							if (ev.code === 'Enter') {
+								const target = ev.currentTarget;
+
+								const codepoint = Number(goto);
+								if (!isNaN(codepoint)) {
+									lastClickedCodepoint = codepoint;
+									scrollToCodepoint(codepoint);
+								} else {
+									const codepoint = goto.codePointAt(0)!;
+									lastClickedCodepoint = codepoint;
+									scrollToCodepoint(codepoint);
+								}
+
+								target.blur();
+							}
+						}}
+					/>
+					<span class="font-bold">Seq:</span>
+					<input
+						type="text"
+						class="w-32 rounded border border-zinc-500 px-2"
+						id="seq-filter-field"
+						bind:value={seqFilter}
+						onkeydown={async (ev) => {
+							if (ev.code === 'Enter') {
+								const target = ev.currentTarget;
+								target.blur();
+								lastClickedCodepoint = -1;
+								findNextSeq();
 							}
 						}}
 					/>
@@ -320,7 +381,11 @@
 				>
 
 				{#if project}
-					<div>{project.glyphs.length} / {reference.glyphs.length} ({Math.floor((project.glyphs.length / reference.glyphs.length) * 100)}%)</div>
+					<div>
+						{project.glyphs.length} / {reference.glyphs.length} ({Math.floor(
+							(project.glyphs.length / reference.glyphs.length) * 100
+						)}%)
+					</div>
 				{/if}
 			</div>
 		</div>
@@ -330,18 +395,16 @@
 				{@const renderProject = projectGlyph ? project : reference}
 				{@const renderGlyph = projectGlyph || glyph}
 				{@const size = glyphSize(renderProject!.height)}
-				{@const filtered = filterStats.set[index]}
+				{@const filterHit = filterStats.set[index]}
 				{@const isLastClicked = lastClickedCodepoint === glyph.codepoint}
 				{@const isBookmarked = bookmarks.includes(glyph.codepoint)}
 				<button
-					class="relative flex h-16 w-16 cursor-pointer items-center justify-center border hover:bg-blue-100"
+					class="relative flex h-16 w-16 cursor-pointer items-center justify-center border ring-inset hover:bg-blue-100"
 					class:bg-zinc-300={!projectGlyph}
-					class:opacity-50={filtered}
-					class:ring-2={isLastClicked || isBookmarked}
-					class:ring-yellow-400={isLastClicked}
-					class:ring-green-400={isBookmarked && !isLastClicked}
-					class:ring-orange-400={isLastClicked && isBookmarked}
-					class:ring-inset={isLastClicked || isBookmarked}
+					class:ring-2={isLastClicked || isBookmarked || filterHit}
+					class:ring-blue-500={filterHit}
+					class:ring-amber-500={isLastClicked}
+					class:ring-green-400={isBookmarked}
 					aria-label={String.fromCodePoint(glyph.codepoint)}
 					onclick={(ev) => {
 						if (ev.ctrlKey) {

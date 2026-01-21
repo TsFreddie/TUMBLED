@@ -1,14 +1,27 @@
 import { FontExtractor } from "./extractor";
 import fs from "fs";
+import { parseArgs } from "util";
 
 const segmentor = new Intl.Segmenter(undefined, { granularity: "grapheme" });
 const cjk = Array.from(
   segmentor.segment(fs.readFileSync("./build/pages.txt", "utf8")),
 ).map((s) => s.segment);
 
+const { values, positionals } = parseArgs({
+  args: process.argv,
+  strict: false,
+  allowPositionals: true,
+  options: {
+    force: {
+      type: "boolean",
+      short: "f",
+    },
+  },
+});
+
 // read extract definition
-const definition = process.argv[2]
-  ? JSON.parse(fs.readFileSync(process.argv[2], "utf-8"))
+const definition = positionals[2]
+  ? JSON.parse(fs.readFileSync(positionals[2], "utf-8"))
   : {};
 
 const topOffset = definition.topOffset ?? 9;
@@ -26,6 +39,8 @@ fs.mkdirSync(`./fonts/${fontName}`, { recursive: true });
 fs.mkdirSync(`./fonts/${fontName}/glyphs`, { recursive: true });
 fs.mkdirSync(`./fonts/${fontName}/shapes`, { recursive: true });
 
+let written = 0;
+
 for (const char of cjk) {
   const codepoint = char.codePointAt(0)!;
   const glyph = extractor.convert(codepoint, renderSize);
@@ -35,7 +50,16 @@ for (const char of cjk) {
     const left = glyph.shape ? glyph.left : 0;
 
     if (top < 0 || left < 0) {
-      console.log(`WARNING: OOB ${char} ${codepoint} ${top} ${left} ${glyph.shape}`);
+      console.log(
+        `WARNING: OOB ${char} ${codepoint} ${top} ${left} ${glyph.shape}`,
+      );
+    }
+
+    if (
+      !values.force &&
+      fs.existsSync(`./fonts/${fontName}/glyphs/${codepoint}.txt`)
+    ) {
+      continue;
     }
 
     fs.writeFileSync(
@@ -47,13 +71,20 @@ for (const char of cjk) {
       `./fonts/${fontName}/glyphs/${codepoint}.txt`,
       `${glyph.advance}\n0 0 ${codepoint}`,
     );
+    written++;
   }
 }
 
-fs.writeFileSync(
-  `./fonts/${fontName}/font.json`,
-  JSON.stringify({ name: fontName, height: fontSize, wildcardCodepoint: 9647 }),
-);
+if (!fs.existsSync(`./fonts/${fontName}/font.json`)) {
+  fs.writeFileSync(
+    `./fonts/${fontName}/font.json`,
+    JSON.stringify({
+      name: fontName,
+      height: fontSize,
+      wildcardCodepoint: 9647,
+    }),
+  );
+}
 
 const generateWildcard = (width: number, height: number) => {
   // draw a box
@@ -65,13 +96,18 @@ const generateWildcard = (width: number, height: number) => {
   return lines.join("\n");
 };
 
-// Writes the wildcard glyph to make the font buildable
-fs.writeFileSync(
-  `./fonts/${fontName}/glyphs/9647.txt`,
-  `${wildcardWidth + 2}\n0 0 WILDCARD`,
-);
-fs.writeFileSync(
-  `./fonts/${fontName}/shapes/WILDCARD.txt`,
-  `${fontSize - wildcardHeight} 1\n` +
-    generateWildcard(wildcardWidth, wildcardHeight),
-);
+if (!fs.existsSync(`./fonts/${fontName}/glyphs/9647.txt`)) {
+  // Writes the wildcard glyph to make the font buildable
+  fs.writeFileSync(
+    `./fonts/${fontName}/glyphs/9647.txt`,
+    `${wildcardWidth + 2}\n0 0 WILDCARD`,
+  );
+  fs.writeFileSync(
+    `./fonts/${fontName}/shapes/WILDCARD.txt`,
+    `${fontSize - wildcardHeight} 1\n` +
+      generateWildcard(wildcardWidth, wildcardHeight),
+  );
+  written++;
+}
+
+console.log(`Extracted and wrote ${written} glyphs`);

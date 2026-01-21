@@ -511,9 +511,9 @@
 		}
 	};
 
-	const addShape = () => {
+	const addShape = (shapeName: string) => {
 		if (!project) return;
-		const adding = addingShapeName.trim();
+		const adding = shapeName.trim();
 		if (!adding) return;
 
 		if (shapes.some((shape) => shape.lookup.name === adding)) return;
@@ -552,8 +552,8 @@
 			return 0;
 		});
 
-		activeShape = shapes.findIndex((shape) => shape.lookup.name === addingShapeName);
-		addingShapeName = '';
+		activeShape = shapes.findIndex((shape) => shape.lookup.name === shapeName);
+		shapeName = '';
 	};
 
 	const removeShape = (index: number) => {
@@ -699,6 +699,22 @@
 	});
 
 	const populateInput = (s: string) => {
+		if (addingShapeName === s) {
+			// double click to apply shapes directly
+			if (!project) return;
+			const keys = Object.keys(project.shapes).filter((key) => key.startsWith(s));
+			const existing = shapes.findIndex((shape) => shape.lookup.name.startsWith(s));
+			if (existing >= 0 && keys.length > 1) {
+				const current = keys.indexOf(shapes[existing].lookup.name);
+				const next = (current + 1) % keys.length;
+				removeShape(existing);
+				addShape(keys[next]);
+			} else {
+				addShape(s);
+			}
+
+			return;
+		}
 		addingShapeName = s;
 		navigator.clipboard.writeText(s);
 	};
@@ -796,7 +812,7 @@
 					<button
 						class="rounded bg-slate-500 px-3 py-1 text-white hover:bg-slate-600 disabled:opacity-50"
 						disabled={readonly || shapeMode}
-						onclick={addShape}>Add</button
+						onclick={() => addShape(addingShapeName)}>Add</button
 					>
 				</div>
 				<div class="flex flex-wrap gap-1">

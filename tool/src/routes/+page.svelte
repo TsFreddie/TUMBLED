@@ -5,6 +5,7 @@
 	import type { Glyph, Project, Shape } from '$lib/server/loader';
 	import { onMount } from 'svelte';
 	import { glyphProgressStore } from '$lib/stores/glyphProgress';
+	import { SEQS } from '$lib/seq';
 
 	let editor: Editor;
 
@@ -126,6 +127,42 @@
 			project = await loadProject(project!.name);
 			updateProjectGlyphs();
 		});
+	};
+
+	// quickly find the next character that might be
+	// already finished using the IDS database
+	const quickResolve = () => {
+		if (!reference) return;
+		if (!project) return;
+
+		const lastClickedIndex = reference.glyphs.findIndex(
+			(glyph) => glyph.codepoint === lastClickedCodepoint
+		);
+
+		for (let i = 0; i < reference.glyphs.length; i++) {
+			const current = (lastClickedIndex + i + 1) % reference.glyphs.length;
+
+			// skip existing glyphs
+			if (project.glyphs[current]) continue;
+
+			const seq = SEQS[reference.glyphs[current].codepoint];
+			if (!seq) continue;
+
+			let possible = true;
+			for (const part in seq) {
+				if (!project.shapes[part]) {
+					possible = false;
+					break;
+				}
+			}
+
+			if (possible) {
+				lastClickedCodepoint = reference.glyphs[current].codepoint;
+				glyphProgressStore.setLastClickedCodepoint(lastClickedCodepoint);
+				// TODO: find the element and scroll to it by querying aria-label
+				return;
+			}
+		}
 	};
 
 	// Initialize progress store subscription

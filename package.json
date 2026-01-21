@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build": "bun run ./build.ts"
+  },
   "dependencies": {},
   "devDependencies": {
     "@napi-rs/canvas": "^0.1.88",

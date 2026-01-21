@@ -37,9 +37,6 @@ const process = (part: string) => {
 	let current = '';
 
 	for (const char of chars) {
-		if (part == '⿱亭u丁') {
-			console.log(char);
-		}
 		if (isAlphaNum(char)) {
 			current += char;
 		} else {

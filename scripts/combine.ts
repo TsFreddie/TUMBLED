@@ -3,7 +3,7 @@ import fs from "node:fs";
 import { FontExtractor } from "./extractor";
 
 const hardCap = 10922;
-const cjkCap = 10000;
+const cjkCap = 10500;
 
 const listStandards = fs.readdirSync("./data/pages/standards");
 const listExtra = fs.readdirSync("./data/pages/extra");

@@ -29,9 +29,11 @@ const fontName = definition.fontName ?? "unifont";
 const fontSize = definition.fontSize ?? 24;
 const fontFile =
   definition.fontFile ?? "./data/fonts/unifont/unifont-17.0.03.otf";
-const renderSize = definition.renderSize ?? 16;
+const renderWidth = definition.renderWidth ?? 16;
+const renderHeight = definition.renderHeight ?? 16;
 const wildcardHeight = definition.wildcardHeight ?? 16;
 const wildcardWidth = definition.wildcardWidth ?? 7;
+const forceAutohint = definition.forceAutohint ?? false;
 
 const extractor = new FontExtractor(fontFile);
 
@@ -43,7 +45,12 @@ let written = 0;
 
 for (const char of cjk) {
   const codepoint = char.codePointAt(0)!;
-  const glyph = extractor.convert(codepoint, renderSize);
+  const glyph = extractor.convert(
+    codepoint,
+    renderWidth,
+    renderHeight,
+    forceAutohint,
+  );
 
   if (glyph) {
     const top = glyph.shape ? topOffset + glyph.top : 0;

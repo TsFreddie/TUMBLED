@@ -1,62 +1,72 @@
 // Script to extract glyphs from unifont
-import * as fontkit from "fontkit";
-import { createCanvas } from "@napi-rs/canvas";
+import freetype from "freetype2";
 
 export class FontExtractor {
-  private readonly font: fontkit.Font;
+  private readonly font: freetype.FontFace;
 
-  constructor(file: string) {
-    const font = fontkit.openSync(file);
-    if (font.type !== "TTF") throw new Error("Font is not a TTF font");
+  constructor(file: string, index?: number) {
+    if (!index) index = 0;
+    const font = freetype.NewFace(file, index);
     this.font = font;
   }
 
   supportCodePoint(codePoint: number) {
-    const glyph = this.font.glyphForCodePoint(codePoint);
-    if (glyph.id === 0) {
+    const glyph = this.font.getCharIndex(codePoint);
+    if (!glyph) {
       return false;
     }
 
     return true;
   }
 
-  convert(codePoint: number, fontSize: number) {
-    const glyph = this.font.glyphForCodePoint(codePoint);
-    if (glyph.id === 0) {
+  convert(
+    codePoint: number,
+    fontSizeW: number,
+    fontSizeH?: number,
+    forceAutohint?: boolean,
+  ) {
+    const index = this.font.getCharIndex(codePoint);
+    if (!index) {
       return false;
     }
 
-    // double the canvas just in case
-    const canvasSize = fontSize * 2;
-    const c = createCanvas(canvasSize, canvasSize);
-    const ctx = c.getContext("2d");
-    const render = glyph.path
-      .scale(1, -1)
-      .translate(0, this.font.bbox.maxY)
-      .toFunction();
+    if (!fontSizeH) {
+      fontSizeH = fontSizeW;
+    }
 
-    let scale = (1 / this.font.unitsPerEm) * fontSize;
-    ctx.scale(scale, scale);
-    render(ctx as any);
-    ctx.fill();
-    const data = ctx.getImageData(0, 0, canvasSize, canvasSize);
+    this.font.setPixelSizes(fontSizeW, fontSizeH);
 
-    const advance = Math.round(glyph.advanceWidth * scale);
+    const glyph = this.font.loadGlyph(index, {
+      forceAutohint: forceAutohint,
+      loadTarget: freetype.RenderMode.MONO,
+      monochrome: true,
+      render: true,
+    });
+
+    const bitmap = glyph.bitmap;
+    if (!bitmap) {
+      return false;
+    }
+
+    const getBit = (x: number, y: number) => {
+      const byteIndex = Math.floor(x / 8) + y * bitmap.pitch;
+      const bitIndex = 7 - (x % 8);
+      return (bitmap.buffer[byteIndex] & (1 << bitIndex)) !== 0;
+    };
 
     // Find bounding box
-    let left = canvasSize;
-    let top = canvasSize;
+    let left = bitmap.width;
+    let top = bitmap.height;
     let right = -1;
     let bottom = -1;
 
-    for (let i = 0; i < canvasSize; i++) {
-      for (let j = 0; j < canvasSize; j++) {
-        const index = (i * canvasSize + j) * 4 + 3;
-        if (data.data[index] !== 0) {
-          if (j < left) left = j;
-          if (j > right) right = j;
-          if (i < top) top = i;
-          if (i > bottom) bottom = i;
+    for (let y = 0; y < bitmap.height; y++) {
+      for (let x = 0; x < bitmap.width; x++) {
+        if (getBit(x, y)) {
+          if (x < left) left = x;
+          if (x > right) right = x;
+          if (y < top) top = y;
+          if (y > bottom) bottom = y;
         }
       }
     }
@@ -71,20 +81,19 @@ export class FontExtractor {
 
     let shapeLines = [];
 
-    for (let i = top; i <= bottom; i++) {
+    for (let y = top; y <= bottom; y++) {
       let line = "";
-      for (let j = left; j <= right; j++) {
-        const index = (i * canvasSize + j) * 4 + 3;
-        line += data.data[index] === 0 ? " " : "#";
+      for (let x = left; x <= right; x++) {
+        line += !getBit(x, y) ? " " : "#";
       }
       shapeLines.push(line.trimEnd());
     }
 
     return {
       shape: shapeLines.join("\n"),
-      top,
-      left,
-      advance,
+      top: fontSizeH - (glyph.bitmapTop || 0),
+      left: (glyph.bitmapLeft || 0) + left,
+      advance: Math.round(glyph.metrics.horiAdvance / 64),
     };
   }
 }

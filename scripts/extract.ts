@@ -35,6 +35,7 @@ const renderHeight = definition.renderHeight ?? 16;
 const wildcardHeight = definition.wildcardHeight ?? 16;
 const wildcardWidth = definition.wildcardWidth ?? 7;
 const forceAutohint = definition.forceAutohint ?? false;
+const ranges: [number, number][] = definition.ranges ?? [[0, 65535]];
 
 const extractor = new FontExtractor(fontFile);
 
@@ -46,6 +47,11 @@ let written = 0;
 
 for (const char of cjk) {
   const codepoint = char.codePointAt(0)!;
+  if (!codepoint) continue;
+  if (!ranges.some(([start, end]) => codepoint >= start && codepoint <= end)) {
+    continue;
+  }
+
   const glyph = extractor.convert(
     codepoint,
     renderWidth,

@@ -9,19 +9,19 @@
 
 TUMBLED_14
 
-- Used [Ark Pixel Font](https://github.com/TakWolf/ark-pixel-font) as the base design for its readability. TUMBLED_14 will focus on designing missing glyphs.
+- Directly generated from [Fusion Pixel Font](https://github.com/TakWolf/fusion-pixel-font) for its readability, added missing glyphs to reach our target.
 
 TUMBLED_18
 
-- NOT IN PROGRESS, expected to be designed from stratch based on TUMBLED_24.
+- Designed based on TUMBLED_24, and used [Gamuri] for hiraganas, katakanas and hanguls.
 
 TUMBLED_24
 
-- Used [Unifont](https://unifoundry.com/unifont/index.html) as a reference and re-designed from scratch. Focusing on designing with larger apparent size than Unifont, and careful consideration with BOLD conversion compatibilty. TUMBLED_24 should also be sans-serif rather than serif based like Unifont.
+- Used [Unifont](https://unifoundry.com/unifont/index.html) as a reference and adjusted strokes to be more aesthetically similar to Pebble's Gothic, with redesigned hiraganas, katakanas and hanguls.
 
 TUMBLED_28
 
-- Directly generated from [Source Han Sans](https://github.com/adobe-fonts/source-han-sans). Due to the larger size, the generated ones are generally readable without any modification. Expected to be touched up to fix stroke width only.
+- Directly generated from [Source Han Sans](https://github.com/adobe-fonts/source-han-sans). Due to the larger size, the generated ones are generally readable without any modification.
 
 ## Bold Conversion
 
@@ -84,7 +84,7 @@ Generated font are licensed under OFL 1.1.
 
 [Unifont](https://unifoundry.com/unifont/index.html) ([OFL 1.1](https://unifoundry.com/OFL-1.1.txt) Licensed) is used both as a design reference for TUMBLED_24 and TUMBLED_18, and as a glyph availability reference for other fonts.
 
-[Fusion Pixel Font](https://github.com/TakWolf/fusion-pixel-font) ([OFL 1.1](https://github.com/TakWolf/ark-pixel-font/blob/master/LICENSE-OFL) Licensed) is used directly 
+[Fusion Pixel Font](https://github.com/TakWolf/fusion-pixel-font) ([OFL 1.1](https://github.com/TakWolf/ark-pixel-font/blob/master/LICENSE-OFL) Licensed) is used directly
 for generating TUMBLED_14.
 
 [Source Han Sans](https://github.com/adobe-fonts/source-han-sans) ([OFL 1.1](https://github.com/adobe-fonts/source-han-sans/blob/master/LICENSE.txt) licensed) is used directly for generating TUMBLED_28.

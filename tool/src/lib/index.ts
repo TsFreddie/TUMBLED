@@ -4,6 +4,7 @@ import type { Action } from 'svelte/action';
 import { browser } from '$app/environment';
 
 const projects = new Map<string, Project>();
+const references = new Map<string, Project>();
 
 const BASE_PATH = '../fonts';
 
@@ -26,6 +27,27 @@ export const loadProject = async (font: string) => {
 
 export const unloadProject = (font: string) => {
 	projects.delete(font);
+};
+
+export const loadReference = async (font: string) => {
+	if (references.has(font)) return references.get(font);
+
+	const path = `${BASE_PATH}/${font}`;
+	const response = await fetch(`/api/project?path=${path}`);
+	if (!response.ok) {
+		throw new Error(`Failed to load project: ${response.statusText}`);
+	}
+
+	const buffer = new Uint8Array(await response.arrayBuffer());
+	const project = unpack(buffer);
+
+	project.name = font;
+	references.set(font, project);
+	return project as Project;
+};
+
+export const unloadReference = (font: string) => {
+	references.delete(font);
 };
 
 export const saveShape = async (font: string, name: string, shape: Shape) => {

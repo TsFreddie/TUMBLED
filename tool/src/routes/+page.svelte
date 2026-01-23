@@ -1,5 +1,13 @@
 <script lang="ts">
-	import { BoldMode, checkFilter, loadProject, render, unloadProject } from '$lib';
+	import {
+		BoldMode,
+		checkFilter,
+		loadProject,
+		loadReference,
+		render,
+		unloadProject,
+		unloadReference
+	} from '$lib';
 	import Editor from '$lib/components/Editor.svelte';
 	import BatchDialog from '$lib/components/BatchDialog.svelte';
 	import type { Glyph, Project, Shape } from '$lib/server/loader';
@@ -49,7 +57,7 @@
 		} else if (key === 'g' && e.ctrlKey) {
 			document.getElementById('goto-field')?.focus();
 			e.preventDefault();
-		} else if (key === "i") {
+		} else if (key === 'i') {
 			if (e.ctrlKey) {
 				document.getElementById('seq-filter-field')?.focus();
 				e.preventDefault();
@@ -63,9 +71,11 @@
 		if (!reference) return;
 		if (!seqFilter) return;
 
-		const currentIndex = reference.glyphs.findIndex((glyph) => glyph.codepoint === lastClickedCodepoint);
-		const length = reference.glyphs.length;	
-	
+		const currentIndex = reference.glyphs.findIndex(
+			(glyph) => glyph.codepoint === lastClickedCodepoint
+		);
+		const length = reference.glyphs.length;
+
 		for (let i = 0; i < length; i++) {
 			const index = (currentIndex + i + 1) % length;
 			const codepoint = reference.glyphs[index].codepoint;
@@ -149,11 +159,13 @@
 	onMount(async () => {
 		reference = await loadProject(referenceFontName);
 		// Set initial project name in progress store
-		glyphProgressStore.setProjectName(referenceFontName);
+		glyphProgressStore.setProjectName('REFERENCE');
 	});
 
 	const openReference = (codepoint: number) => {
-		editor.open('unifont', codepoint, true);
+		if (!reference) return;
+		editor.setReference(reference.shapes[codepoint]);
+		editor.open(undefined, codepoint);
 	};
 
 	const editProjectGlyph = (codepoint: number) => {
@@ -245,7 +257,7 @@
 				type="text"
 				class="w-64 text-2xl font-bold"
 				bind:value={fontName}
-				placeholder="Unifont"
+				placeholder="unifont"
 				onkeydown={async (ev) => {
 					if (ev.code === 'Enter') {
 						const target = ev.currentTarget;
@@ -262,7 +274,7 @@
 								project = undefined;
 								updateProjectGlyphs();
 								// Reset to reference project
-								glyphProgressStore.setProjectName(referenceFontName);
+								glyphProgressStore.setProjectName('REFERENCE');
 							}
 						} catch (e) {
 							console.error(e);
@@ -290,13 +302,29 @@
 						bind:value={referenceFontName}
 						onkeydown={async (ev) => {
 							if (ev.code === 'Enter') {
+								console.log('HI');
+								const target = ev.currentTarget;
+								if (reference) {
+									unloadReference(reference.name);
+								}
+								if (referenceFontName) {
+									try {
+										reference = await loadReference(referenceFontName);
+									} catch (e) {
+										console.error(e);
+
+										reference = await loadReference('unifont');
+									}
+								} else {
+									reference = await loadReference('unifont');
+								}
+
+								target.blur();
 							}
 						}}
 						onblur={async () => {
 							if (reference) {
 								referenceFontName = reference.name;
-							} else {
-								referenceFontName = 'OOPS';
 							}
 						}}
 					/>

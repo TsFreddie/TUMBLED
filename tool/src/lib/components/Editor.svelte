@@ -198,11 +198,18 @@
 	}
 
 	export async function open(
-		path: string,
+		path: string | undefined,
 		code: number,
 		isReadonly: boolean = false,
 		saveCallback?: () => void
 	) {
+		if (!path) {
+			isReadonly = true;
+			codepoint = code;
+			activeShape = -1;
+			return;
+		}
+
 		project = await loadProject(path);
 		regularSaveCallback = saveCallback ?? (() => {});
 		readonly = isReadonly;

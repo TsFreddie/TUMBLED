@@ -82,10 +82,13 @@ Generated font are licensed under OFL 1.1.
 
 ## Acknowledgements
 
-[Unifont](https://unifoundry.com/unifont/index.html) ([OFL 1.1](https://unifoundry.com/OFL-1.1.txt) Licensed) is used both as a design reference for TUMBLED_24, and as a glyph availability reference for other fonts.
+[Unifont](https://unifoundry.com/unifont/index.html) ([OFL 1.1](https://unifoundry.com/OFL-1.1.txt) Licensed) is used both as a design reference for TUMBLED_24 and TUMBLED_18, and as a glyph availability reference for other fonts.
 
-[Ark Pixel Font](https://github.com/TakWolf/ark-pixel-font) ([OFL 1.1](https://github.com/TakWolf/ark-pixel-font/blob/master/LICENSE-OFL) Licensed) is used directly as the design for TUMBLED_14.
+[Fusion Pixel Font](https://github.com/TakWolf/fusion-pixel-font) ([OFL 1.1](https://github.com/TakWolf/ark-pixel-font/blob/master/LICENSE-OFL) Licensed) is used directly 
+for generating TUMBLED_14.
 
 [Source Han Sans](https://github.com/adobe-fonts/source-han-sans) ([OFL 1.1](https://github.com/adobe-fonts/source-han-sans/blob/master/LICENSE.txt) licensed) is used directly for generating TUMBLED_28.
+
+[Galmuri](https://github.com/quiple/galmuri) ([OFL 1.1](https://github.com/quiple/galmuri/blob/main/ofl.md) licensed) is used as the design for hangul glyphs for several fonts.
 
 A [FREQUENCY](./data/FREQUENCY) file derived from "[Chinese character list from 2.5 billion words corpus ordered by frequency](https://faculty.blcu.edu.cn/xinghb/zh_CN/article/167473/content/1437.htm)" is used as a reference to reduce the number of glyphs supported.

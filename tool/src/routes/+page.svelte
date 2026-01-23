@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { checkFilter, loadProject, render, unloadProject } from '$lib';
+	import { BoldMode, checkFilter, loadProject, render, unloadProject } from '$lib';
 	import Editor from '$lib/components/Editor.svelte';
 	import BatchDialog from '$lib/components/BatchDialog.svelte';
 	import type { Glyph, Project, Shape } from '$lib/server/loader';
@@ -16,7 +16,7 @@
 	let fontName = $state<string>('');
 	const glyphSize = (height: number) => height + Math.floor(height / 2);
 	let filter = $state<Shape>();
-	let bold = $state<boolean>(false);
+	let bold = $state<BoldMode>(0);
 
 	let goto = $state<string>('');
 	let seqFilter = $state<string>('');
@@ -143,7 +143,7 @@
 	};
 
 	const toggleBold = () => {
-		bold = !bold;
+		bold = (bold + 1) % 4;
 	};
 
 	onMount(async () => {
@@ -344,14 +344,14 @@
 					class="rounded {bold
 						? 'bg-purple-700'
 						: 'bg-purple-500'} px-3 py-1 text-white hover:bg-purple-600"
-					onclick={toggleBold}>{bold ? 'Bold: On' : 'Bold: Off'}</button
+					onclick={toggleBold}>Bold: {bold}</button
 				>
 				{#if filter}
 					<div class="h-8 w-8">
 						<canvas
 							class="h-full"
 							use:render={{
-								bold: false,
+								bold,
 								width: filter.left + filter.width,
 								height: filter.top + filter.height,
 								shapes: [filter]

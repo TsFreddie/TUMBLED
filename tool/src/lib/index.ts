@@ -117,12 +117,19 @@ export const renameShape = async (font: string, oldName: string, newName: string
 	}
 };
 
+export enum BoldMode {
+	none = 0,
+	horizontal = 1,
+	vertical = 2,
+	both = 3
+}
+
 const renderShapes = (
 	canvas: HTMLCanvasElement,
 	width: number,
 	height: number,
 	shapes: (Shape | undefined)[],
-	bold: boolean
+	bold: BoldMode
 ) => {
 	if (width == 0 || height == 0) {
 		canvas.width = 1;
@@ -130,8 +137,15 @@ const renderShapes = (
 		return;
 	}
 
-	if (bold) {
+	const horizontalBold = bold & BoldMode.horizontal;
+	const verticalBold = bold & BoldMode.vertical;
+
+	if (horizontalBold) {
 		width = width + 1;
+	}
+
+	if (verticalBold) {
+		height = height + 1;
 	}
 
 	canvas.height = height;
@@ -145,19 +159,23 @@ const renderShapes = (
 	// render pixels
 	for (const shape of shapes) {
 		if (!shape) continue;
-		for (let y = 0; y < shape.height; y++) {
-			for (let x = 0; x < shape.width + (bold ? 1 : 0); x++) {
+		for (let y = 0; y < shape.height + (verticalBold ? 1 : 0); y++) {
+			for (let x = 0; x < shape.width + (horizontalBold ? 1 : 0); x++) {
 				const imageX = x + shape.left;
 				const imageY = y + shape.top;
 				if (imageX < 0 || imageX >= imageData.width || imageY < 0 || imageY >= imageData.height)
 					continue;
 
 				const imageIndex = (imageY * imageData.width + imageX) * 4;
-				const index = y * shape.width + x;
-				let pixel = x >= shape.width ? 0 : shape.data[index];
-				if (!pixel && bold && x > 0) {
-					const leftIndex = y * shape.width + (x - 1);
-					pixel = shape.data[leftIndex];
+				let pixel = x >= shape.width || y >= shape.height ? 0 : shape.data[y * shape.width + x];
+				if (!pixel && horizontalBold && x > 0) {
+					const leftPixel = y >= shape.height ? 0 : shape.data[y * shape.width + (x - 1)];
+					pixel = leftPixel;
+				}
+
+				if (!pixel && verticalBold && y > 0) {
+					const topPixel = x >= shape.width ? 0 : shape.data[(y - 1) * shape.width + x];
+					pixel = topPixel;
 				}
 
 				if (!imageData.data[imageIndex + 3] && pixel) {
@@ -173,7 +191,7 @@ const renderShapes = (
 
 const renderMapping: Map<
 	HTMLCanvasElement,
-	{ width: number; height: number; shapes: (Shape | undefined)[]; bold: boolean }
+	{ width: number; height: number; shapes: (Shape | undefined)[]; bold: BoldMode }
 > = new Map();
 const rendered: Set<HTMLCanvasElement> = new Set();
 const visible: Set<HTMLCanvasElement> = new Set();
@@ -197,10 +215,10 @@ const renderObserver = browser
 
 export const render: Action<
 	HTMLCanvasElement,
-	{ width: number; height: number; shapes: (Shape | undefined)[]; bold: boolean }
+	{ width: number; height: number; shapes: (Shape | undefined)[]; bold: BoldMode }
 > = (
 	node: HTMLCanvasElement,
-	params: { width: number; height: number; shapes: (Shape | undefined)[]; bold: boolean }
+	params: { width: number; height: number; shapes: (Shape | undefined)[]; bold: BoldMode }
 ) => {
 	renderMapping.set(node, params);
 	renderObserver?.observe(node);

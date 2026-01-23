@@ -25,6 +25,7 @@ const definition = positionals[2]
   : {};
 
 const topOffset = definition.topOffset ?? 9;
+const leftOffset = definition.leftOffset ?? 0;
 const fontName = definition.fontName ?? "unifont";
 const fontSize = definition.fontSize ?? 24;
 const fontFile =
@@ -54,12 +55,10 @@ for (const char of cjk) {
 
   if (glyph) {
     const top = glyph.shape ? topOffset + glyph.top : 0;
-    const left = glyph.shape ? glyph.left : 0;
+    const left = glyph.shape ? leftOffset + glyph.left : 0;
 
     if (top < 0 || left < 0) {
-      console.log(
-        `WARNING: OOB ${char} ${codepoint} ${top} ${left} ${glyph.shape}`,
-      );
+      console.log(`WARNING: OOB ${char} ${codepoint} ${top} ${left}`);
     }
 
     if (

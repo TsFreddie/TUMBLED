@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { saveGlyph } from '$lib';
-	import type { Project, ShapeLookup } from '$lib/server/loader';
+	import type { Glyph, Project, ShapeLookup } from '$lib/server/loader';
 	import { onMount } from 'svelte';
 
 	interface Props {
 		project: Project;
 		reference: Project;
-		filteredIndices: number[];
+		set: boolean[];
 		onClose: () => void;
 		onComplete: () => Promise<void>;
 	}
 
-	let { project, reference, filteredIndices, onClose, onComplete }: Props = $props();
+	let { project, reference, set, onClose, onComplete }: Props = $props();
 
 	let dialog: HTMLDialogElement;
 	let offsetTop = $state<number>(0);
@@ -39,33 +39,32 @@
 		let updatedCount = 0;
 		let skippedCount = 0;
 
+		const projectGlyphs: Record<number, Glyph> = {};
+		for (const glyph of project.glyphs) {
+			projectGlyphs[glyph.codepoint] = glyph;
+		}
+		const projectName = project.name;
+
 		try {
-			// Iterate through all glyphs that are NOT filtered (i.e., visible)
-			for (const index of filteredIndices) {
-				let glyph = project.glyphs[index];
+			// Iterate through all glyphs and apply batch
+			for (const glyph of reference.glyphs) {
+				const codepoint = glyph.codepoint;
+				if (!set[codepoint]) continue;
 
-				// If glyph doesn't exist, create it based on reference
-				if (!glyph) {
-					const referenceGlyph = reference.glyphs[index];
-					if (!referenceGlyph) {
-						skippedCount++;
-						continue;
-					}
-					glyph = {
-						codepoint: referenceGlyph.codepoint,
-						advance: referenceGlyph.advance,
-						shapes: []
-					};
-					project.glyphs[index] = glyph;
-				}
+				let projectGlyph = projectGlyphs[codepoint];
 
-				// Check if shape name already exists in this glyph
-				const shapeExists = glyph.shapes.some((shape) => shape.name === glyphName);
-
-				if (shapeExists) {
+				// If glyph already exist, ignore
+				if (projectGlyph) {
 					skippedCount++;
 					continue;
 				}
+
+				projectGlyph = {
+					codepoint: glyph.codepoint,
+					advance: glyph.advance,
+					shapes: []
+				};
+				project.glyphs.push(projectGlyph);
 
 				// Add the shape to the glyph
 				const newShapeLookup: ShapeLookup = {
@@ -76,19 +75,12 @@
 
 				glyph.shapes.push(newShapeLookup);
 
-				// Sort shapes by name for consistency
-				glyph.shapes.sort((a, b) => {
-					if (a.name < b.name) return -1;
-					if (a.name > b.name) return 1;
-					return 0;
-				});
-
 				// Save the updated glyph
-				await saveGlyph(project.name, glyph.codepoint, glyph);
+				await saveGlyph(projectName, glyph.codepoint, projectGlyph);
 				updatedCount++;
 			}
 
-			status = `Completed: ${updatedCount} glyphs updated, ${skippedCount} skipped (shape already exists)`;
+			status = `Completed: ${updatedCount} glyphs updated, ${skippedCount} skipped`;
 		} catch (error) {
 			status = `Error: ${error instanceof Error ? error.message : 'Unknown error'}`;
 		} finally {
@@ -131,7 +123,7 @@
 
 			<div class="mb-4">
 				<p class="mb-2 text-sm text-gray-600">
-					This will add the shape to {filteredIndices.length} filtered glyphs.
+					This will add the shape to {set.filter((s) => s).length} filtered glyphs.
 				</p>
 			</div>
 

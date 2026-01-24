@@ -97,16 +97,6 @@
 	});
 
 	let showBatchDialog = $state<boolean>(false);
-	let filteredIndices = $derived(() => {
-		const indices: number[] = [];
-		if (!reference) return indices;
-		for (let i = 0; i < reference.glyphs.length; i++) {
-			if (filterStats.set[i]) {
-				indices.push(i);
-			}
-		}
-		return indices;
-	});
 
 	const clearFilter = () => {
 		filter = undefined;
@@ -491,7 +481,7 @@
 	<BatchDialog
 		{project}
 		{reference}
-		filteredIndices={filteredIndices()}
+		set={filterStats.set}
 		onClose={() => (showBatchDialog = false)}
 		onComplete={async () => {
 			project = await loadProject(project!.name);

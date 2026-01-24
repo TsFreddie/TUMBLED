@@ -26,6 +26,7 @@ const definition = positionals[2]
 
 const topOffset = definition.topOffset ?? 9;
 const leftOffset = definition.leftOffset ?? 0;
+const advanceOffset = definition.advanceOffset ?? 0;
 const fontName = definition.fontName ?? "unifont";
 const fontSize = definition.fontSize ?? 24;
 const fontFile =
@@ -36,6 +37,7 @@ const wildcardHeight = definition.wildcardHeight ?? 16;
 const wildcardWidth = definition.wildcardWidth ?? 7;
 const forceAutohint = definition.forceAutohint ?? false;
 const ranges: [number, number][] = definition.ranges ?? [[0, 65535]];
+const autoJiggle: false | [number, number] = definition.autoJiggle ?? false;
 
 const extractor = new FontExtractor(fontFile);
 
@@ -52,12 +54,32 @@ for (const char of cjk) {
     continue;
   }
 
-  const glyph = extractor.convert(
-    codepoint,
-    renderWidth,
-    renderHeight,
-    forceAutohint,
-  );
+  let glyph:
+    | false
+    | {
+        shape: string;
+        top: number;
+        left: number;
+        advance: number;
+      } = false;
+
+  if (typeof autoJiggle === "object") {
+    glyph = extractor.autoJiggle(
+      codepoint,
+      autoJiggle[0],
+      autoJiggle[1],
+      renderWidth,
+      renderHeight,
+      forceAutohint,
+    );
+  } else {
+    glyph = extractor.convert(
+      codepoint,
+      renderWidth,
+      renderHeight,
+      forceAutohint,
+    );
+  }
 
   if (glyph) {
     const top = glyph.shape ? topOffset + glyph.top : 0;
@@ -81,7 +103,7 @@ for (const char of cjk) {
 
     fs.writeFileSync(
       `./fonts/${fontName}/glyphs/${codepoint}.txt`,
-      `${glyph.advance}\n0 0 ${codepoint}`,
+      `${Math.round(glyph.advance + advanceOffset)}\n0 0 ${codepoint}`,
     );
     written++;
   }

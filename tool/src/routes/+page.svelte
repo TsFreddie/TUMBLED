@@ -469,6 +469,7 @@
 							})
 						}}
 					></canvas>
+					<div class="absolute bottom-0 right-0 text-xs text-zinc-500">{renderGlyph.advance}</div>
 				</button>
 			{/each}
 		</div>

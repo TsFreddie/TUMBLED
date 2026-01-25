@@ -144,10 +144,12 @@ export const loadProject = (filePath: string): Project => {
 	);
 
 	const glyphFiles = fs.readdirSync(`${filePath}/glyphs`);
-	const glyphs = glyphFiles.sort().map((file) => {
-		const glyph = loadGlyph(`${filePath}/glyphs/${file}`);
-		return glyph;
-	});
+	const glyphs = glyphFiles
+		.map((file) => {
+			const glyph = loadGlyph(`${filePath}/glyphs/${file}`);
+			return glyph;
+		})
+		.sort((a, b) => a.codepoint - b.codepoint);
 
 	const project: Project = {
 		name,

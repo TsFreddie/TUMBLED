@@ -1,6 +1,4 @@
 .vscode
-node_modules
-/research
 
 /build
 /fonts/unifont

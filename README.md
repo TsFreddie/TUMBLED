@@ -13,7 +13,7 @@ TUMBLED_14
 
 TUMBLED_18
 
-- Designed based on TUMBLED_24, and used [Gamuri] for hiraganas, katakanas and hanguls.
+- Designed from scratch, and used [Gamuri] for hiraganas, katakanas and hanguls.
 
 TUMBLED_24
 

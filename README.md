@@ -46,7 +46,7 @@ For CJK codepoints specifically, this font target specific standard documents. T
 - Read [others](./data/pages/others) directory and add them to the final set
 
 The current hard cap PebbleOS can hold in a single PBF file is 10922 16-bit codepoints.
-We set our limit to 10500 to leave extra spaces for missing characters in other languages.
+We set our limit to 10500 to leave extra spaces for missing characters in other languages or special characters.
 
 ## Preview
 

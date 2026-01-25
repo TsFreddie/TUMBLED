@@ -176,6 +176,17 @@ export class FontExtractor {
     return true;
   }
 
+  listAllCodePoints() {
+    let codepoints: number[] = [];
+    let char = this.font.getFirstChar();
+    while (char) {
+      codepoints.push(char.charCode);
+      char = this.font.getNextChar(char.charCode);
+    }
+
+    return codepoints;
+  }
+
   autoJiggle(
     codePoint: number,
     targetWidth: number,

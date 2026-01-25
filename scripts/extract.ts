@@ -2,11 +2,6 @@ import { FontExtractor } from "./extractor";
 import fs from "fs";
 import { parseArgs } from "util";
 
-const segmentor = new Intl.Segmenter(undefined, { granularity: "grapheme" });
-const cjk = Array.from(
-  segmentor.segment(fs.readFileSync("./build/pages.txt", "utf8")),
-).map((s) => s.segment);
-
 const { values, positionals } = parseArgs({
   args: process.argv,
   strict: false,
@@ -24,6 +19,7 @@ const definition = positionals[2]
   ? JSON.parse(fs.readFileSync(positionals[2], "utf-8"))
   : {};
 
+const pageFile = definition.pageFile ?? "./build/pages.txt";
 const topOffset = definition.topOffset ?? 9;
 const leftOffset = definition.leftOffset ?? 0;
 const advanceOffset = definition.advanceOffset ?? 0;
@@ -36,9 +32,13 @@ const renderHeight = definition.renderHeight ?? 16;
 const wildcardHeight = definition.wildcardHeight ?? 16;
 const wildcardWidth = definition.wildcardWidth ?? 7;
 const forceAutohint = definition.forceAutohint ?? false;
-const ranges: [number, number][] = definition.ranges ?? [[0, 65535]];
+const ranges: [number, number][] = definition.ranges ?? [[-Infinity, Infinity]];
 const autoJiggle: false | [number, number] = definition.autoJiggle ?? false;
 
+const segmentor = new Intl.Segmenter(undefined, { granularity: "grapheme" });
+const cjk = Array.from(
+  segmentor.segment(fs.readFileSync(pageFile, "utf8")),
+).map((s) => s.segment);
 const extractor = new FontExtractor(fontFile);
 
 fs.mkdirSync(`./fonts/${fontName}`, { recursive: true });

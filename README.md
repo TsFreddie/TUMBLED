@@ -58,6 +58,14 @@ TUMBLED_14_BOLD
 
 ![TUMBLED_14_BOLD Preview](./images/TUMBLED_14_BOLD.png)
 
+TUMBLED_18
+
+![TUMBLED_18 Preview](./images/TUMBLED_18.png)
+
+TUMBLED_18_BOLD
+
+![TUMBLED_18_BOLD Preview](./images/TUMBLED_18_BOLD.png)
+
 TUMBLED_24
 
 ![TUMBLED_24 Preview](./images/TUMBLED_24.png)

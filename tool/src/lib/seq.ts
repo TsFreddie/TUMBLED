@@ -76,7 +76,10 @@ export const SEQS = Object.fromEntries(
 					part.startsWith('⿸') ||
 					part.startsWith('⿹') ||
 					part.startsWith('⿺') ||
-					part.startsWith('⿴')
+					part.startsWith('⿴') ||
+					part.startsWith('⿵') ||
+					part.startsWith('⿶') ||
+					part.startsWith('⿷')
 				) {
 					const [outside, inside] = process(part);
 					addUnique(possibleParts, outside + 'o');

@@ -13,7 +13,7 @@ TUMBLED_14
 
 TUMBLED_18
 
-- Designed from scratch, and used [Gamuri] for hiraganas, katakanas and hanguls.
+- Designed from scratch, and used [Galmuri](https://github.com/quiple/galmuri) for hiraganas, katakanas and hanguls.
 
 TUMBLED_24
 
@@ -73,6 +73,22 @@ TUMBLED_28
 TUMBLED_28_BOLD
 
 ![TUMBLED_28_BOLD Preview](./images/TUMBLED_28_BOLD.png)
+
+## Progress
+
+- [x] TUMBLED_14 10704 / 10704 (100%)
+- [x] TUMBLED_18 8610 / 10704 (80%)
+- [x] TUMBLED_24 10704 / 10704 (100%)
+- [x] TUMBLED_28 10704 / 10704 (100%)
+
+## Build
+
+The tooling codes are written in TypeScript and can be run directly with [Bun](https://bun.sh/).
+
+```bash
+bun install
+bun run ./build.ts
+```
 
 ## Licenses
 

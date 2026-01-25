@@ -37,9 +37,12 @@
 	// Progress store subscription
 	let topRefFromStore = $state<number>(0);
 
+	let referenceProject = $state<Project | undefined>();
 	let referenceShape = $state<Shape | undefined>();
+	let referenceCodepoint = 0;
 	let referenceShapeVisible = $state<boolean>(true);
 	let referenceFontVisible = $state<boolean>(true);
+	let referenceInput = $state<string>('');
 
 	let addingShapeName = $state<string>('');
 
@@ -170,8 +173,11 @@
 		}
 	};
 
-	export function setReference(shape: Shape | undefined) {
-		referenceShape = shape;
+	export function setReference(refProject: typeof project, codepoint: number) {
+		referenceInput = codepoint.toString();
+		referenceProject = refProject;
+		referenceShape = refProject?.shapes[codepoint];
+		referenceCodepoint = codepoint;
 	}
 
 	export function editShape(shape: Shape | undefined, save: (shape: Shape | undefined) => void) {
@@ -733,6 +739,50 @@
 	const appendInput = (s: string) => {
 		addingShapeName += s;
 	};
+
+	const useReferenceShape = () => {
+		let codepoint = Number(referenceInput);
+		if (isNaN(codepoint)) {
+			codepoint = referenceInput.codePointAt(0)!;
+		}
+
+		if (!project) return;
+		if (project.shapes[codepoint]) {
+			referenceShape = project.shapes[codepoint];
+			referenceCodepoint = codepoint;
+		}
+	};
+
+	const nextReferencePart = () => {
+		if (!referenceInput) return;
+		if (!project) return;
+
+		const currentIndex = project.glyphs.findIndex(
+			(glyph) => glyph.codepoint === referenceCodepoint
+		);
+		const length = project.glyphs.length;
+
+		for (let i = 0; i < length; i++) {
+			const index = (currentIndex + i + 1) % length;
+			const codepoint = project.glyphs[index].codepoint;
+			const seq = SEQS[codepoint];
+			if (!seq) continue;
+			let found = false;
+			for (const part of seq) {
+				if (part.includes(referenceInput)) {
+					if (project.shapes[codepoint]) {
+						referenceShape = project.shapes[codepoint];
+						referenceCodepoint = codepoint;
+						found = true;
+						break;
+					}
+				}
+			}
+			if (found) {
+				break;
+			}
+		}
+	};
 </script>
 
 <dialog
@@ -962,22 +1012,38 @@
 						</div>
 					</div>
 				{/each}
-				{#if referenceShape}
-					<div
-						class="flex flex-col rounded border-2 px-2 py-1"
-						class:border-blue-600={referenceShapeVisible}
-						class:border-zinc-800={!referenceShapeVisible}
-					>
-						<div class="flex gap-2">
-							<div class="w-18 font-bold">Overlay:</div>
-							<span>Reference Shape</span>
-						</div>
+				<div
+					class="flex flex-col gap-1 rounded border-2 px-2 py-1"
+					class:border-blue-600={referenceShapeVisible}
+					class:border-zinc-800={!referenceShapeVisible}
+				>
+					<div class="flex gap-2">
+						<div class="w-18 font-bold">Overlay:</div>
+						<span>Reference Shape</span>
+					</div>
+					<input
+						type="text"
+						class="rounded border border-zinc-500 px-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+						bind:value={referenceInput}
+					/>
+					<div class="flex gap-2">
+						<button
+							class="rounded bg-blue-500 px-3 text-white hover:bg-blue-600"
+							onclick={() => useReferenceShape()}>Use</button
+						>
+						<button
+							class="rounded bg-blue-500 px-3 text-white hover:bg-blue-600"
+							onclick={() => nextReferencePart()}>Part</button
+						>
+					</div>
+					{#if referenceShape}
 						<button
 							class="rounded bg-slate-500 text-white hover:bg-slate-600"
 							onclick={() => (referenceShapeVisible = !referenceShapeVisible)}>Toggle</button
 						>
-					</div>
-				{/if}
+					{/if}
+				</div>
+
 				<div
 					class="flex flex-col rounded border-2 px-2 py-1"
 					class:border-blue-600={referenceFontVisible}

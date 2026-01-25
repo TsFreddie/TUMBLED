@@ -154,14 +154,14 @@
 
 	const openReference = (codepoint: number) => {
 		if (!reference) return;
-		editor.setReference(reference.shapes[codepoint]);
+		editor.setReference(reference, codepoint);
 		editor.open(undefined, codepoint);
 	};
 
 	const editProjectGlyph = (codepoint: number) => {
 		if (!project) return;
 		if (reference) {
-			editor.setReference(reference.shapes[codepoint]);
+			editor.setReference(reference, codepoint);
 		}
 		editor.open(project.name, codepoint, false, async () => {
 			project = await loadProject(project!.name);
@@ -426,7 +426,7 @@
 					aria-label={String.fromCodePoint(glyph.codepoint)}
 					onclick={(ev) => {
 						if (ev.ctrlKey) {
-							editor.setReference(reference!.shapes[glyph.shapes[0].name]);
+							editor.setReference(reference, glyph.codepoint);
 						} else {
 							// Track last clicked glyph
 							glyphProgressStore.setLastClickedCodepoint(glyph.codepoint);

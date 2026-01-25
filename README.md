@@ -63,37 +63,12 @@ We set our limit to 10500 to leave extra spaces for missing characters in other 
 
 ## Preview
 
-TUMBLED_14
-
-![TUMBLED_14 Preview](./images/TUMBLED_14.png)
-
-TUMBLED_14_BOLD
-
-![TUMBLED_14_BOLD Preview](./images/TUMBLED_14_BOLD.png)
-
-TUMBLED_18
-
-![TUMBLED_18 Preview](./images/TUMBLED_18.png)
-
-TUMBLED_18_BOLD
-
-![TUMBLED_18_BOLD Preview](./images/TUMBLED_18_BOLD.png)
-
-TUMBLED_24
-
-![TUMBLED_24 Preview](./images/TUMBLED_24.png)
-
-TUMBLED_24_BOLD
-
-![TUMBLED_24_BOLD Preview](./images/TUMBLED_24_BOLD.png)
-
-TUMBLED_28
-
-![TUMBLED_28 Preview](./images/TUMBLED_28.png)
-
-TUMBLED_28_BOLD
-
-![TUMBLED_28_BOLD Preview](./images/TUMBLED_28_BOLD.png)
+| Font Variant | Regular | Bold |
+|--------------|---------|------|
+| TUMBLED_14 | ![TUMBLED_14 Preview](./images/TUMBLED_14.png) | ![TUMBLED_14_BOLD Preview](./images/TUMBLED_14_BOLD.png) |
+| TUMBLED_18 | ![TUMBLED_18 Preview](./images/TUMBLED_18.png) | ![TUMBLED_18_BOLD Preview](./images/TUMBLED_18_BOLD.png) |
+| TUMBLED_24 | ![TUMBLED_24 Preview](./images/TUMBLED_24.png) | ![TUMBLED_24_BOLD Preview](./images/TUMBLED_24_BOLD.png) |
+| TUMBLED_28 | ![TUMBLED_28 Preview](./images/TUMBLED_28.png) | ![TUMBLED_28_BOLD Preview](./images/TUMBLED_28_BOLD.png) |
 
 ## Progress & Roadmap
 

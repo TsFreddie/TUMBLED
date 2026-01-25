@@ -48,6 +48,18 @@ For CJK codepoints specifically, this font target specific standard documents. T
 The current hard cap PebbleOS can hold in a single PBF file is 10922 16-bit codepoints.
 We set our limit to 10500 to leave extra spaces for missing characters in other languages or special characters.
 
+### Document Coverage
+
+| Script                  | Document               | Coverage   |
+| ----------------------- | ---------------------- | ---------- |
+| Simplified Chinese      | 通用规范汉字表（一级） | 3500/3500  |
+| Traditional Chinese     | 常用國字標準字體表     | 4808/4808  |
+| Japanese Standard Kanji | 日本常用漢字表         | 2137/2137  |
+| Korean Hanja            | 한문 교육용 기초한자   | 1800/1801  |
+| Bopomofo                | 注音符號               | 43/43      |
+| Hirakana + Katakana     | 仮名                   | 187/187    |
+| Hangul                  | 한글                   | 2351/11172 |
+
 ## Preview
 
 TUMBLED_14
@@ -82,12 +94,14 @@ TUMBLED_28_BOLD
 
 ![TUMBLED_28_BOLD Preview](./images/TUMBLED_28_BOLD.png)
 
-## Progress
+## Progress & Roadmaps
 
 - [x] TUMBLED_14 10704 / 10704 (100%)
 - [ ] TUMBLED_18 8610 / 10704 (80%)
 - [x] TUMBLED_24 10704 / 10704 (100%)
 - [x] TUMBLED_28 10704 / 10704 (100%)
+
+- [ ] Provide hant and jp version with regional glyph shapes
 
 ## Build
 

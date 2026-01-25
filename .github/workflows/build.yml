@@ -27,7 +27,7 @@ jobs:
         run: cd PebbleFontTool && bun install
       
       - name: Run build
-        run: bun run ./build.ts --skip-previews
+        run: bun run ./build.js --skip-previews
       
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4

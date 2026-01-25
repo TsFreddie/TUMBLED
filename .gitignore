@@ -5,3 +5,5 @@ node_modules
 /build
 /fonts/unifont
 /fonts/TEST_*
+
+/PebbleFontTool

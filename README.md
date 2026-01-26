@@ -38,7 +38,7 @@ TUMBLED_28
 ## Progress & Roadmap
 
 - [x] TUMBLED_14 10704 / 10704 (100%)
-- [ ] TUMBLED_18 8610 / 10704 (80%)
+- [ ] TUMBLED_18 8853 / 10603 (83%)
 - [x] TUMBLED_24 10704 / 10704 (100%)
 - [x] TUMBLED_28 10704 / 10704 (100%)
 

@@ -37,11 +37,6 @@ TUMBLED_28
 
 ## Progress & Roadmap
 
-- [x] TUMBLED_14 10801 / 10801 (100%)
-- [ ] TUMBLED_18 10764 / 10801 (99%)
-- [x] TUMBLED_24 10801 / 10801 (100%)
-- [x] TUMBLED_28 10801 / 10801 (100%)
-
 - [ ] Provide hant and jp version with regional glyph shapes
 
 ## Build

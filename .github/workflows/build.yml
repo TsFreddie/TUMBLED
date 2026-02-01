@@ -32,6 +32,9 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: TUMBLED_PBF
-          path: ./build/**
+          name: TUMBLED_SC
+          path: |
+            ./build/*.pbf
+            ./build/*.pbl
           retention-days: 30
+

@@ -7,10 +7,8 @@ await $`mkdir -p build/`;
 
 fs.writeFileSync("build/000.po", `msgid ""
 msgstr ""
-"Project-Id-Version: 2.0"
 "Language: en_CN\\n"
 "Name: English+TUMBLED_SC\\n"
-"MIME-Version: 1.0\\n"
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
 `);

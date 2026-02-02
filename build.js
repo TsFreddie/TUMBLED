@@ -1,14 +1,19 @@
 import { $ } from "bun";
 import fs from 'fs';
 
+const VERSION = "1.0";
+const LANGUAGE = "en_CN";
+const NAME = "English + TUMBLED";
+
 const skipPreviews = process.argv.includes("--skip-previews");
 
 await $`mkdir -p build/`;
 
 fs.writeFileSync("build/000.po", `msgid ""
 msgstr ""
-"Language: en_CN\\n"
-"Name: English+TUMBLED_SC\\n"
+"Project-Id-Version: ${VERSION}\\n"
+"Language: ${LANGUAGE}\\n"
+"Name: ${NAME}\\n"
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
 `);

@@ -1,7 +1,7 @@
 import { $ } from "bun";
 import fs from 'fs';
 
-const VERSION = "1.2";
+const VERSION = "1.3";
 const LANGUAGE = "en_CN";
 const NAME = "English + TUMBLED";
 

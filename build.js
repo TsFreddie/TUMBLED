@@ -74,3 +74,9 @@ await $`touch build/TUMBLED_PBL/017`;
 await $`touch build/TUMBLED_PBL/018`;
 
 await $`bun run ./PebbleFontTool/bin/pbl pack build/TUMBLED_PBL -o build/TUMBLED.pbl`;
+
+await $`cp -f build/TUMBLED_PBL/001 build/TUMBLED_PBL/002`;
+await $`cp -f build/TUMBLED_PBL/006 build/TUMBLED_PBL/005`;
+await $`cp -f build/TUMBLED_PBL/007 build/TUMBLED_PBL/008`;
+
+await $`bun run ./PebbleFontTool/bin/pbl pack build/TUMBLED_PBL -o build/TUMBLED_LITE.pbl`;

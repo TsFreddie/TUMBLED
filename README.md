@@ -1,6 +1,6 @@
 # Tumbled Bitmap Font 圆石点阵黑
 
-This font is designed for PebbleOS, containing approximately 8000 Chinese characters, as well as support for Japanese and Korean. Most of the variants are modified and adjusted from existing open-source fonts. However, the Chinese characters in TUMBLED_18 were designed from scratch due to the lack of alternative open-source fonts in similar sizes.
+This font is designed for PebbleOS, containing approximately 8100 Chinese characters, as well as support for Japanese and Korean. Most of the variants are modified and adjusted from existing open-source fonts. However, the Chinese characters in TUMBLED_18 were designed from scratch due to the lack of alternative open-source fonts in similar sizes.
 
 If you are looking for more condensed font similar to PebbleOS's Gothic, check out [Kyanite Bitmap Font](https://github.com/TsFreddie/KYANITE).
 
@@ -34,6 +34,12 @@ TUMBLED_28
 | TUMBLED_18   | ![TUMBLED_18 Preview](./images/TUMBLED_18.png) | ![TUMBLED_18_BOLD Preview](./images/TUMBLED_18_BOLD.png) |
 | TUMBLED_24   | ![TUMBLED_24 Preview](./images/TUMBLED_24.png) | ![TUMBLED_24_BOLD Preview](./images/TUMBLED_24_BOLD.png) |
 | TUMBLED_28   | ![TUMBLED_28 Preview](./images/TUMBLED_28.png) | ![TUMBLED_28_BOLD Preview](./images/TUMBLED_28_BOLD.png) |
+
+Comparison between the current official language pack `en_CN` and `TUMBLED_24_BOLD` in `Default` text size:
+
+| Pebble (en_CN)                               | TUMBLED_24_BOLD                                  |
+| -------------------------------------------- | ------------------------------------------------ |
+| ![Compare_en_CN](./images/Compare_en_CN.png) | ![Compare_TUMBLED](./images/Compare_TUMBLED.png) |
 
 ## Progress & Roadmap
 

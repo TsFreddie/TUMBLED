@@ -26,6 +26,10 @@ TUMBLED_28
 
 - Directly generated from [Source Han Sans](https://github.com/adobe-fonts/source-han-sans). Due to the larger size, the generated ones are generally readable without any modification.
 
+TUMBLED_36
+
+- Directly generated from [Source Han Sans](https://github.com/adobe-fonts/source-han-sans), for the Pebble Time 2 `GOTHIC_36_EXTENDED` slots.
+
 ## Preview
 
 | Font Variant | Regular                                        | Bold                                                     |
@@ -34,12 +38,34 @@ TUMBLED_28
 | TUMBLED_18   | ![TUMBLED_18 Preview](./images/TUMBLED_18.png) | ![TUMBLED_18_BOLD Preview](./images/TUMBLED_18_BOLD.png) |
 | TUMBLED_24   | ![TUMBLED_24 Preview](./images/TUMBLED_24.png) | ![TUMBLED_24_BOLD Preview](./images/TUMBLED_24_BOLD.png) |
 | TUMBLED_28   | ![TUMBLED_28 Preview](./images/TUMBLED_28.png) | ![TUMBLED_28_BOLD Preview](./images/TUMBLED_28_BOLD.png) |
+| TUMBLED_36   | ![TUMBLED_36 Preview](./images/TUMBLED_36.png) | ![TUMBLED_36_BOLD Preview](./images/TUMBLED_36_BOLD.png) |
 
 Comparison between the current official language pack `en_CN` and `TUMBLED_24_BOLD` in `Default` text size:
 
 | Pebble (en_CN)                               | TUMBLED_24_BOLD                                  |
 | -------------------------------------------- | ------------------------------------------------ |
 | ![Compare_en_CN](./images/Compare_en_CN.png) | ![Compare_TUMBLED](./images/Compare_TUMBLED.png) |
+
+## Packs
+
+Each release ships the full pack plus reduced packs. Every pack fills the
+whole resource layout the firmware expects; the reduced packs alias font
+variants that the watch's notifications never use to an existing design of
+the same size, and the pack format stores identical contents only once.
+
+| Pack                   | Watch         | Slots | Aliases                                            |
+| ---------------------- | ------------- | ----- | -------------------------------------------------- |
+| `TUMBLED_P2D.pbl`      | Pebble 2 Duo  | 19    | none (TUMBLED_14/18/24/28, regular and bold)       |
+| `TUMBLED_LITE_P2D.pbl` | Pebble 2 Duo  | 19    | `14_BOLD`→`14`, `24`→`24_BOLD`, `28_BOLD`→`28`     |
+| `TUMBLED_PT2.pbl`      | Pebble Time 2 | 21    | none (adds TUMBLED_36, regular and bold)           |
+| `TUMBLED_LITE_PT2.pbl` | Pebble Time 2 | 21    | `14_BOLD`→`14`, `36_BOLD`→`36`                     |
+| `TUMBLED_MINI_PT2.pbl` | Pebble Time 2 | 21    | LITE plus `18_BOLD`→`18`, which only `Medium` uses |
+
+The aliases are chosen around notifications at the watch's default content
+size (Pebble 2 Duo: `Medium`, Pebble Time 2: `Large`). Aliased slots still
+render TUMBLED glyphs, but show the referenced design: with
+`TUMBLED_MINI_PT2`, switching the watch to `Medium` or `ExtraLarge` makes
+notification headers and titles use the regular weight.
 
 ## Progress & Roadmap
 
@@ -62,6 +88,24 @@ cd..
 bun run ./build.js
 ```
 
+`build.js` only builds the PBF files and packs them into `.pbl` files from the
+glyph sources in `fonts/`. To regenerate the codepoint set and the glyph
+sources themselves, run the scripts from the PebbleFontTool checkout:
+
+```bash
+# Rebuild build/pages.txt from PebbleFontTool/data/pages
+bun run ./PebbleFontTool/scripts/combine.ts
+
+# Rebuild the reference font used by the editor (fonts/unifont)
+bun run ./PebbleFontTool/scripts/extract.ts
+
+# Rebuild one variant, e.g. TUMBLED_14 (definition in build/)
+bun run ./PebbleFontTool/scripts/extract.ts build/fusion12.json
+
+# TUMBLED_36, the Pebble Time 2 size (definition in build/)
+bun run ./PebbleFontTool/scripts/extract.ts build/TUMBLED_36.json
+```
+
 ## Licenses
 
 This repository and packaged fonts are licensed under OFL 1.1.
@@ -73,6 +117,6 @@ This repository and packaged fonts are licensed under OFL 1.1.
 [Fusion Pixel Font](https://github.com/TakWolf/fusion-pixel-font) ([OFL 1.1](https://github.com/TakWolf/ark-pixel-font/blob/master/LICENSE-OFL) Licensed) is used directly
 for generating TUMBLED_14.
 
-[Source Han Sans](https://github.com/adobe-fonts/source-han-sans) ([OFL 1.1](https://github.com/adobe-fonts/source-han-sans/blob/master/LICENSE.txt) licensed) is used directly for generating TUMBLED_28.
+[Source Han Sans](https://github.com/adobe-fonts/source-han-sans) ([OFL 1.1](https://github.com/adobe-fonts/source-han-sans/blob/master/LICENSE.txt) licensed) is used directly for generating TUMBLED_28 and TUMBLED_36.
 
 [Galmuri](https://github.com/quiple/galmuri) ([OFL 1.1](https://github.com/quiple/galmuri/blob/main/ofl.md) licensed) is used as the design for hangul glyphs for several fonts.

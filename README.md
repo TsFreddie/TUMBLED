@@ -8,6 +8,35 @@ If you are looking for more condensed font similar to PebbleOS's Gothic, check o
 
 如果你更喜欢与PebbleOS的Gothic类似的压缩宽度的字体，推荐 [Kyanite Bitmap Font](https://github.com/TsFreddie/KYANITE).
 
+## Download 下载
+
+**[Download the latest release 下载最新版本](https://github.com/TsFreddie/TUMBLED/releases/latest)**
+
+### Packs 字体包
+
+Each release ships the full pack plus reduced ones. Every pack fills the whole
+resource layout the firmware expects; the reduced packs alias font variants that
+the watch's notifications never use to an existing design of the same size, and
+the pack format stores identical contents only once.
+
+每次发布都会提供完整包和精简包。所有字体包都会填满固件所需的全部资源槽位；精简包会把通知中不会用到的字重指向同尺寸的现有设计，而字体包格式对相同的内容只存储一份。
+
+| Pack                   | Watch         | Slots | Aliases                                        |
+| ---------------------- | ------------- | ----- | ---------------------------------------------- |
+| `TUMBLED_P2D.pbl`      | Pebble 2 Duo  | 19    | none (TUMBLED_14/18/24/28, regular and bold)   |
+| `TUMBLED_LITE_P2D.pbl` | Pebble 2 Duo  | 19    | `14_BOLD`→`14`, `24`→`24_BOLD`, `28_BOLD`→`28` |
+| `TUMBLED_PT2.pbl`      | Pebble Time 2 | 21    | none (adds TUMBLED_36, regular and bold)       |
+| `TUMBLED_LITE_PT2.pbl` | Pebble Time 2 | 21    | `14_BOLD`→`14`, `36_BOLD`→`36`                 |
+| `TUMBLED_MINI_PT2.pbl` | Pebble Time 2 | 21    | LITE plus `18_BOLD`→`18`, only `Medium` uses   |
+
+The aliases are chosen around notifications at the watch's default content size
+(Pebble 2 Duo: `Medium`, Pebble Time 2: `Large`). Aliased slots still render
+TUMBLED glyphs, but show the referenced design: with `TUMBLED_MINI_PT2`,
+switching the watch to `Medium` or `ExtraLarge` makes notification headers and
+titles use the regular weight.
+
+精简包的别名是按手表默认字号下的通知来选择的（Pebble 2 Duo 为 `Medium`，Pebble Time 2 为 `Large`）。被指向的槽位依然会渲染 TUMBLED 字形，只是显示所指设计：使用 `TUMBLED_MINI_PT2` 时，如果把手表字号切换到 `Medium` 或 `ExtraLarge`，通知标题会改用常规字重。
+
 ## Variants
 
 TUMBLED_14
@@ -45,27 +74,6 @@ Comparison between the current official language pack `en_CN` and `TUMBLED_24_BO
 | Pebble (en_CN)                               | TUMBLED_24_BOLD                                  |
 | -------------------------------------------- | ------------------------------------------------ |
 | ![Compare_en_CN](./images/Compare_en_CN.png) | ![Compare_TUMBLED](./images/Compare_TUMBLED.png) |
-
-## Packs
-
-Each release ships the full pack plus reduced packs. Every pack fills the
-whole resource layout the firmware expects; the reduced packs alias font
-variants that the watch's notifications never use to an existing design of
-the same size, and the pack format stores identical contents only once.
-
-| Pack                   | Watch         | Slots | Aliases                                            |
-| ---------------------- | ------------- | ----- | -------------------------------------------------- |
-| `TUMBLED_P2D.pbl`      | Pebble 2 Duo  | 19    | none (TUMBLED_14/18/24/28, regular and bold)       |
-| `TUMBLED_LITE_P2D.pbl` | Pebble 2 Duo  | 19    | `14_BOLD`→`14`, `24`→`24_BOLD`, `28_BOLD`→`28`     |
-| `TUMBLED_PT2.pbl`      | Pebble Time 2 | 21    | none (adds TUMBLED_36, regular and bold)           |
-| `TUMBLED_LITE_PT2.pbl` | Pebble Time 2 | 21    | `14_BOLD`→`14`, `36_BOLD`→`36`                     |
-| `TUMBLED_MINI_PT2.pbl` | Pebble Time 2 | 21    | LITE plus `18_BOLD`→`18`, which only `Medium` uses |
-
-The aliases are chosen around notifications at the watch's default content
-size (Pebble 2 Duo: `Medium`, Pebble Time 2: `Large`). Aliased slots still
-render TUMBLED glyphs, but show the referenced design: with
-`TUMBLED_MINI_PT2`, switching the watch to `Medium` or `ExtraLarge` makes
-notification headers and titles use the regular weight.
 
 ## Progress & Roadmap
 

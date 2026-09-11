@@ -12,6 +12,10 @@ If you are looking for more condensed font similar to PebbleOS's Gothic, check o
 
 **[Download the latest release 下载最新版本](https://github.com/TsFreddie/TUMBLED/releases/latest)**
 
+See the [coverage report 收字覆盖报告](https://github.com/TsFreddie/PebbleFontTool#document-coverage) for the characters a release covers.
+
+想了解每个版本收录了哪些字符，见[收字覆盖报告](https://github.com/TsFreddie/PebbleFontTool#document-coverage)。
+
 ### Packs 字体包
 
 Each release ships the full pack plus reduced ones. Every pack fills the whole

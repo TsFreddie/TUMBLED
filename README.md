@@ -19,11 +19,10 @@ See the [coverage report 收字覆盖报告](https://github.com/TsFreddie/Pebble
 ### Packs 字体包
 
 Each release ships the full pack plus reduced ones. Every pack fills the whole
-resource layout the firmware expects; the reduced packs alias font variants that
-the watch's notifications never use to an existing design of the same size, and
-the pack format stores identical contents only once.
+resource layout the firmware expects. The full packs include every font; the
+reduced packs leave out the fonts that notifications never use.
 
-每次发布都会提供完整包和精简包。所有字体包都会填满固件所需的全部资源槽位；精简包会把通知中不会用到的字重指向同尺寸的现有设计，而字体包格式对相同的内容只存储一份。
+每次发布都会提供完整包和精简包。所有字体包都会填满固件所需的全部资源槽位。完整包包括所有字体，精简包不包括通知不使用的字体。
 
 | Pack                   | Watch         | Slots | Aliases                                        |
 | ---------------------- | ------------- | ----- | ---------------------------------------------- |
@@ -32,14 +31,6 @@ the pack format stores identical contents only once.
 | `TUMBLED_PT2.pbl`      | Pebble Time 2 | 21    | none (adds TUMBLED_36, regular and bold)       |
 | `TUMBLED_LITE_PT2.pbl` | Pebble Time 2 | 21    | `14_BOLD`→`14`, `36_BOLD`→`36`                 |
 | `TUMBLED_MINI_PT2.pbl` | Pebble Time 2 | 21    | LITE plus `18_BOLD`→`18`, only `Medium` uses   |
-
-The aliases are chosen around notifications at the watch's default content size
-(Pebble 2 Duo: `Medium`, Pebble Time 2: `Large`). Aliased slots still render
-TUMBLED glyphs, but show the referenced design: with `TUMBLED_MINI_PT2`,
-switching the watch to `Medium` or `ExtraLarge` makes notification headers and
-titles use the regular weight.
-
-精简包的别名是按手表默认字号下的通知来选择的（Pebble 2 Duo 为 `Medium`，Pebble Time 2 为 `Large`）。被指向的槽位依然会渲染 TUMBLED 字形，只是显示所指设计：使用 `TUMBLED_MINI_PT2` 时，如果把手表字号切换到 `Medium` 或 `ExtraLarge`，通知标题会改用常规字重。
 
 ## Variants
 

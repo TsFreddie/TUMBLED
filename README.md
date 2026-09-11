@@ -16,11 +16,10 @@ If you are looking for more condensed font similar to PebbleOS's Gothic, check o
 
 ### Packs 字体包
 
-Each release ships the full pack plus reduced ones. Every pack fills the whole
-resource layout the firmware expects. The full packs include every font; the
-reduced packs leave out the fonts that notifications never use.
+Each release ships the full pack plus reduced ones. The full packs include every
+font; the reduced packs leave out the fonts that notifications never use.
 
-每次发布都会提供完整包和精简包。所有字体包都会填满固件所需的全部资源槽位。完整包包括所有字体，精简包不包括通知不使用的字体。
+每次发布都会提供完整包和精简包。完整包包括所有字体，精简包不包括通知不使用的字体。
 
 | Pack                   | Watch         | Slots | Aliases                                        |
 | ---------------------- | ------------- | ----- | ---------------------------------------------- |

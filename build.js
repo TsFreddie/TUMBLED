@@ -102,6 +102,9 @@ const BOLD_FLAGS = { 36: ["--bold-height", "1"] };
 
 const skipPreviews = process.argv.includes("--skip-previews");
 
+// Preview images are drawn on the same gray as the README's specimen sheet.
+const PREVIEW_BG = "#cccccc";
+
 fs.mkdirSync("build/", { recursive: true });
 
 // The fonts are language independent, so build them once.
@@ -111,8 +114,8 @@ for (const size of SIZES) {
   await $`bun run ./PebbleFontTool/bin/pbf buildbold ./fonts/TUMBLED_${size} -o build/TUMBLED_${size}_BOLD.pbf ${BOLD_FLAGS[size] ?? []}`;
 
   if (!skipPreviews) {
-    await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_${size}.pbf build/TUMBLED_${size}.pbf -o images/TUMBLED_${size}.png -w 200 -h 228 -l ${size}`;
-    await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_${size}_BOLD.pbf build/TUMBLED_${size}_BOLD.pbf -o images/TUMBLED_${size}_BOLD.png -w 200 -h 228 -l ${size}`;
+    await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_${size}.pbf build/TUMBLED_${size}.pbf -o images/TUMBLED_${size}.png -w 200 -h 228 -l ${size} --bg ${PREVIEW_BG}`;
+    await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_${size}_BOLD.pbf build/TUMBLED_${size}_BOLD.pbf -o images/TUMBLED_${size}_BOLD.png -w 200 -h 228 -l ${size} --bg ${PREVIEW_BG}`;
   }
 }
 

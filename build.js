@@ -14,12 +14,20 @@ const LANGS = [
   { code: "zh_CN", name: "简体中文 + TUMBLED", po: "locale/zh_CN.po" },
 ];
 
-// The CJK month names (一月 … 十月) plus the ellipsis and the wildcard box,
-// for the ROBOTO_CONDENSED_21_EXTENDED slot of both watches.
-const MONTHS = "data/016";
-
-// Font slots of each watch, in resource order. `null` leaves the slot empty
-// so the firmware keeps whatever it already has for that size.
+// Font slots of each watch, in resource order. The built-in display fonts
+// (BITHAM_*, ROBOTO_*, DROID_SERIF_28_BOLD) get the closest existing CJK
+// font so Chinese renders there at the right size; the pack dedupes the
+// bytes, so pointing a slot at a font the pack already carries adds nothing
+// to the file. The base/extension pair is only aligned when the two PBF
+// heights match, so the closest size is picked per slot:
+//   BITHAM_18_LIGHT_SUBSET (18) -> 18
+//   BITHAM_30_BLACK        (30) -> 28_BOLD
+//   BITHAM_34_*            (34) -> 36 / 28, MEDIUM_NUMBERS 28_BOLD
+//   BITHAM_42_*            (42) -> 36 / 28, BOLD 36_BOLD / 28_BOLD
+//   ROBOTO_CONDENSED_21    (21) -> 18_BOLD
+//   ROBOTO_BOLD_SUBSET_49  (49) -> 36_BOLD / 28_BOLD
+//   DROID_SERIF_28_BOLD    (28) -> 28_BOLD
+// (36/36_BOLD exist on PT2 only; P2D tops out at 28.)
 const P2D_SLOTS = [
   "TUMBLED_14",
   "TUMBLED_14_BOLD",
@@ -29,16 +37,16 @@ const P2D_SLOTS = [
   "TUMBLED_24_BOLD",
   "TUMBLED_28",
   "TUMBLED_28_BOLD",
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  MONTHS,
-  null,
-  null,
+  "TUMBLED_18",            // BITHAM_18_LIGHT_SUBSET
+  "TUMBLED_28_BOLD",       // BITHAM_30_BLACK
+  "TUMBLED_28",            // BITHAM_34_LIGHT_SUBSET
+  "TUMBLED_28_BOLD",       // BITHAM_34_MEDIUM_NUMBERS
+  "TUMBLED_28_BOLD",       // BITHAM_42_BOLD
+  "TUMBLED_28",            // BITHAM_42_LIGHT
+  "TUMBLED_28_BOLD",       // BITHAM_42_MEDIUM_NUMBERS
+  "TUMBLED_18_BOLD",       // ROBOTO_CONDENSED_21
+  "TUMBLED_28_BOLD",       // ROBOTO_BOLD_SUBSET_49
+  "TUMBLED_28_BOLD",       // DROID_SERIF_28_BOLD
 ];
 
 const PT2_SLOTS = [
@@ -52,16 +60,16 @@ const PT2_SLOTS = [
   "TUMBLED_28_BOLD",
   "TUMBLED_36",
   "TUMBLED_36_BOLD",
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  MONTHS,
-  null,
-  null,
+  "TUMBLED_18",            // BITHAM_18_LIGHT_SUBSET
+  "TUMBLED_28_BOLD",       // BITHAM_30_BLACK
+  "TUMBLED_36",            // BITHAM_34_LIGHT_SUBSET
+  "TUMBLED_28_BOLD",       // BITHAM_34_MEDIUM_NUMBERS
+  "TUMBLED_36_BOLD",       // BITHAM_42_BOLD
+  "TUMBLED_36",            // BITHAM_42_LIGHT
+  "TUMBLED_36_BOLD",       // BITHAM_42_MEDIUM_NUMBERS
+  "TUMBLED_18_BOLD",       // ROBOTO_CONDENSED_21
+  "TUMBLED_36_BOLD",       // ROBOTO_BOLD_SUBSET_49
+  "TUMBLED_28_BOLD",       // DROID_SERIF_28_BOLD
 ];
 
 // Reduced packs point the bold-only slots at the font notifications actually

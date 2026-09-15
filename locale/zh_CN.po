@@ -3111,7 +3111,7 @@ msgstr "不支持的表盘"
 #: src/fw/apps/system/settings/timeline.c:184
 #: src/fw/apps/system/settings/timeline.c:261
 msgid "Quick View"
-msgstr "快速查看"
+msgstr "快速预览"
 
 #. / Help text for the Timeline Quick View first use dialog.
 #: src/fw/apps/system/settings/timeline.c:263

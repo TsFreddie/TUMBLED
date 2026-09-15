@@ -1,135 +1,173 @@
 import { $ } from "bun";
-import fs from 'fs';
+import fs from "fs";
+import path from "path";
 
-const VERSION = "1.6";
-const LANGUAGE = "en_CN";
-const NAME = "English + TUMBLED";
+// Written into every pack's translation header.
+const VERSION = "1.7";
+
+// Language packs to build. A `po` entry is a vendored catalog from
+// coredevices/pebbleos-translations (see locale/README.md). Older PBF-only
+// packs carry no catalog at all, so the system keeps its built-in English
+// strings while still rendering CJK with the TUMBLED fonts.
+const LANGS = [
+  { code: "en_CN", name: "English + TUMBLED" },
+  { code: "zh_CN", name: "简体中文 + TUMBLED", po: "locale/zh_CN.po" },
+];
+
+// The CJK month names (一月 … 十月) plus the ellipsis and the wildcard box,
+// for the ROBOTO_CONDENSED_21_EXTENDED slot of both watches.
+const MONTHS = "data/016";
+
+// Font slots of each watch, in resource order. `null` leaves the slot empty
+// so the firmware keeps whatever it already has for that size.
+const P2D_SLOTS = [
+  "TUMBLED_14",
+  "TUMBLED_14_BOLD",
+  "TUMBLED_18",
+  "TUMBLED_18_BOLD",
+  "TUMBLED_24",
+  "TUMBLED_24_BOLD",
+  "TUMBLED_28",
+  "TUMBLED_28_BOLD",
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  MONTHS,
+  null,
+  null,
+];
+
+const PT2_SLOTS = [
+  "TUMBLED_14",
+  "TUMBLED_14_BOLD",
+  "TUMBLED_18",
+  "TUMBLED_18_BOLD",
+  "TUMBLED_24",
+  "TUMBLED_24_BOLD",
+  "TUMBLED_28",
+  "TUMBLED_28_BOLD",
+  "TUMBLED_36",
+  "TUMBLED_36_BOLD",
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  MONTHS,
+  null,
+  null,
+];
+
+// Reduced packs point the bold-only slots at the font notifications actually
+// reach, so every built-in text size stays a distinct design. MINI
+// additionally aliases 18_BOLD, which only the Medium content size uses.
+const ALIASES = {
+  P2D_LITE: {
+    TUMBLED_14_BOLD: "TUMBLED_14",
+    TUMBLED_24: "TUMBLED_24_BOLD",
+    TUMBLED_28_BOLD: "TUMBLED_28",
+  },
+  PT2_LITE: {
+    TUMBLED_14_BOLD: "TUMBLED_14",
+    TUMBLED_36_BOLD: "TUMBLED_36",
+  },
+  PT2_MINI: {
+    TUMBLED_14_BOLD: "TUMBLED_14",
+    TUMBLED_18_BOLD: "TUMBLED_18",
+    TUMBLED_36_BOLD: "TUMBLED_36",
+  },
+};
+
+// One pack per watch and reduction level, TUMBLED_<locale>_<pack>.pbl.
+const PACKS = [
+  { name: "P2D", slots: P2D_SLOTS, aliases: null },
+  { name: "P2D_LITE", slots: P2D_SLOTS, aliases: "P2D_LITE" },
+  { name: "PT2", slots: PT2_SLOTS, aliases: null },
+  { name: "PT2_LITE", slots: PT2_SLOTS, aliases: "PT2_LITE" },
+  { name: "PT2_MINI", slots: PT2_SLOTS, aliases: "PT2_MINI" },
+];
+
+const SIZES = [14, 18, 24, 28, 36];
+
+// The 36 bold is the auto bold grown on both axes (right and up), which
+// thickens horizontal strokes too and keeps the weight even unlike the
+// one-axis version. The other sizes come out even from the extraction alone.
+const BOLD_FLAGS = { 36: ["--bold-height", "1"] };
 
 const skipPreviews = process.argv.includes("--skip-previews");
 
-await $`mkdir -p build/`;
+fs.mkdirSync("build/", { recursive: true });
 
-fs.writeFileSync("build/000.po", `msgid ""
+// The fonts are language independent, so build them once.
+
+for (const size of SIZES) {
+  await $`bun run ./PebbleFontTool/bin/pbf build ./fonts/TUMBLED_${size} -o build/TUMBLED_${size}.pbf`;
+  await $`bun run ./PebbleFontTool/bin/pbf buildbold ./fonts/TUMBLED_${size} -o build/TUMBLED_${size}_BOLD.pbf ${BOLD_FLAGS[size] ?? []}`;
+
+  if (!skipPreviews) {
+    await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_${size}.pbf build/TUMBLED_${size}.pbf -o images/TUMBLED_${size}.png -w 200 -h 228 -l ${size}`;
+    await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_${size}_BOLD.pbf build/TUMBLED_${size}_BOLD.pbf -o images/TUMBLED_${size}_BOLD.png -w 200 -h 228 -l ${size}`;
+  }
+}
+
+// A vendored catalog is used as-is except for the version and the name, which
+// keep the packs identifiable on the watch.
+
+function translation(lang) {
+  if (!lang.po) {
+    return `msgid ""
 msgstr ""
 "Project-Id-Version: ${VERSION}\\n"
-"Language: ${LANGUAGE}\\n"
-"Name: ${NAME}\\n"
+"Language: ${lang.code}\\n"
+"Name: ${lang.name}\\n"
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
-`);
+`;
+  }
 
-await $`mkdir -p build/TUMBLED_PBL`;
-
-await $`bun run ./PebbleFontTool/bin/pbf build ./fonts/TUMBLED_14 -o build/TUMBLED_14.pbf`;
-await $`bun run ./PebbleFontTool/bin/pbf buildbold ./fonts/TUMBLED_14 -o build/TUMBLED_14_BOLD.pbf`;
-
-if (!skipPreviews) {
-  await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_14.pbf build/TUMBLED_14.pbf -o images/TUMBLED_14.png -w 200 -h 228 -l 14`;
-  await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_14_BOLD.pbf build/TUMBLED_14_BOLD.pbf -o images/TUMBLED_14_BOLD.png -w 200 -h 228 -l 14`;
+  const source = fs.readFileSync(lang.po, "utf8");
+  const version = /^"Project-Id-Version:.*"$/mu;
+  const name = /^"Name:.*"$/mu;
+  if (!version.test(source) || !name.test(source)) {
+    throw new Error(`${lang.po}: no Project-Id-Version/Name in the header`);
+  }
+  return source
+    .replace(version, `"Project-Id-Version: ${VERSION}\\n"`)
+    .replace(name, `"Name: ${lang.name}\\n"`);
 }
 
-await $`bun run ./PebbleFontTool/bin/pbf build ./fonts/TUMBLED_18 -o build/TUMBLED_18.pbf`;
-await $`bun run ./PebbleFontTool/bin/pbf buildbold ./fonts/TUMBLED_18 -o build/TUMBLED_18_BOLD.pbf`;
+for (const lang of LANGS) {
+  const po = `build/${lang.code}.po`;
+  fs.writeFileSync(po, translation(lang));
 
-if (!skipPreviews) {
-  await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_18.pbf build/TUMBLED_18.pbf -o images/TUMBLED_18.png -w 200 -h 228 -l 18`;
-  await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_18_BOLD.pbf build/TUMBLED_18_BOLD.pbf -o images/TUMBLED_18_BOLD.png -w 200 -h 228 -l 18`;
+  for (const pack of PACKS) {
+    const dir = `build/pbl_${lang.code}_${pack.name}`;
+    const aliases = pack.aliases ? ALIASES[pack.aliases] : {};
+
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.mkdirSync(dir, { recursive: true });
+
+    await $`msgfmt ${po} -o ${dir}/000`;
+
+    pack.slots.forEach((slot, index) => {
+      const file = path.join(dir, (index + 1).toString().padStart(3, "0"));
+      const font = slot && (aliases[slot] ?? slot);
+      if (!font) {
+        fs.writeFileSync(file, "");
+        return;
+      }
+      fs.copyFileSync(
+        font.startsWith("data/") ? font : `build/${font}.pbf`,
+        file,
+      );
+    });
+
+    await $`bun run ./PebbleFontTool/bin/pbl pack ${dir} -o build/TUMBLED_${lang.code}_${pack.name}.pbl`;
+  }
 }
-
-await $`bun run ./PebbleFontTool/bin/pbf build ./fonts/TUMBLED_24 -o build/TUMBLED_24.pbf`;
-await $`bun run ./PebbleFontTool/bin/pbf buildbold ./fonts/TUMBLED_24 -o build/TUMBLED_24_BOLD.pbf`;
-
-if (!skipPreviews) {
-  await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_24.pbf build/TUMBLED_24.pbf -o images/TUMBLED_24.png -w 200 -h 228 -l 24`;
-  await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_24_BOLD.pbf build/TUMBLED_24_BOLD.pbf -o images/TUMBLED_24_BOLD.png -w 200 -h 228 -l 24`;
-}
-
-await $`bun run ./PebbleFontTool/bin/pbf build ./fonts/TUMBLED_28 -o build/TUMBLED_28.pbf`;
-await $`bun run ./PebbleFontTool/bin/pbf buildbold ./fonts/TUMBLED_28 -o build/TUMBLED_28_BOLD.pbf`;
-
-if (!skipPreviews) {
-  await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_28.pbf build/TUMBLED_28.pbf -o images/TUMBLED_28.png -w 200 -h 228 -l 28`;
-  await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_28_BOLD.pbf build/TUMBLED_28_BOLD.pbf -o images/TUMBLED_28_BOLD.png -w 200 -h 228 -l 28`;
-}
-
-await $`bun run ./PebbleFontTool/bin/pbf build ./fonts/TUMBLED_36 -o build/TUMBLED_36.pbf`;
-// the bold is the regular with the auto bold grown on both axes (one pixel
-// right, one up), which thickens horizontal strokes too and keeps the weight
-// even (76% of cross sections at 3px) unlike the one-axis version
-await $`bun run ./PebbleFontTool/bin/pbf buildbold ./fonts/TUMBLED_36 -o build/TUMBLED_36_BOLD.pbf --bold-height 1`;
-
-if (!skipPreviews) {
-  await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_36.pbf build/TUMBLED_36.pbf -o images/TUMBLED_36.png -w 200 -h 228 -l 36`;
-  await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_36_BOLD.pbf build/TUMBLED_36_BOLD.pbf -o images/TUMBLED_36_BOLD.png -w 200 -h 228 -l 36`;
-}
-
-
-await $`msgfmt build/000.po -o build/TUMBLED_PBL/000`
-await $`cp build/TUMBLED_14.pbf build/TUMBLED_PBL/001`;
-await $`cp build/TUMBLED_14_BOLD.pbf build/TUMBLED_PBL/002`;
-await $`cp build/TUMBLED_18.pbf build/TUMBLED_PBL/003`;
-await $`cp build/TUMBLED_18_BOLD.pbf build/TUMBLED_PBL/004`;
-await $`cp build/TUMBLED_24.pbf build/TUMBLED_PBL/005`;
-await $`cp build/TUMBLED_24_BOLD.pbf build/TUMBLED_PBL/006`;
-await $`cp build/TUMBLED_28.pbf build/TUMBLED_PBL/007`;
-await $`cp build/TUMBLED_28_BOLD.pbf build/TUMBLED_PBL/008`;
-await $`touch build/TUMBLED_PBL/009`;
-await $`touch build/TUMBLED_PBL/010`;
-await $`touch build/TUMBLED_PBL/011`;
-await $`touch build/TUMBLED_PBL/012`;
-await $`touch build/TUMBLED_PBL/013`;
-await $`touch build/TUMBLED_PBL/014`;
-await $`touch build/TUMBLED_PBL/015`;
-await $`cp data/016 build/TUMBLED_PBL/016`;
-await $`touch build/TUMBLED_PBL/017`;
-await $`touch build/TUMBLED_PBL/018`;
-
-await $`bun run ./PebbleFontTool/bin/pbl pack build/TUMBLED_PBL -o build/TUMBLED_P2D.pbl`;
-
-await $`cp -f build/TUMBLED_PBL/001 build/TUMBLED_PBL/002`;
-await $`cp -f build/TUMBLED_PBL/006 build/TUMBLED_PBL/005`;
-await $`cp -f build/TUMBLED_PBL/007 build/TUMBLED_PBL/008`;
-
-await $`bun run ./PebbleFontTool/bin/pbl pack build/TUMBLED_PBL -o build/TUMBLED_LITE_P2D.pbl`;
-
-// Pebble Time 2 (Emery): 21 slot layout, with the GOTHIC_36 extended slots.
-await $`mkdir -p build/TUMBLED_PT2_PBL`;
-
-await $`msgfmt build/000.po -o build/TUMBLED_PT2_PBL/000`
-await $`cp build/TUMBLED_14.pbf build/TUMBLED_PT2_PBL/001`;
-await $`cp build/TUMBLED_14_BOLD.pbf build/TUMBLED_PT2_PBL/002`;
-await $`cp build/TUMBLED_18.pbf build/TUMBLED_PT2_PBL/003`;
-await $`cp build/TUMBLED_18_BOLD.pbf build/TUMBLED_PT2_PBL/004`;
-await $`cp build/TUMBLED_24.pbf build/TUMBLED_PT2_PBL/005`;
-await $`cp build/TUMBLED_24_BOLD.pbf build/TUMBLED_PT2_PBL/006`;
-await $`cp build/TUMBLED_28.pbf build/TUMBLED_PT2_PBL/007`;
-await $`cp build/TUMBLED_28_BOLD.pbf build/TUMBLED_PT2_PBL/008`;
-await $`cp build/TUMBLED_36.pbf build/TUMBLED_PT2_PBL/009`;
-await $`cp build/TUMBLED_36_BOLD.pbf build/TUMBLED_PT2_PBL/010`;
-await $`touch build/TUMBLED_PT2_PBL/011`;
-await $`touch build/TUMBLED_PT2_PBL/012`;
-await $`touch build/TUMBLED_PT2_PBL/013`;
-await $`touch build/TUMBLED_PT2_PBL/014`;
-await $`touch build/TUMBLED_PT2_PBL/015`;
-await $`touch build/TUMBLED_PT2_PBL/016`;
-await $`touch build/TUMBLED_PT2_PBL/017`;
-await $`cp data/016 build/TUMBLED_PT2_PBL/018`;
-await $`touch build/TUMBLED_PT2_PBL/019`;
-await $`touch build/TUMBLED_PT2_PBL/020`;
-
-await $`bun run ./PebbleFontTool/bin/pbl pack build/TUMBLED_PT2_PBL -o build/TUMBLED_PT2.pbl`;
-
-// Emery's notifications at the default (Large) content size use GOTHIC_18,
-// 24, 24_BOLD, 28 and 28_BOLD. LITE keeps every notification face distinct
-// and only aliases the ones notifications never reach (14_BOLD) plus the
-// ExtraLarge-only 36_BOLD. MINI additionally aliases 18_BOLD, which only
-// the Medium content size uses; the remaining slots alias to the closest
-// same-size design so every size still has CJK coverage.
-await $`cp -f build/TUMBLED_PT2_PBL/001 build/TUMBLED_PT2_PBL/002`;
-await $`cp -f build/TUMBLED_PT2_PBL/009 build/TUMBLED_PT2_PBL/010`;
-
-await $`bun run ./PebbleFontTool/bin/pbl pack build/TUMBLED_PT2_PBL -o build/TUMBLED_LITE_PT2.pbl`;
-
-await $`cp -f build/TUMBLED_PT2_PBL/003 build/TUMBLED_PT2_PBL/004`;
-
-await $`bun run ./PebbleFontTool/bin/pbl pack build/TUMBLED_PT2_PBL -o build/TUMBLED_MINI_PT2.pbl`;

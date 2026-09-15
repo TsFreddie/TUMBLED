@@ -16,18 +16,32 @@ If you are looking for more condensed font similar to PebbleOS's Gothic, check o
 
 ### Packs 字体包
 
-Each release ships the full pack plus reduced ones. The full packs include every
-font; the reduced packs leave out the fonts that notifications never use.
+Packs are named `TUMBLED_<locale>_<watch>[_LITE|_MINI].pbl`. Each release ships
+the full pack plus reduced ones. The full packs include every font; the reduced
+packs leave out the fonts that notifications never use. Every pack exists once
+per language.
 
-每次发布都会提供完整包和精简包。完整包包括所有字体，精简包不包括通知不使用的字体。
+字体包命名为 `TUMBLED_<语言>_<手表>[_LITE|_MINI].pbl`。每次发布都会提供完整包和精简包。完整包包括所有字体，精简包不包括通知不使用的字体。每种语言的包都提供完整的一份。
 
-| Pack                   | Watch         | Slots | Aliases                                        |
-| ---------------------- | ------------- | ----- | ---------------------------------------------- |
-| `TUMBLED_P2D.pbl`      | Pebble 2 Duo  | 19    | none (TUMBLED_14/18/24/28, regular and bold)   |
-| `TUMBLED_LITE_P2D.pbl` | Pebble 2 Duo  | 19    | `14_BOLD`→`14`, `24`→`24_BOLD`, `28_BOLD`→`28` |
-| `TUMBLED_PT2.pbl`      | Pebble Time 2 | 21    | none (adds TUMBLED_36, regular and bold)       |
-| `TUMBLED_LITE_PT2.pbl` | Pebble Time 2 | 21    | `14_BOLD`→`14`, `36_BOLD`→`36`                 |
-| `TUMBLED_MINI_PT2.pbl` | Pebble Time 2 | 21    | LITE plus `18_BOLD`→`18`, only `Medium` uses   |
+| Pack                     | Watch         | Slots | Aliases                                        |
+| ------------------------ | ------------- | ----- | ---------------------------------------------- |
+| `TUMBLED_*_P2D.pbl`      | Pebble 2 Duo  | 19    | none (TUMBLED_14/18/24/28, regular and bold)   |
+| `TUMBLED_*_P2D_LITE.pbl` | Pebble 2 Duo  | 19    | `14_BOLD`→`14`, `24`→`24_BOLD`, `28_BOLD`→`28` |
+| `TUMBLED_*_PT2.pbl`      | Pebble Time 2 | 21    | none (adds TUMBLED_36, regular and bold)       |
+| `TUMBLED_*_PT2_LITE.pbl` | Pebble Time 2 | 21    | `14_BOLD`→`14`, `36_BOLD`→`36`                 |
+| `TUMBLED_*_PT2_MINI.pbl` | Pebble Time 2 | 21    | LITE plus `18_BOLD`→`18`, only `Medium` uses   |
+
+`TUMBLED_en_CN_*` keeps the system's own English strings, so it is the pack to
+use for an English watch: the TUMBLED fonts only add CJK to the built-in
+Gothic ones. `TUMBLED_zh_CN_*` also carries the Simplified Chinese UI catalog
+from [pebbleos-translations](https://github.com/coredevices/pebbleos-translations),
+so the whole watch interface is Chinese. Anything the TUMBLED fonts do not
+cover, such as Latin text and emoji, falls back to the system fonts in both.
+
+`TUMBLED_en_CN_*` 不带翻译，界面保持系统自带的英文，只把点阵字体加到内置 Gothic 上。
+`TUMBLED_zh_CN_*` 额外包含来自 [pebbleos-translations](https://github.com/coredevices/pebbleos-translations)
+的简体中文界面翻译，手表界面与通知都会显示中文。两种包中，拉丁字母、emoji
+等点阵字体没有覆盖到的字符都会回退到系统字体。
 
 ## Variants
 
@@ -88,6 +102,10 @@ cd..
 bun run ./build.js
 ```
 
+The build packs every language in `build.js` (`en_CN` and `zh_CN`), writing
+`TUMBLED_<locale>_<watch>.pbl` into `build/`. The `zh_CN` catalog lives in
+`locale/`; see [locale/README.md](./locale/README.md) to update it.
+
 `build.js` only builds the PBF files and packs them into `.pbl` files from the
 glyph sources in `fonts/`. To regenerate the codepoint set and the glyph
 sources themselves, run the scripts from the PebbleFontTool checkout:
@@ -108,7 +126,8 @@ bun run ./PebbleFontTool/scripts/extract.ts build/TUMBLED_36.json
 
 ## Licenses
 
-This repository and packaged fonts are licensed under OFL 1.1.
+This repository and packaged fonts are licensed under OFL 1.1. The translation
+catalog in `locale/` is Apache-2.0, from pebbleos-translations.
 
 ## Acknowledgements
 
@@ -120,3 +139,5 @@ for generating TUMBLED_14.
 [Source Han Sans](https://github.com/adobe-fonts/source-han-sans) ([OFL 1.1](https://github.com/adobe-fonts/source-han-sans/blob/master/LICENSE.txt) licensed) is used directly for generating TUMBLED_28 and TUMBLED_36.
 
 [Galmuri](https://github.com/quiple/galmuri) ([OFL 1.1](https://github.com/quiple/galmuri/blob/main/ofl.md) licensed) is used as the design for hangul glyphs for several fonts.
+
+[PebbleOS translations](https://github.com/coredevices/pebbleos-translations) ([Apache-2.0](https://github.com/coredevices/pebbleos-translations/blob/main/LICENSE) licensed) supplies the Simplified Chinese catalog used by the `zh_CN` packs.

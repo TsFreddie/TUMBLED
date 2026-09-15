@@ -63,7 +63,7 @@ jobs:
       - name: Zip PBF files
         run: |
           cd artifacts
-          zip "TUMBLED_PBF_${GITHUB_REF_NAME}.zip" *.pbf
+          zip "PBF_TUMBLED.zip" *.pbf
       
       - name: Create Release
         uses: softprops/action-gh-release@v1

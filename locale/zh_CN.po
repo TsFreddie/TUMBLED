@@ -1,3 +1,6 @@
+# Simplified Chinese catalog, from coredevices/pebbleos-translations
+# (zh_CN/tintin.po) with the entries that upstream leaves in English
+# translated. See locale/README.md.
 #
 msgid ""
 msgstr ""
@@ -40,7 +43,7 @@ msgstr "关闭"
 #: src/fw/popups/ble_hrm/ble_hrm_reminder_popup.c:28
 #: src/fw/apps/system/settings/remote.c:134
 msgid "Stop Sharing Heart Rate"
-msgstr "Stop Sharing Heart Rate"
+msgstr "停止共享心率"
 
 #: src/fw/popups/ble_hrm/ble_hrm_sharing_popup.c:29
 msgid "Sharing Heart Rate"
@@ -73,9 +76,7 @@ msgstr ""
 msgid ""
 "A bug report has been captured. Please finish uploading the bug report using "
 "the Pebble phone app."
-msgstr ""
-"A bug report has been captured. Please finish uploading the bug report using "
-"the Pebble phone app."
+msgstr "已捕获错误报告。请使用 Pebble 手机应用完成上传。"
 
 #: src/fw/popups/health_tracking_ui.c:75
 msgid ""
@@ -103,11 +104,11 @@ msgstr "静音 %s"
 
 #: src/fw/popups/notifications/notification_window.c:972
 msgid "Mute 1 Hour"
-msgstr "Mute 1 Hour"
+msgstr "静音 1 小时"
 
 #: src/fw/popups/notifications/notification_window.c:977
 msgid "Mute Today"
-msgstr "Mute Today"
+msgstr "今日静音"
 
 #: src/fw/popups/notifications/notification_window.c:982
 msgid "Mute Always"
@@ -169,7 +170,7 @@ msgstr "此应用需要更新版本的Pebble固件。"
 
 #: src/fw/process_management/process_manager.c:340
 msgid "This app uses RockyJS which is no longer supported."
-msgstr "This app uses RockyJS which is no longer supported."
+msgstr "此应用使用的 RockyJS 已不再受支持。"
 
 #: src/fw/shell/normal/battery_ui.c:44
 msgid "Fully Charged"
@@ -490,45 +491,35 @@ msgstr "您今天走了 %d 步。明天试着走更多步-让我们看看您的�
 msgid ""
 "Refreshed? You slept for %dH %dM which is %d%% above your typical. Go tackle "
 "your day 😃."
-msgstr ""
-"Refreshed? You slept for %dH %dM which is %d%% above your typical. Go tackle "
-"your day 😃."
+msgstr "精力充沛？您睡了 %d小时 %d分，比平时多了 %d%%。去大干一场吧 😃。"
 
 #: src/fw/services/activity/activity_insights.c:1393
 #, c-format
 msgid ""
 "You caught some killer zzz’s! You slept for %dH %dM which is %d%% above your "
 "typical. Keep it up."
-msgstr ""
-"You caught some killer zzz’s! You slept for %dH %dM which is %d%% above your "
-"typical. Keep it up."
+msgstr "睡得真沉！您睡了 %d小时 %d分，比平时多了 %d%%。继续保持。"
 
 #: src/fw/services/activity/activity_insights.c:1395
 #, c-format
 msgid ""
 "Rise and shine! You slept for %dH %dM which is %d%% above your typical. Do "
 "it again tonight, sleep master."
-msgstr ""
-"Rise and shine! You slept for %dH %dM which is %d%% above your typical. Do "
-"it again tonight, sleep master."
+msgstr "起床啦！您睡了 %d小时 %d分，比平时多了 %d%%。今晚再来一次，睡眠大师。"
 
 #: src/fw/services/activity/activity_insights.c:1397
 #, c-format
 msgid ""
 "Mmmm...what a night. You slept for %dH %dM which is %d%% above your typical. "
 "That's gotta feel good!"
-msgstr ""
-"Mmmm...what a night. You slept for %dH %dM which is %d%% above your typical. "
-"That's gotta feel good!"
+msgstr "嗯...舒服的一夜。您睡了 %d小时 %d分，比平时多了 %d%%。感觉一定很好！"
 
 #: src/fw/services/activity/activity_insights.c:1399
 #, c-format
 msgid ""
 "That's a lot of sheep you just counted! You slept for %dH %dM which is %d%% "
 "above your typical. Boom shakalaka."
-msgstr ""
-"That's a lot of sheep you just counted! You slept for %dH %dM which is %d%% "
-"above your typical. Boom shakalaka."
+msgstr "数了这么多羊！您睡了 %d小时 %d分，比平时多了 %d%%。太棒了！"
 
 #. / Sleep notification on wake up, slept similar to their typical sleep duration
 #: src/fw/services/activity/activity_insights.c:1407
@@ -537,31 +528,27 @@ msgid ""
 "Good mornin’. You slept for %dH %dM. Every good day begins with a solid "
 "night’s sleep...kinda like that one 😉 Keep it up!"
 msgstr ""
-"Good mornin’. You slept for %dH %dM. Every good day begins with a solid "
-"night’s sleep...kinda like that one 😉 Keep it up!"
+"早上好。您睡了 %d小时 %d分。美好的一天从好睡眠开始...就像昨晚那样 😉 继续保"
+"持！"
 
 #: src/fw/services/activity/activity_insights.c:1410
 #, c-format
 msgid ""
 "Good morning! You slept for %dH %dM. Consistency is key; keep doing what "
 "you're doing 😃."
-msgstr ""
-"Good morning! You slept for %dH %dM. Consistency is key; keep doing what "
-"you're doing 😃."
+msgstr "早上好！您睡了 %d小时 %d分。规律才是关键，就这样保持下去 😃。"
 
 #: src/fw/services/activity/activity_insights.c:1412
 #, c-format
 msgid ""
 "You're rockin' the shut eye! You slept for %dH %dM. Make it a nightly "
 "ritual. You deserve it."
-msgstr ""
-"You're rockin' the shut eye! You slept for %dH %dM. Make it a nightly "
-"ritual. You deserve it."
+msgstr "睡得真香！您睡了 %d小时 %d分。把它变成每晚的习惯吧，您值得拥有。"
 
 #: src/fw/services/activity/activity_insights.c:1414
 #, c-format
 msgid "Feelin' good? You slept for %dH %dM. Nothing can stop you now 👊"
-msgstr "Feelin' good? You slept for %dH %dM. Nothing can stop you now 👊"
+msgstr "感觉不错？您睡了 %d小时 %d分。现在谁也挡不住您 👊"
 
 #. / Sleep notification on wake up, slept below their typical sleep duration
 #: src/fw/services/activity/activity_insights.c:1421
@@ -569,9 +556,7 @@ msgstr "Feelin' good? You slept for %dH %dM. Nothing can stop you now 👊"
 msgid ""
 "Hey sleepy head. You slept for %dH %dM which is %d%% below your typical. Try "
 "to get more tonight!"
-msgstr ""
-"Hey sleepy head. You slept for %dH %dM which is %d%% below your typical. Try "
-"to get more tonight!"
+msgstr "还困着吧。您睡了 %d小时 %d分，比平时少了 %d%%。今晚多睡一会儿！"
 
 #: src/fw/services/activity/activity_insights.c:1423
 #, c-format
@@ -579,8 +564,8 @@ msgid ""
 "Groggy? You slept for %dH %dM which is %d%% below your typical. Sleep is "
 "important for everything you do-try getting more shut eye tonight!"
 msgstr ""
-"Groggy? You slept for %dH %dM which is %d%% below your typical. Sleep is "
-"important for everything you do-try getting more shut eye tonight!"
+"迷迷糊糊？您睡了 %d小时 %d分，比平时少了 %d%%。睡眠对做什么都重要-今晚多睡一"
+"会儿！"
 
 #: src/fw/services/activity/activity_insights.c:1425
 #, c-format
@@ -588,8 +573,7 @@ msgid ""
 "It's a new day! You slept for %dH %dM which is %d%% below your typical. It's "
 "not your best, but there's always tonight."
 msgstr ""
-"It's a new day! You slept for %dH %dM which is %d%% below your typical. It's "
-"not your best, but there's always tonight."
+"新的一天！您睡了 %d小时 %d分，比平时少了 %d%%。虽然不算最好，但今晚还有机会。"
 
 #: src/fw/services/activity/activity_insights.c:1427
 #, c-format
@@ -597,8 +581,7 @@ msgid ""
 "Goooood morning! You slept for %dH %dM which is %d%% below your typical. Go "
 "crush your day and then get back in bed 😉"
 msgstr ""
-"Goooood morning! You slept for %dH %dM which is %d%% below your typical. Go "
-"crush your day and then get back in bed 😉"
+"早上好——！您睡了 %d小时 %d分，比平时少了 %d%%。先去搞定今天，回头再补觉 😉"
 
 #: src/fw/services/activity/activity_insights.c:1434
 #, c-format
@@ -606,8 +589,8 @@ msgid ""
 "You slept for %dH %dM which is %d%% below your typical. Sleep is vital for "
 "all your great ideas–how 'bout getting more tonight?"
 msgstr ""
-"You slept for %dH %dM which is %d%% below your typical. Sleep is vital for "
-"all your great ideas–how 'bout getting more tonight?"
+"您睡了 %d小时 %d分，比平时少了 %d%%。睡眠是好点子的源泉-今晚多睡一会儿怎么"
+"样？"
 
 #: src/fw/services/activity/activity_insights.c:1436
 #, c-format
@@ -615,78 +598,76 @@ msgid ""
 "You only slept for %dH %dM which is %d%% below your typical. We know you're "
 "busy, but try getting more tonight. We believe in you 😉"
 msgstr ""
-"You only slept for %dH %dM which is %d%% below your typical. We know you're "
-"busy, but try getting more tonight. We believe in you 😉"
+"您只睡了 %d小时 %d分，比平时少了 %d%%。知道您很忙，今晚尽量多睡一点，相信您 "
+"😉"
 
 #: src/fw/services/activity/activity_insights.c:1438
 #, c-format
 msgid ""
 "You slept for %dH %dM which is %d%% below your typical. We know stuff "
 "happens; take another crack at it tonight."
-msgstr ""
-"You slept for %dH %dM which is %d%% below your typical. We know stuff "
-"happens; take another crack at it tonight."
+msgstr "您睡了 %d小时 %d分，比平时少了 %d%%。谁都有意外，今晚再试一次。"
 
 #: src/fw/services/activity/activity_insights.c:1490
 #, c-format
 msgid "%u Steps"
-msgstr "%u Steps"
+msgstr "%u 步"
 
 #: src/fw/services/activity/activity_insights.c:1571
 msgid "Didn’t that walk feel good?"
-msgstr "Didn’t that walk feel good?"
+msgstr "散步的感觉不错吧？"
 
 #: src/fw/services/activity/activity_insights.c:1572
 msgid "Way to keep it active!"
-msgstr "Way to keep it active!"
+msgstr "继续保持活跃！"
 
 #: src/fw/services/activity/activity_insights.c:1573
 msgid "You got the moves!"
-msgstr "You got the moves!"
+msgstr "身手真不错！"
 
 #: src/fw/services/activity/activity_insights.c:1574
 msgid "Gettin' your step on?"
-msgstr "Gettin' your step on?"
+msgstr "走起来了吗？"
 
 #: src/fw/services/activity/activity_insights.c:1584
 msgid "Feelin' hot? Cause you're on 🔥"
-msgstr "Feelin' hot? Cause you're on 🔥"
+msgstr "感觉火热？因为您正火力全开 🔥"
 
 #: src/fw/services/activity/activity_insights.c:1585
 msgid "Hey lightning bolt, way to go!"
-msgstr "Hey lightning bolt, way to go!"
+msgstr "闪电侠，干得漂亮！"
 
 #: src/fw/services/activity/activity_insights.c:1586
 msgid "You're a machine!"
-msgstr "You're a machine!"
+msgstr "您真是台机器！"
 
 #: src/fw/services/activity/activity_insights.c:1587
 msgid "Hey speedster, we can barely keep up!"
-msgstr "Hey speedster, we can barely keep up!"
+msgstr "飞毛腿，我们快跟不上了！"
 
 #: src/fw/services/activity/activity_insights.c:1588
 msgid "Way to show us what you're made of 👊"
-msgstr "Way to show us what you're made of 👊"
+msgstr "让我们看到了您的实力 👊"
 
 #: src/fw/services/activity/activity_insights.c:1598
 msgid "Workin' up a sweat?"
-msgstr "Workin' up a sweat?"
+msgstr "出汗了吗？"
 
 #: src/fw/services/activity/activity_insights.c:1599
 msgid "Well done 💪"
-msgstr "Well done 💪"
+msgstr "干得好 💪"
 
 #: src/fw/services/activity/activity_insights.c:1600
 msgid "Endorphin rush?"
-msgstr "Endorphin rush?"
+msgstr "内啡肽上头了？"
 
 #: src/fw/services/activity/activity_insights.c:1601
 msgid "Can't stop, won't stop 👊"
-msgstr "Can't stop, won't stop 👊"
+msgstr "停不下来，也不会停 👊"
 
 #: src/fw/services/activity/activity_insights.c:1602
 msgid "Keepin' that heart healthy! ❤"
-msgstr "Keepin' that heart healthy! ❤"
+msgstr "让心脏保持健康！❤"
 
 #: src/fw/services/activity/activity_insights.c:1618
 #: src/fw/apps/system/health/activity_detail_card.c:43
@@ -704,7 +685,7 @@ msgstr "公里"
 #: src/fw/services/activity/activity_insights.c:1736
 #, c-format
 msgid "%d Min"
-msgstr "%d Min"
+msgstr "%d 分"
 
 #. #-#-#-#-#  apps.pot (PACKAGE VERSION)  #-#-#-#-#
 #. / Run Label
@@ -730,23 +711,23 @@ msgstr "锻炼"
 
 #: src/fw/services/activity/activity_insights.c:1661
 msgid "Avg Pace"
-msgstr "Avg Pace"
+msgstr "平均配速"
 
 #: src/fw/services/activity/activity_insights.c:1677
 msgid "Distance"
-msgstr "Distance"
+msgstr "距离"
 
 #: src/fw/services/activity/activity_insights.c:1689
 msgid "Steps"
-msgstr "Steps"
+msgstr "步数"
 
 #: src/fw/services/activity/activity_insights.c:1702
 msgid "Active Calories"
-msgstr "Active Calories"
+msgstr "活动卡路里"
 
 #: src/fw/services/activity/activity_insights.c:1715
 msgid "Avg HR"
-msgstr "Avg HR"
+msgstr "平均心率"
 
 #: src/fw/services/activity/activity_insights.c:1724
 #: src/fw/apps/system/health/hr_detail_card.c:65
@@ -766,12 +747,12 @@ msgstr "表现"
 #: src/fw/services/activity/health_util.c:30
 #, c-format
 msgid "%dH"
-msgstr "%dH"
+msgstr "%d小时"
 
 #: src/fw/services/activity/health_util.c:36
 #, c-format
 msgid "%dM"
-msgstr "%dM"
+msgstr "%d分"
 
 #: src/fw/services/activity/health_util.c:59
 #, c-format
@@ -790,7 +771,7 @@ msgstr "%d"
 
 #: src/fw/services/activity/health_util.c:96
 msgid "h"
-msgstr "h"
+msgstr "小时"
 
 #: src/fw/services/activity/health_util.c:102
 msgid " "
@@ -798,7 +779,7 @@ msgstr " "
 
 #: src/fw/services/activity/health_util.c:112
 msgid "min"
-msgstr "min"
+msgstr "分"
 
 #: src/fw/services/activity/health_util.c:131
 #, c-format
@@ -813,25 +794,25 @@ msgstr "智能闹钟"
 
 #: src/fw/services/alarms/alarm.c:414 src/fw/services/alarms/alarm_pin.c:19
 msgid "Alarm"
-msgstr "Alarm"
+msgstr "闹钟"
 
 #. / A frequency option for alarms, i.e. the alarm would go off every day. Respect
 #. / capitalization!
 #: src/fw/services/alarms/alarm.c:1342
 msgid "EVERY DAY"
-msgstr "EVERY DAY"
+msgstr "每天"
 
 #. / A frequency option for alarms, i.e. the alarm would go off every day. Respect
 #. / capitalization!
 #: src/fw/services/alarms/alarm.c:1345
 msgid "Every Day"
-msgstr "Every Day"
+msgstr "每天"
 
 #. / A frequency option for alarms, i.e. the alarm would only go off every weekday. Respect
 #. / capitalization!
 #: src/fw/services/alarms/alarm.c:1351
 msgid "WEEKDAYS"
-msgstr "WEEKDAYS"
+msgstr "工作日"
 
 #. #-#-#-#-#  services.pot (PACKAGE VERSION)  #-#-#-#-#
 #. / A frequency option for alarms, i.e. the alarm would only go off every weekday. Respect
@@ -839,13 +820,13 @@ msgstr "WEEKDAYS"
 #: src/fw/services/alarms/alarm.c:1354
 #: src/fw/apps/system/settings/quiet_time.c:265
 msgid "Weekdays"
-msgstr "Weekdays"
+msgstr "工作日"
 
 #. / A frequency option for alarms, i.e. the alarm would only go off each day on the weekend.
 #. / Respect capitalization!
 #: src/fw/services/alarms/alarm.c:1360
 msgid "WEEKENDS"
-msgstr "WEEKENDS"
+msgstr "周末"
 
 #. #-#-#-#-#  services.pot (PACKAGE VERSION)  #-#-#-#-#
 #. / A frequency option for alarms, i.e. the alarm would only go off each day on the weekend.
@@ -853,92 +834,92 @@ msgstr "WEEKENDS"
 #: src/fw/services/alarms/alarm.c:1363
 #: src/fw/apps/system/settings/quiet_time.c:273
 msgid "Weekends"
-msgstr "Weekends"
+msgstr "周末"
 
 #. / A frequency option for alarms, i.e. the alarm would only go off one time ever. Respect
 #. / capitalization!
 #: src/fw/services/alarms/alarm.c:1370
 msgid "ONCE"
-msgstr "ONCE"
+msgstr "一次"
 
 #. / A frequency option for alarms, i.e. the alarm would only go off one time ever. Respect
 #. / capitalization!
 #: src/fw/services/alarms/alarm.c:1373
 msgid "Once"
-msgstr "Once"
+msgstr "一次"
 
 #. / A frequency option for alarms, i.e. the alarm would only go off on a custom choice of
 #. / days. Respect capitalization!
 #: src/fw/services/alarms/alarm.c:1380
 msgid "CUSTOM"
-msgstr "CUSTOM"
+msgstr "自定义"
 
 #. #-#-#-#-#  services.pot (PACKAGE VERSION)  #-#-#-#-#
 #. / A frequency option for alarms, i.e. the alarm would only go off on a custom choice of
 #. / days. Respect capitalization!
 #: src/fw/services/alarms/alarm.c:1383 src/fw/apps/system/settings/display.c:40
 msgid "Custom"
-msgstr "Custom"
+msgstr "自定义"
 
 #: src/fw/services/alarms/alarm.c:1396 src/fw/applib/pbl_std/timelocal.c:48
 msgid "Sun"
-msgstr "Sun"
+msgstr "周日"
 
 #: src/fw/services/alarms/alarm.c:1397 src/fw/applib/pbl_std/timelocal.c:48
 msgid "Mon"
-msgstr "Mon"
+msgstr "周一"
 
 #: src/fw/services/alarms/alarm.c:1398 src/fw/applib/pbl_std/timelocal.c:48
 msgid "Tue"
-msgstr "Tue"
+msgstr "周二"
 
 #: src/fw/services/alarms/alarm.c:1399 src/fw/applib/pbl_std/timelocal.c:48
 msgid "Wed"
-msgstr "Wed"
+msgstr "周三"
 
 #: src/fw/services/alarms/alarm.c:1400 src/fw/applib/pbl_std/timelocal.c:49
 msgid "Thu"
-msgstr "Thu"
+msgstr "周四"
 
 #: src/fw/services/alarms/alarm.c:1401 src/fw/applib/pbl_std/timelocal.c:49
 msgid "Fri"
-msgstr "Fri"
+msgstr "周五"
 
 #: src/fw/services/alarms/alarm.c:1402 src/fw/applib/pbl_std/timelocal.c:49
 msgid "Sat"
-msgstr "Sat"
+msgstr "周六"
 
 #: src/fw/services/alarms/alarm.c:1405
 msgid "Sundays"
-msgstr "Sundays"
+msgstr "每周日"
 
 #: src/fw/services/alarms/alarm.c:1406
 msgid "Mondays"
-msgstr "Mondays"
+msgstr "每周一"
 
 #: src/fw/services/alarms/alarm.c:1407
 msgid "Tuesdays"
-msgstr "Tuesdays"
+msgstr "每周二"
 
 #: src/fw/services/alarms/alarm.c:1408
 msgid "Wednesdays"
-msgstr "Wednesdays"
+msgstr "每周三"
 
 #: src/fw/services/alarms/alarm.c:1409
 msgid "Thursdays"
-msgstr "Thursdays"
+msgstr "每周四"
 
 #: src/fw/services/alarms/alarm.c:1410
 msgid "Fridays"
-msgstr "Fridays"
+msgstr "每周五"
 
 #: src/fw/services/alarms/alarm.c:1411
 msgid "Saturdays"
-msgstr "Saturdays"
+msgstr "每周六"
 
 #: src/fw/services/alarms/alarm_pin.c:32
 msgid "Edit"
-msgstr "Edit"
+msgstr "编辑"
 
 #: src/fw/services/alarms/alarm_tones.c:135
 msgid "Reveille"
@@ -1008,11 +989,11 @@ msgstr "%A"
 
 #: src/fw/services/clock/service.c:753
 msgid "%B %d"
-msgstr "%B %d"
+msgstr "%B%d日"
 
 #: src/fw/services/clock/service.c:813
 msgid "%l:%M %p"
-msgstr "%l:%M %p"
+msgstr "%p%l:%M"
 
 #: src/fw/services/clock/service.c:825
 msgid "Yesterday, %l:%M %p"
@@ -1024,24 +1005,24 @@ msgstr "昨天, %R"
 
 #: src/fw/services/clock/service.c:844
 msgid "%b %e, %l:%M %p"
-msgstr "%b %e, %l:%M %p"
+msgstr "%b%e日 %p%l:%M"
 
 #: src/fw/services/clock/service.c:846 src/fw/services/clock/service.c:854
 #: src/fw/apps/watch/tictoc/bw/tictoc_bw.c:75
 msgid "%B %e"
-msgstr "%B %e"
+msgstr "%B%e日"
 
 #: src/fw/services/clock/service.c:852
 msgid "%b %e, %R"
-msgstr "%b %e, %R"
+msgstr "%b%e日 %R"
 
 #: src/fw/services/clock/service.c:863
 msgid "%a, %l:%M %p"
-msgstr "%a, %l:%M %p"
+msgstr "%a %p%l:%M"
 
 #: src/fw/services/clock/service.c:871
 msgid "%a, %R"
-msgstr "%a, %R"
+msgstr "%a %R"
 
 #: src/fw/services/clock/service.c:901
 #, c-format
@@ -1109,7 +1090,7 @@ msgstr "%lu 小时后"
 #: src/fw/services/clock/service.c:961 src/fw/services/clock/service.c:965
 #, c-format
 msgid "%m/%d"
-msgstr "%m/%d"
+msgstr "%m月%d日"
 
 #: src/fw/services/clock/service.c:974
 #, c-format
@@ -1123,7 +1104,7 @@ msgstr "%B "
 #: src/fw/services/clock/service.c:978
 #, c-format
 msgid "%e"
-msgstr "%e"
+msgstr "%e日"
 
 #: src/fw/services/clock/service.c:1029
 msgid "this morning"
@@ -1167,48 +1148,45 @@ msgstr "可预见的未来"
 
 #: src/fw/services/notifications/ancs/ancs_item.c:114
 msgid "sent an attachment"
-msgstr "sent an attachment"
+msgstr "发送了附件"
 
 #: src/fw/services/notifications/ancs/ancs_item.c:166
 msgid "Call Back"
-msgstr "Call Back"
+msgstr "回拨"
 
 #: src/fw/services/notifications/do_not_disturb.c:107
 msgid "Calendar Aware enables Quiet Time automatically during calendar events."
-msgstr ""
-"Calendar Aware enables Quiet Time automatically during calendar events."
+msgstr "日历联动会在日历事件期间自动开启勿扰时间。"
 
 #: src/fw/services/notifications/do_not_disturb.c:113
 msgid ""
 "Press and hold the Back button from a notification to turn Quiet Time on or "
 "off."
-msgstr ""
-"Press and hold the Back button from a notification to turn Quiet Time on or "
-"off."
+msgstr "在通知界面长按返回键可开启或关闭勿扰时间。"
 
 #: src/fw/services/notifications/do_not_disturb_toggle.c:29
 msgid "Start Quiet Time?"
-msgstr "Start Quiet Time?"
+msgstr "开始勿扰时间？"
 
 #: src/fw/services/notifications/do_not_disturb_toggle.c:30
 msgid "End Quiet Time?"
-msgstr "End Quiet Time?"
+msgstr "结束勿扰时间？"
 
 #: src/fw/services/notifications/do_not_disturb_toggle.c:31
 msgid ""
 "Quiet Time\n"
 "Started"
 msgstr ""
-"Quiet Time\n"
-"Started"
+"勿扰时间\n"
+"已开始"
 
 #: src/fw/services/notifications/do_not_disturb_toggle.c:32
 msgid ""
 "Quiet Time\n"
 "Ended"
 msgstr ""
-"Quiet Time\n"
-"Ended"
+"勿扰时间\n"
+"已结束"
 
 #: src/fw/services/phone_call/util.c:18
 #: src/fw/apps/system/send_text/send_text.c:198
@@ -1223,40 +1201,40 @@ msgstr " - "
 
 #: src/fw/services/timeline/calendar_layout.c:309
 msgid "All Day"
-msgstr "All Day"
+msgstr "全天"
 
 #: src/fw/services/timeline/calendar_layout.c:351
 msgid "Recurring"
-msgstr "Recurring"
+msgstr "重复"
 
 #: src/fw/services/timeline/sports_layout.c:46
 msgid "STARTS "
-msgstr "STARTS "
+msgstr "开始于 "
 
 #: src/fw/services/timeline/sports_layout.c:124
 msgid "Broadcaster"
-msgstr "Broadcaster"
+msgstr "转播频道"
 
 #: src/fw/services/timeline/timeline.c:697
 msgid "Can't connect. Relaunch Pebble Time app on phone."
-msgstr "Can't connect. Relaunch Pebble Time app on phone."
+msgstr "无法连接。请重新启动手机上的 Pebble Time 应用。"
 
 #: src/fw/services/timeline/timeline.c:712
 msgid "Removed"
-msgstr "Removed"
+msgstr "已移除"
 
 #: src/fw/services/timeline/timeline.c:725
 #: src/fw/services/timeline/timeline.c:747
 msgid "Dismissed"
-msgstr "Dismissed"
+msgstr "已关闭"
 
 #: src/fw/services/timeline/timeline.c:751
 msgid "Deleted"
-msgstr "Deleted"
+msgstr "已删除"
 
 #: src/fw/services/timeline/timeline.c:780
 msgid "Thanks!"
-msgstr "Thanks!"
+msgstr "谢谢！"
 
 #: src/fw/services/timeline/timeline.c:932
 #: src/fw/apps/system/notifications.c:839
@@ -1268,7 +1246,7 @@ msgstr "通知"
 
 #: src/fw/services/timeline/timeline.c:936
 msgid "Calendar"
-msgstr "Calendar"
+msgstr "日历"
 
 #: src/fw/services/timeline/timeline.c:940
 #: src/fw/apps/system/weather/weather.c:779
@@ -1277,7 +1255,7 @@ msgstr "天气"
 
 #: src/fw/services/timeline/timeline.c:944
 msgid "Reminders"
-msgstr "Reminders"
+msgstr "提醒事项"
 
 #: src/fw/services/timeline/timeline.c:948
 #: src/fw/apps/system/alarms/alarms.c:475
@@ -1304,57 +1282,55 @@ msgstr "失败"
 msgid ""
 "Quickly dismiss all notifications by holding the Select button for 2 seconds "
 "from any incoming notification."
-msgstr ""
-"Quickly dismiss all notifications by holding the Select button for 2 seconds "
-"from any incoming notification."
+msgstr "收到通知时，长按选择键 2 秒即可快速关闭所有通知。"
 
 #: src/fw/services/timeline/timeline_actions.c:810
 msgid "Ok"
-msgstr "Ok"
+msgstr "确定"
 
 #: src/fw/services/timeline/timeline_actions.c:811
 msgid "Yes"
-msgstr "Yes"
+msgstr "是"
 
 #: src/fw/services/timeline/timeline_actions.c:812
 msgid "No"
-msgstr "No"
+msgstr "否"
 
 #: src/fw/services/timeline/timeline_actions.c:813
 msgid "Call me"
-msgstr "Call me"
+msgstr "打给我"
 
 #: src/fw/services/timeline/timeline_actions.c:814
 msgid "Call you later"
-msgstr "Call you later"
+msgstr "稍后打给你"
 
 #: src/fw/services/timeline/timeline_actions.c:942
 msgid "Reply with Voice"
-msgstr "Reply with Voice"
+msgstr "语音回复"
 
 #: src/fw/services/timeline/timeline_actions.c:943
 msgid "Voice"
-msgstr "Voice"
+msgstr "语音"
 
 #: src/fw/services/timeline/timeline_actions.c:953
 msgid "Canned messages"
-msgstr "Canned messages"
+msgstr "快捷回复"
 
 #: src/fw/services/timeline/timeline_actions.c:957
 msgid "Emoji"
-msgstr "Emoji"
+msgstr "表情"
 
 #: src/fw/services/timeline/timeline_actions.c:1066
 msgid "In 15 minutes"
-msgstr "In 15 minutes"
+msgstr "15 分钟后"
 
 #: src/fw/services/timeline/timeline_actions.c:1072
 msgid "Later today"
-msgstr "Later today"
+msgstr "今天晚些时候"
 
 #: src/fw/services/timeline/timeline_layout.c:736
 msgid "Last updated"
-msgstr "Last updated"
+msgstr "最后更新"
 
 #. / Standard vibration pattern option that has a low intensity
 #: src/fw/services/vibes/vibe_intensity.c:39
@@ -1364,7 +1340,7 @@ msgstr "标准-低"
 #. / Standard vibration pattern option that has a medium intensity
 #: src/fw/services/vibes/vibe_intensity.c:43
 msgid "Standard - Medium"
-msgstr "Standard - Medium"
+msgstr "标准-中"
 
 #. / Standard vibration pattern option that has a high intensity
 #: src/fw/services/vibes/vibe_intensity.c:47
@@ -1373,130 +1349,130 @@ msgstr "标准-高"
 
 #: src/fw/applib/pbl_std/timelocal.c:38
 msgid "Jan"
-msgstr "Jan"
+msgstr "1月"
 
 #: src/fw/applib/pbl_std/timelocal.c:38
 msgid "Feb"
-msgstr "Feb"
+msgstr "2月"
 
 #: src/fw/applib/pbl_std/timelocal.c:38
 msgid "Mar"
-msgstr "Mar"
+msgstr "3月"
 
 #: src/fw/applib/pbl_std/timelocal.c:38
 msgid "Apr"
-msgstr "Apr"
+msgstr "4月"
 
 #: src/fw/applib/pbl_std/timelocal.c:38 src/fw/applib/pbl_std/timelocal.c:44
 msgid "May"
-msgstr "May"
+msgstr "5月"
 
 #: src/fw/applib/pbl_std/timelocal.c:39
 msgid "Jun"
-msgstr "Jun"
+msgstr "6月"
 
 #: src/fw/applib/pbl_std/timelocal.c:39
 msgid "Jul"
-msgstr "Jul"
+msgstr "7月"
 
 #: src/fw/applib/pbl_std/timelocal.c:39
 msgid "Aug"
-msgstr "Aug"
+msgstr "8月"
 
 #: src/fw/applib/pbl_std/timelocal.c:39
 msgid "Sep"
-msgstr "Sep"
+msgstr "9月"
 
 #: src/fw/applib/pbl_std/timelocal.c:39
 msgid "Oct"
-msgstr "Oct"
+msgstr "10月"
 
 #: src/fw/applib/pbl_std/timelocal.c:40
 msgid "Nov"
-msgstr "Nov"
+msgstr "11月"
 
 #: src/fw/applib/pbl_std/timelocal.c:40
 msgid "Dec"
-msgstr "Dec"
+msgstr "12月"
 
 #: src/fw/applib/pbl_std/timelocal.c:43
 msgid "January"
-msgstr "January"
+msgstr "1月"
 
 #: src/fw/applib/pbl_std/timelocal.c:43
 msgid "February"
-msgstr "February"
+msgstr "2月"
 
 #: src/fw/applib/pbl_std/timelocal.c:43
 msgid "March"
-msgstr "March"
+msgstr "3月"
 
 #: src/fw/applib/pbl_std/timelocal.c:43
 msgid "April"
-msgstr "April"
+msgstr "4月"
 
 #: src/fw/applib/pbl_std/timelocal.c:44
 msgid "June"
-msgstr "June"
+msgstr "6月"
 
 #: src/fw/applib/pbl_std/timelocal.c:44
 msgid "July"
-msgstr "July"
+msgstr "7月"
 
 #: src/fw/applib/pbl_std/timelocal.c:44
 msgid "August"
-msgstr "August"
+msgstr "8月"
 
 #: src/fw/applib/pbl_std/timelocal.c:45
 msgid "September"
-msgstr "September"
+msgstr "9月"
 
 #: src/fw/applib/pbl_std/timelocal.c:45
 msgid "October"
-msgstr "October"
+msgstr "10月"
 
 #: src/fw/applib/pbl_std/timelocal.c:45
 msgid "November"
-msgstr "November"
+msgstr "11月"
 
 #: src/fw/applib/pbl_std/timelocal.c:45
 msgid "December"
-msgstr "December"
+msgstr "12月"
 
 #: src/fw/applib/pbl_std/timelocal.c:52
 #: src/fw/apps/system/weather/weather.c:131
 msgid "Sunday"
-msgstr "Sunday"
+msgstr "星期日"
 
 #: src/fw/applib/pbl_std/timelocal.c:52
 #: src/fw/apps/system/weather/weather.c:131
 msgid "Monday"
-msgstr "Monday"
+msgstr "星期一"
 
 #: src/fw/applib/pbl_std/timelocal.c:52
 #: src/fw/apps/system/weather/weather.c:131
 msgid "Tuesday"
-msgstr "Tuesday"
+msgstr "星期二"
 
 #: src/fw/applib/pbl_std/timelocal.c:52
 #: src/fw/apps/system/weather/weather.c:131
 msgid "Wednesday"
-msgstr "Wednesday"
+msgstr "星期三"
 
 #: src/fw/applib/pbl_std/timelocal.c:53
 #: src/fw/apps/system/weather/weather.c:132
 msgid "Thursday"
-msgstr "Thursday"
+msgstr "星期四"
 
 #: src/fw/applib/pbl_std/timelocal.c:53
 #: src/fw/apps/system/weather/weather.c:132
 msgid "Friday"
-msgstr "Friday"
+msgstr "星期五"
 
 #: src/fw/applib/pbl_std/timelocal.c:53
 #: src/fw/apps/system/weather/weather.c:132
 msgid "Saturday"
-msgstr "Saturday"
+msgstr "星期六"
 
 #: src/fw/applib/pbl_std/timelocal.c:56
 msgid "%H:%M:%S"
@@ -1504,35 +1480,35 @@ msgstr "%H:%M:%S"
 
 #: src/fw/applib/pbl_std/timelocal.c:57
 msgid "%m/%d/%y"
-msgstr "%m/%d/%y"
+msgstr "%y/%m/%d"
 
 #: src/fw/applib/pbl_std/timelocal.c:58
 msgid "%a %b %e %H:%M:%S %Y"
-msgstr "%a %b %e %H:%M:%S %Y"
+msgstr "%Y年%b%e日 %a %H:%M:%S"
 
 #: src/fw/applib/pbl_std/timelocal.c:59
 msgid "%I:%M:%S %p"
-msgstr "%I:%M:%S %p"
+msgstr "%p%I:%M:%S"
 
 #: src/fw/applib/pbl_std/timelocal.c:61
 #: src/fw/applib/ui/date_time_selection_window_private.c:76
 #: src/fw/apps/system/weather/expanded_view.c:146
 msgid "AM"
-msgstr "AM"
+msgstr "上午"
 
 #: src/fw/applib/pbl_std/timelocal.c:61
 #: src/fw/applib/ui/date_time_selection_window_private.c:78
 #: src/fw/apps/system/weather/expanded_view.c:146
 msgid "PM"
-msgstr "PM"
+msgstr "下午"
 
 #: src/fw/applib/pbl_std/timelocal.c:62
 msgid "am"
-msgstr "am"
+msgstr "上午"
 
 #: src/fw/applib/pbl_std/timelocal.c:62
 msgid "pm"
-msgstr "pm"
+msgstr "下午"
 
 #. / The first separator in `<hour>:<minute>:<second>`
 #. / The second separator in `<hour>:<minute>:<second>`
@@ -1552,13 +1528,13 @@ msgstr " "
 #: src/fw/applib/template_string.c:187
 msgctxt "TmplStringSep"
 msgid ", "
-msgstr ", "
+msgstr "、"
 
 #. / The second separator in `<hour> hours, <minute> minutes, and <second> seconds`
 #: src/fw/applib/template_string.c:189
 msgctxt "TmplStringSep"
 msgid ", and "
-msgstr ", and "
+msgstr " 和 "
 
 #. / Suffixes for seconds with no units
 #. / Suffixes for minutes with no units
@@ -1591,193 +1567,193 @@ msgstr ""
 #: src/fw/applib/template_string.c:265
 msgctxt "TmplStringSing"
 msgid " sec"
-msgstr " sec"
+msgstr " 秒"
 
 #: src/fw/applib/template_string.c:266
 msgctxt "TmplStringPlur"
 msgid " sec"
-msgstr " sec"
+msgstr " 秒"
 
 #: src/fw/applib/template_string.c:267
 msgctxt "TmplStringMany"
 msgid " sec"
-msgstr " sec"
+msgstr " 秒"
 
 #. / Suffixes for seconds with full units
 #: src/fw/applib/template_string.c:269
 msgctxt "TmplStringSing"
 msgid " second"
-msgstr " second"
+msgstr " 秒"
 
 #: src/fw/applib/template_string.c:270
 msgctxt "TmplStringPlur"
 msgid " seconds"
-msgstr " seconds"
+msgstr " 秒"
 
 #: src/fw/applib/template_string.c:271
 msgctxt "TmplStringMany"
 msgid " seconds"
-msgstr " seconds"
+msgstr " 秒"
 
 #. / Suffixes for minutes with abbreviated units
 #: src/fw/applib/template_string.c:280
 msgctxt "TmplStringSing"
 msgid " min"
-msgstr " min"
+msgstr " 分"
 
 #: src/fw/applib/template_string.c:281
 msgctxt "TmplStringPlur"
 msgid " min"
-msgstr " min"
+msgstr " 分"
 
 #: src/fw/applib/template_string.c:282
 msgctxt "TmplStringMany"
 msgid " min"
-msgstr " min"
+msgstr " 分"
 
 #. / Suffixes for minutes with full units
 #: src/fw/applib/template_string.c:284
 msgctxt "TmplStringSing"
 msgid " minute"
-msgstr " minute"
+msgstr " 分"
 
 #: src/fw/applib/template_string.c:285
 msgctxt "TmplStringPlur"
 msgid " minutes"
-msgstr " minutes"
+msgstr " 分"
 
 #: src/fw/applib/template_string.c:286
 msgctxt "TmplStringMany"
 msgid " minutes"
-msgstr " minutes"
+msgstr " 分"
 
 #. / Suffixes for hours with abbreviated units
 #: src/fw/applib/template_string.c:295
 msgctxt "TmplStringSing"
 msgid " hr"
-msgstr " hr"
+msgstr " 小时"
 
 #: src/fw/applib/template_string.c:296
 msgctxt "TmplStringPlur"
 msgid " hr"
-msgstr " hr"
+msgstr " 小时"
 
 #: src/fw/applib/template_string.c:297
 msgctxt "TmplStringMany"
 msgid " hr"
-msgstr " hr"
+msgstr " 小时"
 
 #. / Suffixes for hours with full units
 #: src/fw/applib/template_string.c:299
 msgctxt "TmplStringSing"
 msgid " hour"
-msgstr " hour"
+msgstr " 小时"
 
 #: src/fw/applib/template_string.c:300
 msgctxt "TmplStringPlur"
 msgid " hours"
-msgstr " hours"
+msgstr " 小时"
 
 #: src/fw/applib/template_string.c:301
 msgctxt "TmplStringMany"
 msgid " hours"
-msgstr " hours"
+msgstr " 小时"
 
 #. / Suffixes for days with abbreviated units
 #: src/fw/applib/template_string.c:310
 msgctxt "TmplStringSing"
 msgid " d"
-msgstr " d"
+msgstr " 天"
 
 #: src/fw/applib/template_string.c:311
 msgctxt "TmplStringPlur"
 msgid " d"
-msgstr " d"
+msgstr " 天"
 
 #: src/fw/applib/template_string.c:312
 msgctxt "TmplStringMany"
 msgid " d"
-msgstr " d"
+msgstr " 天"
 
 #. / Suffixes for days with full units
 #: src/fw/applib/template_string.c:314
 msgctxt "TmplStringSing"
 msgid " day"
-msgstr " day"
+msgstr " 天"
 
 #: src/fw/applib/template_string.c:315
 msgctxt "TmplStringPlur"
 msgid " days"
-msgstr " days"
+msgstr " 天"
 
 #: src/fw/applib/template_string.c:316
 msgctxt "TmplStringMany"
 msgid " days"
-msgstr " days"
+msgstr " 天"
 
 #. / Suffixes for months with abbreviated units
 #: src/fw/applib/template_string.c:326
 msgctxt "TmplStringSing"
 msgid " mo"
-msgstr " mo"
+msgstr " 个月"
 
 #: src/fw/applib/template_string.c:327
 msgctxt "TmplStringPlur"
 msgid " mo"
-msgstr " mo"
+msgstr " 个月"
 
 #: src/fw/applib/template_string.c:328
 msgctxt "TmplStringMany"
 msgid " mo"
-msgstr " mo"
+msgstr " 个月"
 
 #. / Suffixes for months with full units
 #: src/fw/applib/template_string.c:330
 msgctxt "TmplStringSing"
 msgid " month"
-msgstr " month"
+msgstr " 个月"
 
 #: src/fw/applib/template_string.c:331
 msgctxt "TmplStringPlur"
 msgid " months"
-msgstr " months"
+msgstr " 个月"
 
 #: src/fw/applib/template_string.c:332
 msgctxt "TmplStringMany"
 msgid " months"
-msgstr " months"
+msgstr " 个月"
 
 #. / Suffixes for years with abbreviated units
 #: src/fw/applib/template_string.c:343
 msgctxt "TmplStringSing"
 msgid " yr"
-msgstr " yr"
+msgstr " 年"
 
 #: src/fw/applib/template_string.c:344
 msgctxt "TmplStringPlur"
 msgid " yr"
-msgstr " yr"
+msgstr " 年"
 
 #: src/fw/applib/template_string.c:345
 msgctxt "TmplStringMany"
 msgid " yr"
-msgstr " yr"
+msgstr " 年"
 
 #. / Suffixes for years with full units
 #: src/fw/applib/template_string.c:347
 msgctxt "TmplStringSing"
 msgid " year"
-msgstr " year"
+msgstr " 年"
 
 #: src/fw/applib/template_string.c:348
 msgctxt "TmplStringPlur"
 msgid " years"
-msgstr " years"
+msgstr " 年"
 
 #: src/fw/applib/template_string.c:349
 msgctxt "TmplStringMany"
 msgid " years"
-msgstr " years"
+msgstr " 年"
 
 #: src/fw/applib/ui/day_picker.c:239
 msgid "Check something first."
@@ -1785,26 +1761,26 @@ msgstr "请先检查一下。"
 
 #: src/fw/applib/ui/dialogs/bt_conn_dialog.c:96
 msgid "Check bluetooth connection"
-msgstr "Check bluetooth connection"
+msgstr "请检查蓝牙连接"
 
 #: src/fw/applib/ui/time_range_selection_window.c:175
 msgid "Start"
-msgstr "Start"
+msgstr "开始"
 
 #. #-#-#-#-#  apps.pot (PACKAGE VERSION)  #-#-#-#-#
 #. / Vibrate at the end of notification animation (delayed)
 #: src/fw/applib/ui/time_range_selection_window.c:179
 #: src/fw/apps/system/settings/notifications.c:201
 msgid "End"
-msgstr "End"
+msgstr "结束"
 
 #: src/fw/applib/voice/voice_window.c:194
 msgid "Dictation is not available."
-msgstr "Dictation is not available."
+msgstr "语音输入不可用。"
 
 #: src/fw/applib/voice/voice_window.c:214
 msgid "Error occurred. Try again."
-msgstr "Error occurred. Try again."
+msgstr "发生错误。请重试。"
 
 #: src/fw/applib/voice/voice_window.c:221 src/fw/apps/system/app_fetch_ui.c:127
 msgid "No internet connection"
@@ -1812,15 +1788,15 @@ msgstr "无网络连接"
 
 #: src/fw/applib/voice/voice_window.c:314
 msgid "Enable voice in the settings page of the Pebble app."
-msgstr "Enable voice in the settings page of the Pebble app."
+msgstr "请在 Pebble 应用的设置中启用语音。"
 
 #: src/fw/applib/voice/voice_window.c:364
 msgid "Missed that. Try again."
-msgstr "Missed that. Try again."
+msgstr "没听清。请重试。"
 
 #: src/fw/applib/voice/voice_window.c:1099
 msgid "Listening"
-msgstr "Listening"
+msgstr "正在聆听"
 
 #: src/fw/apps/core/progress_ui.c:62
 msgid "Update Complete"
@@ -2004,7 +1980,7 @@ msgstr "："
 #: src/fw/apps/system/health/graph_card.c:306
 #, c-format
 msgid "%a: "
-msgstr "%a: "
+msgstr "%a："
 
 #: src/fw/apps/system/health/graph_card.c:389
 msgid "SMTWTFS"
@@ -2015,9 +1991,7 @@ msgstr "日一二三四五六"
 msgid ""
 "Psst! Want smart tips about your activity and sleep? You can enable Insights "
 "in the mobile app."
-msgstr ""
-"Psst! Want smart tips about your activity and sleep? You can enable Insights "
-"in the mobile app."
+msgstr "悄悄说！想要关于活动和睡眠的贴心建议？请在手机应用中启用 Insights。"
 
 #. / Health disabled text
 #: src/fw/apps/system/health/health.c:112
@@ -2028,7 +2002,7 @@ msgstr "追踪您的步数、睡眠等！在手机应用中启用Pebble Health�
 #. / Health waiting for time sync
 #: src/fw/apps/system/health/health.c:120
 msgid "Health requires the time to be synced. Please connect your phone."
-msgstr "Health requires the time to be synced. Please connect your phone."
+msgstr "Pebble Health 需要同步时间。请连接手机。"
 
 #. / Resting HR
 #: src/fw/apps/system/health/hr_detail_card.c:77
@@ -2222,7 +2196,7 @@ msgstr "打开手机上的Pebble应用以连接。"
 
 #: src/fw/apps/system/settings/bluetooth.c:449
 msgid "Forget this device to pair a new device."
-msgstr "Forget this device to pair a new device."
+msgstr "请先忘记此设备，再配对新的设备。"
 
 #: src/fw/apps/system/settings/bluetooth.c:593
 msgid "Bluetooth"
@@ -2236,23 +2210,23 @@ msgstr "语言"
 
 #: src/fw/apps/system/settings/display.c:73
 msgid "Smaller"
-msgstr "Smaller"
+msgstr "较小"
 
 #: src/fw/apps/system/settings/display.c:74
 msgctxt "TextSize"
 msgid "Default"
-msgstr "Default"
+msgstr "默认"
 
 #: src/fw/apps/system/settings/display.c:75
 msgid "Larger"
-msgstr "Larger"
+msgstr "较大"
 
 #. / The option in the Settings app for choosing the text size of the system UI.
 #. / String within Settings->Display that describes the text font size
 #: src/fw/apps/system/settings/display.c:88
 #: src/fw/apps/system/settings/display.c:692
 msgid "Text Size"
-msgstr "Text Size"
+msgstr "文字大小"
 
 #: src/fw/apps/system/settings/display.c:102
 #: src/fw/apps/system/settings/system.c:441
@@ -2286,16 +2260,16 @@ msgstr "强度"
 #: src/fw/apps/system/settings/display.c:150
 msgctxt "Orientation"
 msgid "Default"
-msgstr "Default"
+msgstr "默认"
 
 #: src/fw/apps/system/settings/display.c:151
 msgid "Left-Handed"
-msgstr "Left-Handed"
+msgstr "左手"
 
 #: src/fw/apps/system/settings/display.c:176
 #: src/fw/apps/system/settings/display.c:686
 msgid "Orientation"
-msgstr "Orientation"
+msgstr "佩戴方向"
 
 #: src/fw/apps/system/settings/display.c:189
 msgid "3 Seconds"
@@ -2324,11 +2298,11 @@ msgstr "超时"
 
 #: src/fw/apps/system/settings/display.c:224
 msgid "Double Tap"
-msgstr "Double Tap"
+msgstr "双击"
 
 #: src/fw/apps/system/settings/display.c:225
 msgid "Tap"
-msgstr "Tap"
+msgstr "点按"
 
 #: src/fw/apps/system/settings/display.c:226
 msgctxt "TouchWake"
@@ -2337,12 +2311,12 @@ msgstr "关"
 
 #: src/fw/apps/system/settings/display.c:239
 msgid "WAKE ON TOUCH"
-msgstr "WAKE ON TOUCH"
+msgstr "触摸唤醒"
 
 #: src/fw/apps/system/settings/display.c:239
 #: src/fw/apps/system/settings/display.c:450
 msgid "Wake on touch"
-msgstr "Wake on touch"
+msgstr "触摸唤醒"
 
 #: src/fw/apps/system/settings/display.c:250
 msgctxt "DynBacklight"
@@ -2369,7 +2343,7 @@ msgstr "动态背光"
 #: src/fw/apps/system/settings/display.c:267
 #: src/fw/apps/system/settings/display.c:467
 msgid "Dynamic Backlight"
-msgstr "Dynamic Backlight"
+msgstr "动态背光"
 
 #: src/fw/apps/system/settings/display.c:277
 msgid "Max Brightness"
@@ -2400,19 +2374,19 @@ msgstr "背光"
 
 #: src/fw/apps/system/settings/display.c:311
 msgid "Centered"
-msgstr "Centered"
+msgstr "居中"
 
 #: src/fw/apps/system/settings/display.c:312
 msgid "Scaled (Nearest)"
-msgstr "Scaled (Nearest)"
+msgstr "缩放 (邻近)"
 
 #: src/fw/apps/system/settings/display.c:313
 msgid "Scaled (Bilinear)"
-msgstr "Scaled (Bilinear)"
+msgstr "缩放 (双线性)"
 
 #: src/fw/apps/system/settings/display.c:326
 msgid "Legacy App Display"
-msgstr "Legacy App Display"
+msgstr "旧版应用显示"
 
 #: src/fw/apps/system/settings/display.c:432
 #, c-format
@@ -2434,7 +2408,7 @@ msgstr "关"
 
 #: src/fw/apps/system/settings/display.c:445
 msgid "Wake on motion"
-msgstr "Wake on motion"
+msgstr "运动唤醒"
 
 #. / Shows up in the Timeline settings as the status under the "Quick View" toggle.
 #: src/fw/apps/system/settings/display.c:446
@@ -2484,7 +2458,7 @@ msgstr "开 (%d)"
 
 #: src/fw/apps/system/settings/display.c:473
 msgid "Max Intensity"
-msgstr "Max Intensity"
+msgstr "最大强度"
 
 #: src/fw/apps/system/settings/display.c:562
 #: src/fw/apps/system/settings/display.c:672
@@ -2494,7 +2468,7 @@ msgstr "背光设置"
 #: src/fw/apps/system/settings/display.c:676
 #: src/fw/apps/system/settings/quiet_time.c:369
 msgid "Touch"
-msgstr "Touch"
+msgstr "触摸"
 
 #: src/fw/apps/system/settings/display.c:680
 msgid "Touch Navigation"
@@ -2502,7 +2476,7 @@ msgstr "触摸导航"
 
 #: src/fw/apps/system/settings/display.c:704
 msgid "Legacy Apps"
-msgstr "Legacy Apps"
+msgstr "旧版应用"
 
 #: src/fw/apps/system/settings/display.c:746
 msgid "Display"
@@ -2514,25 +2488,25 @@ msgstr "执行恢复出厂设置？"
 
 #: src/fw/apps/system/settings/health.c:22
 msgid "Kilometers"
-msgstr "Kilometers"
+msgstr "公里"
 
 #: src/fw/apps/system/settings/health.c:23
 msgid "Miles"
-msgstr "Miles"
+msgstr "英里"
 
 #. / 10 Minute Notification Window Timeout
 #: src/fw/apps/system/settings/health.c:28
 #: src/fw/apps/system/settings/notifications.c:119
 msgid "10 Minutes"
-msgstr "10 Minutes"
+msgstr "10分钟"
 
 #: src/fw/apps/system/settings/health.c:29
 msgid "30 Minutes"
-msgstr "30 Minutes"
+msgstr "30分钟"
 
 #: src/fw/apps/system/settings/health.c:30
 msgid "1 Hour"
-msgstr "1 Hour"
+msgstr "1小时"
 
 #. / Shown in Quick Launch Settings when the button is disabled.
 #: src/fw/apps/system/settings/health.c:31
@@ -2541,24 +2515,24 @@ msgstr "1 Hour"
 #: src/fw/apps/system/settings/system.c:536
 #: src/fw/apps/system/settings/system.c:540
 msgid "Disabled"
-msgstr "Disabled"
+msgstr "禁用"
 
 #: src/fw/apps/system/settings/health.c:59
 #: src/fw/apps/system/settings/health.c:103
 msgid "HR Monitoring"
-msgstr "HR Monitoring"
+msgstr "心率监测"
 
 #: src/fw/apps/system/settings/health.c:86
 msgid "Health Tracking"
-msgstr "Health Tracking"
+msgstr "健康追踪"
 
 #: src/fw/apps/system/settings/health.c:92
 msgid "Distance Unit"
-msgstr "Distance Unit"
+msgstr "距离单位"
 
 #: src/fw/apps/system/settings/health.c:113
 msgid "HR During Activity"
-msgstr "HR During Activity"
+msgstr "活动时心率"
 
 #: src/fw/apps/system/settings/notifications.c:56
 msgid "Allow All Notifications"
@@ -2576,61 +2550,61 @@ msgstr "静音所有通知"
 #: src/fw/apps/system/settings/notifications.c:90
 #: src/fw/apps/system/settings/notifications.c:277
 msgid "Filter"
-msgstr "Filter"
+msgstr "滤波"
 
 #. / 15 Second Notification Window Timeout
 #: src/fw/apps/system/settings/notifications.c:111
 msgid "15 Seconds"
-msgstr "15 Seconds"
+msgstr "15秒"
 
 #. / 30 Second Notification Window Timeout
 #: src/fw/apps/system/settings/notifications.c:113
 msgid "30 Seconds"
-msgstr "30 Seconds"
+msgstr "30秒"
 
 #. / 1 Minute Notification Window Timeout
 #: src/fw/apps/system/settings/notifications.c:115
 msgid "1 Minute"
-msgstr "1 Minute"
+msgstr "1分钟"
 
 #. / 3 Minute Notification Window Timeout
 #: src/fw/apps/system/settings/notifications.c:117
 msgid "3 Minutes"
-msgstr "3 Minutes"
+msgstr "3分钟"
 
 #. / Standard notification design option (default)
 #: src/fw/apps/system/settings/notifications.c:166
 msgid "Classic"
-msgstr "Classic"
+msgstr "经典"
 
 #. / Alternative notification design option
 #: src/fw/apps/system/settings/notifications.c:168
 msgid "Flat Black"
-msgstr "Flat Black"
+msgstr "纯黑"
 
 #. / Status bar title for the Notification Design Style settings screen
 #. / String within Settings->Notifications that describes the notification design style
 #: src/fw/apps/system/settings/notifications.c:186
 #: src/fw/apps/system/settings/notifications.c:289
 msgid "Banner Style"
-msgstr "Banner Style"
+msgstr "横幅样式"
 
 #. / Vibrate at the beginning of notification animation (immediate)
 #: src/fw/apps/system/settings/notifications.c:199
 msgid "Beginning"
-msgstr "Beginning"
+msgstr "开始时"
 
 #. / Status bar title for the Notification Vibe Timing settings screen
 #. / String within Settings->Notifications that describes when vibration happens
 #: src/fw/apps/system/settings/notifications.c:219
 #: src/fw/apps/system/settings/notifications.c:296
 msgid "Vibe Timing"
-msgstr "Vibe Timing"
+msgstr "振动时机"
 
 #: src/fw/apps/system/settings/notifications.c:230
 msgctxt "StatusBar"
 msgid "Default"
-msgstr "Default"
+msgstr "默认"
 
 #: src/fw/apps/system/settings/notifications.c:231
 msgid "Bold"
@@ -2653,32 +2627,32 @@ msgstr "状态栏"
 #. / Shown in Quick Launch Settings as the title of the tap up button option.
 #: src/fw/apps/system/settings/quick_launch.c:44
 msgid "Tap Up"
-msgstr "Tap Up"
+msgstr "点按上方"
 
 #. / Shown in Quick Launch Settings as the title of the tap down button option.
 #: src/fw/apps/system/settings/quick_launch.c:46
 msgid "Tap Down"
-msgstr "Tap Down"
+msgstr "点按下方"
 
 #. / Shown in Quick Launch Settings as the title of the hold up button quick launch option.
 #: src/fw/apps/system/settings/quick_launch.c:48
 msgid "Hold Up"
-msgstr "Hold Up"
+msgstr "长按上键"
 
 #. / Shown in Quick Launch Settings as the title of the hold center button quick launch option.
 #: src/fw/apps/system/settings/quick_launch.c:50
 msgid "Hold Center"
-msgstr "Hold Center"
+msgstr "长按中键"
 
 #. / Shown in Quick Launch Settings as the title of the hold down button quick launch option.
 #: src/fw/apps/system/settings/quick_launch.c:52
 msgid "Hold Down"
-msgstr "Hold Down"
+msgstr "长按下键"
 
 #. / Shown in Quick Launch Settings as the title of the hold back button quick launch option.
 #: src/fw/apps/system/settings/quick_launch.c:54
 msgid "Hold Back"
-msgstr "Hold Back"
+msgstr "长按返回键"
 
 #. / Title of the Quick Launch Settings submenu in Settings
 #. / Title for the Quick Launch first use dialog.
@@ -2686,42 +2660,41 @@ msgstr "Hold Back"
 #: src/fw/apps/system/settings/quick_launch_app_menu.c:152
 #: src/fw/apps/system/settings/quick_launch_setup_menu.c:45
 msgid "Quick Launch"
-msgstr "Quick Launch"
+msgstr "快捷启动"
 
 #. / Help text for the Quick Launch first use dialog.
 #: src/fw/apps/system/settings/quick_launch_setup_menu.c:47
 msgid ""
 "Open favorite apps quickly with a long button press from your watchface."
-msgstr ""
-"Open favorite apps quickly with a long button press from your watchface."
+msgstr "在表盘上长按按键即可快速打开常用应用。"
 
 #: src/fw/apps/system/settings/quiet_time.c:94
 msgid "Quiet All Notifications"
-msgstr "Quiet All Notifications"
+msgstr "静音所有通知"
 
 #: src/fw/apps/system/settings/quiet_time.c:97
 msgid "Allow Phone Calls"
-msgstr "Allow Phone Calls"
+msgstr "允许来电"
 
 #: src/fw/apps/system/settings/quiet_time.c:223
 msgid "Change Schedule"
-msgstr "Change Schedule"
+msgstr "更改定时"
 
 #: src/fw/apps/system/settings/quiet_time.c:259
 msgid "Calendar Aware"
-msgstr "Calendar Aware"
+msgstr "日历联动"
 
 #: src/fw/apps/system/settings/quiet_time.c:261
 msgctxt "QuietTime"
 msgid "Enabled"
-msgstr "Enabled"
+msgstr "启用"
 
 #: src/fw/apps/system/settings/quiet_time.c:262
 #: src/fw/apps/system/settings/quiet_time.c:269
 #: src/fw/apps/system/settings/quiet_time.c:277
 msgctxt "QuietTime"
 msgid "Disabled"
-msgstr "Disabled"
+msgstr "禁用"
 
 #: src/fw/apps/system/settings/quiet_time.c:321
 #: src/fw/apps/system/settings/quiet_time.c:435
@@ -2744,11 +2717,11 @@ msgstr "动作"
 #: src/fw/apps/system/settings/time.c:363
 #: src/fw/apps/system/settings/time.c:392
 msgid "Manual"
-msgstr "Manual"
+msgstr "手动"
 
 #: src/fw/apps/system/settings/quiet_time.c:438
 msgid "Interruptions"
-msgstr "Interruptions"
+msgstr "打扰"
 
 #: src/fw/apps/system/settings/quiet_time.c:451
 #: src/fw/apps/system/toggle/motion_backlight.c:48
@@ -2758,20 +2731,20 @@ msgstr "运动背光"
 #: src/fw/apps/system/settings/quiet_time.c:458
 #: src/fw/apps/system/settings/vibe_patterns.c:66
 msgid "Mute Speaker"
-msgstr "Mute Speaker"
+msgstr "静音扬声器"
 
 #: src/fw/apps/system/settings/quiet_time.c:522
 #: src/fw/apps/system/toggle/quiet_time.c:23
 msgid "Quiet Time"
-msgstr "Quiet Time"
+msgstr "勿扰时间"
 
 #: src/fw/apps/system/settings/remote.c:53
 msgid "You're all set"
-msgstr "You're all set"
+msgstr "一切就绪"
 
 #: src/fw/apps/system/settings/remote.c:126
 msgid "Forget"
-msgstr "Forget"
+msgstr "解除配对"
 
 #: src/fw/apps/system/settings/settings.c:228
 msgid "Settings"
@@ -2785,127 +2758,127 @@ msgstr "音量"
 #: src/fw/apps/system/settings/system.c:156
 #: src/fw/apps/system/settings/system.c:251
 msgid "Information"
-msgstr "Information"
+msgstr "信息"
 
 #: src/fw/apps/system/settings/system.c:157
 #: src/fw/apps/system/settings/system.c:965
 msgid "Certification"
-msgstr "Certification"
+msgstr "认证"
 
 #: src/fw/apps/system/settings/system.c:158
 msgid "Stand-By Mode"
-msgstr "Stand-By Mode"
+msgstr "待机模式"
 
 #: src/fw/apps/system/settings/system.c:159
 #: src/fw/apps/system/settings/system.c:598
 msgid "Debugging"
-msgstr "Debugging"
+msgstr "调试"
 
 #: src/fw/apps/system/settings/system.c:160
 msgid "Shut Down"
-msgstr "Shut Down"
+msgstr "关机"
 
 #: src/fw/apps/system/settings/system.c:161
 msgid "Factory Reset"
-msgstr "Factory Reset"
+msgstr "恢复出厂设置"
 
 #: src/fw/apps/system/settings/system.c:202
 msgid "BT Address"
-msgstr "BT Address"
+msgstr "蓝牙地址"
 
 #: src/fw/apps/system/settings/system.c:203
 msgid "Firmware"
-msgstr "Firmware"
+msgstr "固件版本"
 
 #: src/fw/apps/system/settings/system.c:205
 msgid "Recovery"
-msgstr "Recovery"
+msgstr "恢复模式"
 
 #: src/fw/apps/system/settings/system.c:206
 msgid "Bootloader"
-msgstr "Bootloader"
+msgstr "引导程序"
 
 #: src/fw/apps/system/settings/system.c:207
 msgid "Hardware"
-msgstr "Hardware"
+msgstr "硬件"
 
 #: src/fw/apps/system/settings/system.c:208
 msgid "Serial"
-msgstr "Serial"
+msgstr "序列号"
 
 #: src/fw/apps/system/settings/system.c:209
 msgid "Uptime"
-msgstr "Uptime"
+msgstr "运行时间"
 
 #: src/fw/apps/system/settings/system.c:210
 msgid "Legal"
-msgstr "Legal"
+msgstr "法律信息"
 
 #: src/fw/apps/system/settings/system.c:346
 msgid "Core dump and reboot?"
-msgstr "Core dump and reboot?"
+msgstr "生成核心转储并重启？"
 
 #: src/fw/apps/system/settings/system.c:440
 msgid "Very Low"
-msgstr "Very Low"
+msgstr "极低"
 
 #: src/fw/apps/system/settings/system.c:442
 msgid "Medium-Low"
-msgstr "Medium-Low"
+msgstr "中低"
 
 #: src/fw/apps/system/settings/system.c:444
 msgid "Medium-High"
-msgstr "Medium-High"
+msgstr "中高"
 
 #: src/fw/apps/system/settings/system.c:446
 msgid "Very High"
-msgstr "Very High"
+msgstr "极高"
 
 #: src/fw/apps/system/settings/system.c:471
 #: src/fw/apps/system/settings/system.c:498
 msgid "Motion Sensitivity"
-msgstr "Motion Sensitivity"
+msgstr "动作灵敏度"
 
 #: src/fw/apps/system/settings/system.c:494
 msgid "CoreDump now"
-msgstr "CoreDump now"
+msgstr "立即核心转储"
 
 #: src/fw/apps/system/settings/system.c:495
 msgid "CoreDump shortcut"
-msgstr "CoreDump shortcut"
+msgstr "核心转储快捷键"
 
 #: src/fw/apps/system/settings/system.c:496
 msgid "ALS Threshold"
-msgstr "ALS Threshold"
+msgstr "ALS 门限"
 
 #: src/fw/apps/system/settings/system.c:500
 msgid "Shake Log Info"
-msgstr "Shake Log Info"
+msgstr "摇动日志信息"
 
 #: src/fw/apps/system/settings/system.c:501
 msgid "Vibe Log Info"
-msgstr "Vibe Log Info"
+msgstr "振动日志信息"
 
 #: src/fw/apps/system/settings/system.c:502
 msgid "Compact Settings DBs"
-msgstr "Compact Settings DBs"
+msgstr "压缩设置数据库"
 
 #: src/fw/apps/system/settings/system.c:521
 msgid "10 back-button presses"
-msgstr "10 back-button presses"
+msgstr "连按返回键 10 次"
 
 #: src/fw/apps/system/settings/system.c:536
 #: src/fw/apps/system/settings/system.c:540
 msgid "Enabled"
-msgstr "Enabled"
+msgstr "启用"
 
 #: src/fw/apps/system/settings/system.c:671
 msgid "PebbleOS developers only!"
-msgstr "PebbleOS developers only!"
+msgstr "仅供 PebbleOS 开发者！"
 
 #: src/fw/apps/system/settings/system.c:926
 msgid "See details..."
-msgstr "See details..."
+msgstr "查看详情..."
 
 #: src/fw/apps/system/settings/system.c:989
 msgid "Company"
@@ -2958,83 +2931,83 @@ msgstr "韩国KCC"
 
 #: src/fw/apps/system/settings/system.c:1278
 msgid "Do you want to shut down?"
-msgstr "Do you want to shut down?"
+msgstr "要关机吗？"
 
 #. / Refers to the class of all non-score vibes, e.g. 3rd party app vibes
 #: src/fw/apps/system/settings/system.c:1365
 #: src/fw/apps/system/settings/vibe_patterns.c:108
 msgid "System"
-msgstr "System"
+msgstr "系统"
 
 #: src/fw/apps/system/settings/themes.c:103
 msgid "Accent Color"
-msgstr "Accent Color"
+msgstr "主题色"
 
 #. / Title of the Themes Settings submenu in Settings
 #: src/fw/apps/system/settings/themes.c:152
 msgid "Themes"
-msgstr "Themes"
+msgstr "主题"
 
 #. / Title of the menu for changing the watch's timezone.
 #: src/fw/apps/system/settings/time.c:164
 #: src/fw/apps/system/settings/time.c:405
 msgid "Timezone"
-msgstr "Timezone"
+msgstr "时区"
 
 #: src/fw/apps/system/settings/time.c:264
 #: src/fw/apps/system/settings/time.c:368
 msgid "Set Time"
-msgstr "Set Time"
+msgstr "设置时间"
 
 #: src/fw/apps/system/settings/time.c:303
 #: src/fw/apps/system/settings/time.c:377
 msgid "Set Date"
-msgstr "Set Date"
+msgstr "设置日期"
 
 #: src/fw/apps/system/settings/time.c:362
 msgid "Time Source"
-msgstr "Time Source"
+msgstr "时间来源"
 
 #: src/fw/apps/system/settings/time.c:364
 #: src/fw/apps/system/settings/time.c:397
 #: src/fw/apps/system/settings/time.c:400
 msgid "Automatic"
-msgstr "Automatic"
+msgstr "自动"
 
 #: src/fw/apps/system/settings/time.c:385
 msgid "Time Format"
-msgstr "Time Format"
+msgstr "时间格式"
 
 #: src/fw/apps/system/settings/time.c:386
 msgid "24h"
-msgstr "24h"
+msgstr "24小时制"
 
 #: src/fw/apps/system/settings/time.c:386
 msgid "12h"
-msgstr "12h"
+msgstr "12小时制"
 
 #: src/fw/apps/system/settings/time.c:390
 msgid "Timezone Source"
-msgstr "Timezone Source"
+msgstr "时区来源"
 
 #: src/fw/apps/system/settings/time.c:450
 msgid "Date & Time"
-msgstr "Date & Time"
+msgstr "日期和时间"
 
 #. / Shows up in the Timeline settings as a "Timing" subtitle and submenu option.
 #: src/fw/apps/system/settings/timeline.c:68
 msgid "Start Time"
-msgstr "Start Time"
+msgstr "开始时间"
 
 #. / Shows up in the Timeline settings as a "Timing" subtitle and submenu option.
 #: src/fw/apps/system/settings/timeline.c:70
 msgid "5 Min Before"
-msgstr "5 Min Before"
+msgstr "提前5分钟"
 
 #. / Shows up in the Timeline settings as a "Timing" subtitle and submenu option.
 #: src/fw/apps/system/settings/timeline.c:72
 msgid "10 Min Before"
-msgstr "10 Min Before"
+msgstr "提前10分钟"
 
 #. / Shows up in the Timeline settings as a "Timing" subtitle and submenu option.
 #: src/fw/apps/system/settings/timeline.c:74
@@ -3099,15 +3072,15 @@ msgstr "来电"
 
 #: src/fw/apps/system/settings/vibe_patterns.c:97
 msgid "Hourly Notice"
-msgstr "Hourly Notice"
+msgstr "整点提示"
 
 #: src/fw/apps/system/settings/vibe_patterns.c:102
 msgid "On Disconnect"
-msgstr "On Disconnect"
+msgstr "断开连接时"
 
 #: src/fw/apps/system/settings/vibe_patterns.c:284
 msgid "Sounds & Haptics"
-msgstr "Sounds & Haptics"
+msgstr "声音和振动"
 
 #: src/fw/apps/system/settings/vibe_patterns.c:286
 msgid "Vibrations"
@@ -3119,7 +3092,7 @@ msgstr "无事件"
 
 #: src/fw/apps/system/timeline/timeline.c:1281
 msgid "Timeline Future"
-msgstr "Timeline Future"
+msgstr "未来时间线"
 
 #. / The title of Timeline Past in Quick Launch. If the translation is too long, cut out
 #. / Timeline and only translate "Past".
@@ -3153,19 +3126,19 @@ msgstr ""
 
 #: src/fw/apps/system/toggle/backlight_state.c:26
 msgid "Turn On Backlight?"
-msgstr "Turn On Backlight?"
+msgstr "开启背光？"
 
 #: src/fw/apps/system/toggle/backlight_state.c:27
 msgid "Turn Off Backlight?"
-msgstr "Turn Off Backlight?"
+msgstr "关闭背光？"
 
 #: src/fw/apps/system/toggle/backlight_state.c:28
 msgid "Backlight On"
-msgstr "Backlight On"
+msgstr "背光开"
 
 #: src/fw/apps/system/toggle/backlight_state.c:29
 msgid "Backlight Off"
-msgstr "Backlight Off"
+msgstr "背光关"
 
 #: src/fw/apps/system/toggle/motion_backlight.c:23
 msgid "Turn On Motion Backlight?"
@@ -3691,7 +3664,7 @@ msgstr ""
 #. / Workouts waiting for time sync
 #: src/fw/apps/system/workout/workout.c:185
 msgid "Workout requires the time to be synced. Please connect your phone."
-msgstr "Workout requires the time to be synced. Please connect your phone."
+msgstr "锻炼需要同步时间。请连接手机。"
 
 #. / Health disabled text
 #: src/fw/apps/system/workout/workout.c:193

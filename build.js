@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 
 // Written into every pack's translation header.
-const VERSION = "1.7";
+const VERSION = "1.8";
 
 // Language packs to build. A `po` entry is a vendored catalog from
 // coredevices/pebbleos-translations (see locale/README.md). Older PBF-only

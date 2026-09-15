@@ -110,6 +110,15 @@ const BOLD_FLAGS = { 36: ["--bold-height", "1"] };
 
 const skipPreviews = process.argv.includes("--skip-previews");
 
+// `--v4` emits the sorted-index v4 fonts (and therefore v4 packs);
+// `--no-arith` keeps the v4 index but falls back to RAW/RLE4; `--suffix=_v4`
+// names the outputs separately so a v3 pack set stays next to the new one.
+const v4 = process.argv.includes("--v4");
+const noArith = process.argv.includes("--no-arith");
+const suffixArg = process.argv.find((arg) => arg.startsWith("--suffix="));
+const suffix = suffixArg ? suffixArg.slice("--suffix=".length) : "";
+const PBF_FLAGS = [...(v4 ? ["--v4"] : []), ...(noArith ? ["--no-arith"] : [])];
+
 // Preview images are drawn on the same gray as the README's specimen sheet.
 const PREVIEW_BG = "#cccccc";
 
@@ -118,10 +127,10 @@ fs.mkdirSync("build/", { recursive: true });
 // The fonts are language independent, so build them once.
 
 for (const size of SIZES) {
-  await $`bun run ./PebbleFontTool/bin/pbf build ./fonts/TUMBLED_${size} -o build/TUMBLED_${size}.pbf`;
-  await $`bun run ./PebbleFontTool/bin/pbf buildbold ./fonts/TUMBLED_${size} -o build/TUMBLED_${size}_BOLD.pbf ${BOLD_FLAGS[size] ?? []}`;
+  await $`bun run ./PebbleFontTool/bin/pbf build ./fonts/TUMBLED_${size} -o build/TUMBLED_${size}${suffix}.pbf ${PBF_FLAGS}`;
+  await $`bun run ./PebbleFontTool/bin/pbf buildbold ./fonts/TUMBLED_${size} -o build/TUMBLED_${size}_BOLD${suffix}.pbf ${BOLD_FLAGS[size] ?? []} ${PBF_FLAGS}`;
 
-  if (!skipPreviews) {
+  if (!skipPreviews && !suffix) {
     await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_${size}.pbf build/TUMBLED_${size}.pbf -o images/TUMBLED_${size}.png -w 200 -h 228 -l ${size} --bg ${PREVIEW_BG}`;
     await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_${size}_BOLD.pbf build/TUMBLED_${size}_BOLD.pbf -o images/TUMBLED_${size}_BOLD.png -w 200 -h 228 -l ${size} --bg ${PREVIEW_BG}`;
   }
@@ -174,11 +183,11 @@ for (const lang of LANGS) {
         return;
       }
       fs.copyFileSync(
-        font.startsWith("data/") ? font : `build/${font}.pbf`,
+        font.startsWith("data/") ? font : `build/${font}${suffix}.pbf`,
         file,
       );
     });
 
-    await $`bun run ./PebbleFontTool/bin/pbl pack ${dir} -o build/TUMBLED_${lang.code}_${pack.name}.pbl`;
+    await $`bun run ./PebbleFontTool/bin/pbl pack ${dir} -o build/TUMBLED_${lang.code}_${pack.name}${suffix}.pbl`;
   }
 }

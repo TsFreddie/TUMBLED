@@ -116,24 +116,6 @@ The build packs every language in `build.js` (`en_CN` and `zh_CN`), writing
 `TUMBLED_<locale>_<watch>.pbl` into `build/`. The `zh_CN` catalog lives in
 `locale/`; see [locale/README.md](./locale/README.md) to update it.
 
-`build.js` only builds the PBF files and packs them into `.pbl` files from the
-glyph sources in `fonts/`. To regenerate the codepoint set and the glyph
-sources themselves, run the scripts from the PebbleFontTool checkout:
-
-```bash
-# Rebuild build/pages.txt from PebbleFontTool/data/pages
-bun run ./PebbleFontTool/scripts/combine.ts
-
-# Rebuild the reference font used by the editor (fonts/unifont)
-bun run ./PebbleFontTool/scripts/extract.ts
-
-# Rebuild one variant, e.g. TUMBLED_14 (definition in build/)
-bun run ./PebbleFontTool/scripts/extract.ts build/fusion12.json
-
-# TUMBLED_36, the Pebble Time 2 size (definition in build/)
-bun run ./PebbleFontTool/scripts/extract.ts build/TUMBLED_36.json
-```
-
 ## Licenses
 
 This repository and packaged fonts are licensed under OFL 1.1. The translation

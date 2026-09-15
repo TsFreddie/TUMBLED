@@ -818,7 +818,7 @@ msgstr "%d"
 
 #: src/fw/services/activity/health_util.c:96
 msgid "h"
-msgstr "小时"
+msgstr "h"
 
 #: src/fw/services/activity/health_util.c:102
 msgid " "
@@ -826,7 +826,7 @@ msgstr " "
 
 #: src/fw/services/activity/health_util.c:112
 msgid "min"
-msgstr "分"
+msgstr "min"
 
 #: src/fw/services/activity/health_util.c:131
 #, c-format
@@ -1545,21 +1545,21 @@ msgstr "%p%I:%M:%S"
 #: src/fw/applib/ui/date_time_selection_window_private.c:76
 #: src/fw/apps/system/weather/expanded_view.c:146
 msgid "AM"
-msgstr "上午"
+msgstr "AM"
 
 #: src/fw/applib/pbl_std/timelocal.c:61
 #: src/fw/applib/ui/date_time_selection_window_private.c:78
 #: src/fw/apps/system/weather/expanded_view.c:146
 msgid "PM"
-msgstr "下午"
+msgstr "PM"
 
 #: src/fw/applib/pbl_std/timelocal.c:62
 msgid "am"
-msgstr "上午"
+msgstr "am"
 
 #: src/fw/applib/pbl_std/timelocal.c:62
 msgid "pm"
-msgstr "下午"
+msgstr "pm"
 
 #. / The first separator in `<hour>:<minute>:<second>`
 #. / The second separator in `<hour>:<minute>:<second>`
@@ -2066,7 +2066,7 @@ msgstr "区间时间"
 
 #: src/fw/apps/system/health/hr_summary_card.c:112
 msgid "BPM"
-msgstr "次/分"
+msgstr "BPM"
 
 #. / HRM disabled
 #: src/fw/apps/system/health/hr_summary_card.c:156
@@ -3744,7 +3744,7 @@ msgstr ""
 #: src/fw/apps/watch/kickstart/kickstart.c:360
 #, c-format
 msgid "%d BPM"
-msgstr "%d 次/分"
+msgstr "%d BPM"
 
 #. / Step count greater than 1000 with a thousands separator
 #: src/fw/apps/watch/kickstart/kickstart.c:470

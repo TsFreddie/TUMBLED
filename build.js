@@ -53,10 +53,10 @@ if (!skipPreviews) {
 }
 
 await $`bun run ./PebbleFontTool/bin/pbf build ./fonts/TUMBLED_36 -o build/TUMBLED_36.pbf`;
-// the bold pack has its own extraction: Source Han Sans Bold with the stem
-// passes retargeted to 3px, so the auto bold (+1) lands on 4px like the
-// firmware's real bold Latin
-await $`bun run ./PebbleFontTool/bin/pbf buildbold ./fonts/TUMBLED_36_BOLD -o build/TUMBLED_36_BOLD.pbf`;
+// the bold is the regular with the auto bold grown on both axes (one pixel
+// right, one up), which thickens horizontal strokes too and keeps the weight
+// even (76% of cross sections at 3px) unlike the one-axis version
+await $`bun run ./PebbleFontTool/bin/pbf buildbold ./fonts/TUMBLED_36 -o build/TUMBLED_36_BOLD.pbf --bold-height 1`;
 
 if (!skipPreviews) {
   await $`bun run ./PebbleFontTool/bin/preview build/GOTHIC_36.pbf build/TUMBLED_36.pbf -o images/TUMBLED_36.png -w 200 -h 228 -l 36`;

@@ -20,7 +20,7 @@ msgstr ""
 #: src/fw/popups/alarm_popup.c:52
 #, c-format
 msgid "Snooze for %d minutes"
-msgstr "稍后提醒 %d 分钟"
+msgstr "稍后 %d 分钟提醒"
 
 #: src/fw/popups/alarm_popup.c:69
 msgid "Alarm dismissed"
@@ -31,7 +31,7 @@ msgid ""
 "Your heart rate has been shared with an app on your phone for several hours. "
 "This could affect your battery. Stop sharing now?"
 msgstr ""
-"您的心率已与手机上的应用共享数小时，可能会影响电池续航。要立即停止共享吗？"
+"您的心率已与手机上的应用共享数小时，可能会影响电池续航。要停止共享吗？"
 
 #: src/fw/popups/ble_hrm/ble_hrm_reminder_popup.c:24
 #: src/fw/services/activity/activity_insights.c:1202
@@ -76,18 +76,20 @@ msgstr ""
 msgid ""
 "A bug report has been captured. Please finish uploading the bug report using "
 "the Pebble phone app."
-msgstr "已捕获错误报告。请使用 Pebble 手机应用完成上传。"
+msgstr ""
+"已捕获错误报告。"
+"请使用 Pebble 手机应用完成上传。"
 
 #: src/fw/popups/health_tracking_ui.c:75
 msgid ""
 "This feature requires Pebble Health to work. Enable Health in the Pebble "
 "mobile app to continue."
 msgstr ""
-"此功能需要Pebble Health才能运行。请在Pebble手机应用中启用Health以继续。"
+"此功能需要 Pebble Health 才能运行。请在 Pebble 手机应用中启用 Health 以继续。"
 
 #: src/fw/popups/notifications/notification_window.c:721
 msgid "Snoozed"
-msgstr "已稍后"
+msgstr "已稍后提醒"
 
 #: src/fw/popups/notifications/notification_window.c:755
 msgid "Muted"
@@ -148,16 +150,16 @@ msgstr "通话已结束"
 
 #: src/fw/popups/phone_ui.c:575
 msgid "Call Declined"
-msgstr "电话已拒绝"
+msgstr "电话已拒接"
 
 #: src/fw/popups/switch_worker_ui.c:94
 #, c-format
 msgid "Run %s instead of %s as the background app?"
-msgstr "将 %s 作为后台应用运行而非 %s ？"
+msgstr "将 %s 作为后台应用运行而非 %s？"
 
 #: src/fw/popups/wakeup_ui.c:52
 msgid "While your Pebble was off wakeup events occurred for:\n"
-msgstr "您的Pebble关机期间发生了以下唤醒事件：\n"
+msgstr "您的 Pebble 在关机期间发生了以下唤醒事件：\n"
 
 #: src/fw/process_management/app_manager.c:462
 #, c-format
@@ -166,7 +168,7 @@ msgstr "%.*s 无响应"
 
 #: src/fw/process_management/process_manager.c:195
 msgid "This app requires a newer version of the Pebble firmware."
-msgstr "此应用需要更新版本的Pebble固件。"
+msgstr "此应用需要更新版本的 Pebble 固件。"
 
 #: src/fw/process_management/process_manager.c:340
 msgid "This app uses RockyJS which is no longer supported."
@@ -190,8 +192,8 @@ msgid ""
 "How are you feeling? Have you noticed extra focus, better mood or extra "
 "energy? You have been sleeping great this week! Keep it up!"
 msgstr ""
-"您感觉如何？是否注意到注意力更集中、心情更好或精力更充沛？您这周睡眠很好！继"
-"续保持！"
+"您感觉如何？是否注意到注意力更集中、心情更好或精力更充沛？"
+"您这周睡眠很好！继续保持！"
 
 #: src/fw/services/activity/activity_insights.c:174
 msgid "I feel fabulous!"
@@ -224,7 +226,9 @@ msgstr "我们会成功的！"
 msgid ""
 "Congratulations - you're having a super active day! Activity makes you more "
 "focused and creative. How do you feel?"
-msgstr "恭喜 - 您今天非常活跃！活动让您更加专注和富有创造力。您感觉如何？"
+msgstr ""
+"恭喜！您今天非常活跃！"
+"运动能让您更专注、更有创造力。您感觉如何？"
 
 #: src/fw/services/activity/activity_insights.c:192
 #: src/fw/services/activity/activity_insights.c:925
@@ -245,7 +249,7 @@ msgstr "活动摘要"
 
 #: src/fw/services/activity/activity_insights.c:231
 msgid "Do you feel more energetic, sharper or optimistic? Being active helps!"
-msgstr "您是否感到更有精力、更敏锐或更乐观？积极活动很有帮助！"
+msgstr "您是否感到更有精力、更敏锐或更乐观？动起来会有帮助！"
 
 #: src/fw/services/activity/activity_insights.c:232
 msgid "GREAT DAY TODAY"
@@ -262,7 +266,7 @@ msgstr "坚持不懈！"
 #: src/fw/services/activity/activity_insights.c:239
 #: src/fw/services/activity/activity_insights.c:243
 msgid "Resting is fine, but try to recover and step it up tomorrow!"
-msgstr "休息是可以的，但请尝试恢复并明天加把劲！"
+msgstr "休息一下没关系，不过要养足精神，明天再加把劲！"
 
 #: src/fw/services/activity/activity_insights.c:240
 #: src/fw/services/activity/activity_insights.c:244
@@ -275,7 +279,7 @@ msgstr "睡眠摘要"
 
 #: src/fw/services/activity/activity_insights.c:260
 msgid "You had a good night! Feel the energy 😃"
-msgstr "您昨晚睡得很好！感受精力充沛吧 😃"
+msgstr "您昨晚睡得很好！感受满满的活力吧 😃"
 
 #: src/fw/services/activity/activity_insights.c:263
 msgid "It's great that you're keeping a consistent sleep routine!"
@@ -342,7 +346,7 @@ msgstr "小睡时间"
 #: src/fw/services/activity/activity_insights.c:893
 #, c-format
 msgid "%s of sleep"
-msgstr "%s 的睡眠"
+msgstr "%s 睡眠"
 
 #: src/fw/services/activity/activity_insights.c:898
 msgid "YOU NAPPED"
@@ -350,7 +354,7 @@ msgstr "您小睡了"
 
 #: src/fw/services/activity/activity_insights.c:899
 msgid "Of napping"
-msgstr "小睡中"
+msgstr "小睡时长"
 
 #: src/fw/services/activity/activity_insights.c:907
 #, c-format
@@ -364,7 +368,7 @@ msgstr "我需要更多"
 #: src/fw/services/activity/activity_insights.c:959
 #, c-format
 msgid "Aren't naps great? You knocked out for %dH %dM!"
-msgstr "小睡不是很棒吗？您睡了 %dH %dM！"
+msgstr "小睡很棒吧？您睡了 %dH %dM！"
 
 #: src/fw/services/activity/activity_insights.c:975
 msgid "I didn't nap!?"
@@ -372,7 +376,7 @@ msgstr "我没有小睡！？"
 
 #: src/fw/services/activity/activity_insights.c:1210
 msgid "Open Pin"
-msgstr "打开固定"
+msgstr "打开卡片"
 
 #: src/fw/services/activity/activity_insights.c:1294
 #, c-format
@@ -380,35 +384,44 @@ msgid ""
 "Killer job! You've walked %d steps today which is %d%% above your typical. "
 "Do it again tomorrow and you'll be on top of the world!"
 msgstr ""
-"太棒了！您今天走了 %d 步，比平时多了 %d%%。明天继续这样做，您将站在世界之巅！"
+"太棒了！您今天走了 %d 步，比平时多了 %d%%。"
+"明天继续这样做，您将引领世界！"
 
 #: src/fw/services/activity/activity_insights.c:1296
 #, c-format
 msgid ""
 "Nice moves! You've walked %d steps today which is %d%% above your typical. "
 "Crush it again tomorrow 😀"
-msgstr "不错！您今天走了 %d 步，比平时多了 %d%%。明天继续努力 😀"
+msgstr ""
+"不错！您今天走了 %d 步，比平时多了 %d%%。"
+"明天继续努力 😀"
 
 #: src/fw/services/activity/activity_insights.c:1298
 #, c-format
 msgid ""
 "Hey rockstar 🎤 You've walked %d steps today which is %d%% above your "
 "typical. Nothing can stop you!"
-msgstr "嘿，摇滚明星 🎤 您今天走了 %d 步，比平时多了 %d%%。没有什么能阻止您！"
+msgstr ""
+"气场全开 🎤！您今天走了 %d 步，比平时多了 %d%%。"
+"没有人能阻挡您前进的步伐！"
 
 #: src/fw/services/activity/activity_insights.c:1300
 #, c-format
 msgid ""
 "We can barely keep up! You walked %d steps today which is %d%% above your "
 "typical. You're on 🔥"
-msgstr "我们几乎跟不上！您今天走了 %d 步，比平时多了 %d%%。您真是太棒了 🔥"
+msgstr ""
+"几乎没有人能跟上您！您今天走了 %d 步，"
+"比平时多了 %d%%。您真是太棒了 🔥"
 
 #: src/fw/services/activity/activity_insights.c:1303
 #, c-format
 msgid ""
 "You walked %d steps today which is %d%% above your typical. You just "
 "outstepped YOURSELF. Mic drop."
-msgstr "您今天走了 %d 步，比平时多了 %d%%。您超越了自己。简直太厉害了。"
+msgstr ""
+"您今天走了 %d 步，比平时多了 %d%%。"
+"您超越了自己。简直太厉害了。"
 
 #: src/fw/services/activity/activity_insights.c:1310
 #, c-format
@@ -416,7 +429,8 @@ msgid ""
 "You walked %d steps today; keep it up! Being active is the key to feeling "
 "like a million bucks. Try to beat your typical tomorrow."
 msgstr ""
-"您今天走了 %d 步，继续保持！积极活动是感觉良好的关键。明天试着超越平时。"
+"您今天走了 %d 步，继续保持！积极活动是感觉良好的关键。"
+"明天试着超越平时的记录。"
 
 #: src/fw/services/activity/activity_insights.c:1313
 #, c-format
@@ -428,21 +442,27 @@ msgstr "做得好！您今天走了 %d 步，明天继续这样做。"
 msgid ""
 "Someone's on the move 👊 You walked %d steps today; keep doing what you're "
 "doing!"
-msgstr "有人在行动 👊 您今天走了 %d 步，继续保持！"
+msgstr ""
+"不断前行 👊 您今天走了 %d 步，"
+"可要继续保持！"
 
 #: src/fw/services/activity/activity_insights.c:1316
 #, c-format
 msgid ""
 "You keep moving, we'll keep counting! You've clocked in %d steps today. Keep "
 "it rolling, hot stuff."
-msgstr "您继续移动，我们继续计数！您今天已经走了 %d 步。继续加油，厉害的人。"
+msgstr ""
+"只要您持续活动，我们就一直记录！您今天已经走了 %d 步。"
+"继续加油啊，大佬。"
 
 #: src/fw/services/activity/activity_insights.c:1323
 #, c-format
 msgid ""
 "You walked %d steps today which is %d%% below your typical. Try to be more "
 "active tomorrow–you can do it!"
-msgstr "您今天走了 %d 步，比平时少了 %d%%。明天试着更活跃一些-您能做到！"
+msgstr ""
+"您今天走了 %d 步，比平时少了 %d%%。"
+"明天试着更活跃一些，您一定能做到！"
 
 #: src/fw/services/activity/activity_insights.c:1325
 #, c-format
@@ -450,28 +470,35 @@ msgid ""
 "You walked %d steps which is %d%% below your typical. Being active makes you "
 "feel amaaaazing–try to get back on track tomorrow."
 msgstr ""
-"您走了 %d 步，比平时少了 %d%%。积极活动让您感觉棒极了-明天试着回到正轨。"
+"您走了 %d 步，比平时少了 %d%%。"
+"积极活动会让您感觉棒极了，明天试着回到正轨。"
 
 #: src/fw/services/activity/activity_insights.c:1327
 #, c-format
 msgid ""
 "You walked %d steps today which is %d%% below your typical. Don't worry, "
 "tomorrow is just around the corner 😀"
-msgstr "您今天走了 %d 步，比平时少了 %d%%。别担心，明天很快就会到来 😀"
+msgstr ""
+"您今天走了 %d 步，比平时少了 %d%%。"
+"别担心，明天很快就会到来 😀"
 
 #: src/fw/services/activity/activity_insights.c:1329
 #, c-format
 msgid ""
 "You walked %d steps which is %d%% below your typical, but don't stress. "
 "You'll crush it tomorrow 😉"
-msgstr "您走了 %d 步，比平时少了 %d%%，但别紧张。明天您会表现更好 😉"
+msgstr ""
+"您走了 %d 步，比平时少了 %d%%，但别紧张。"
+"明天您会表现更好 😉"
 
 #: src/fw/services/activity/activity_insights.c:1336
 #, c-format
 msgid ""
 "You walked %d steps today. Don't fret, you can get back on track in no time "
 "😉"
-msgstr "您今天走了 %d 步。别担心，您很快就能回到正轨 😉"
+msgstr ""
+"您今天走了 %d 步。"
+"别担心，您很快就能回到正轨 😉"
 
 #: src/fw/services/activity/activity_insights.c:1338
 #, c-format
@@ -483,7 +510,9 @@ msgstr "您今天走了 %d 步。好消息是您的前途无量！"
 msgid ""
 "You walked %d steps today. Try to take even more steps tomorrow–show us what "
 "you're made of!"
-msgstr "您今天走了 %d 步。明天试着走更多步-让我们看看您的实力！"
+msgstr ""
+"您今天走了 %d 步。"
+"明天试着走更多步，让我们看看您的实力！"
 
 #. / Sleep notification on wake up, slept above their typical sleep duration
 #: src/fw/services/activity/activity_insights.c:1391
@@ -491,35 +520,45 @@ msgstr "您今天走了 %d 步。明天试着走更多步-让我们看看您的�
 msgid ""
 "Refreshed? You slept for %dH %dM which is %d%% above your typical. Go tackle "
 "your day 😃."
-msgstr "精力充沛？您睡了 %d小时 %d分，比平时多了 %d%%。去大干一场吧 😃。"
+msgstr ""
+"精力充沛？您睡了 %d小时 %d分，比平时多了 %d%%。"
+"去大干一场吧 😃。"
 
 #: src/fw/services/activity/activity_insights.c:1393
 #, c-format
 msgid ""
 "You caught some killer zzz’s! You slept for %dH %dM which is %d%% above your "
 "typical. Keep it up."
-msgstr "睡得真沉！您睡了 %d小时 %d分，比平时多了 %d%%。继续保持。"
+msgstr ""
+"睡得真沉！您睡了 %d小时 %d分，比平时多了 %d%%。"
+"继续保持。"
 
 #: src/fw/services/activity/activity_insights.c:1395
 #, c-format
 msgid ""
 "Rise and shine! You slept for %dH %dM which is %d%% above your typical. Do "
 "it again tonight, sleep master."
-msgstr "起床啦！您睡了 %d小时 %d分，比平时多了 %d%%。今晚再来一次，睡眠大师。"
+msgstr ""
+"起床啦！您睡了 %d小时 %d分，比平时多了 %d%%。"
+"今晚再来一次，睡眠大师。"
 
 #: src/fw/services/activity/activity_insights.c:1397
 #, c-format
 msgid ""
 "Mmmm...what a night. You slept for %dH %dM which is %d%% above your typical. "
 "That's gotta feel good!"
-msgstr "嗯...舒服的一夜。您睡了 %d小时 %d分，比平时多了 %d%%。感觉一定很好！"
+msgstr ""
+"嗯...舒服的一夜。您睡了 %d小时 %d分，比平时多了 %d%%。"
+"感觉一定很好！"
 
 #: src/fw/services/activity/activity_insights.c:1399
 #, c-format
 msgid ""
 "That's a lot of sheep you just counted! You slept for %dH %dM which is %d%% "
 "above your typical. Boom shakalaka."
-msgstr "数了这么多羊！您睡了 %d小时 %d分，比平时多了 %d%%。太棒了！"
+msgstr ""
+"数了这么多羊！您睡了 %d小时 %d分，比平时多了 %d%%。"
+"太棒了！"
 
 #. / Sleep notification on wake up, slept similar to their typical sleep duration
 #: src/fw/services/activity/activity_insights.c:1407
@@ -536,14 +575,18 @@ msgstr ""
 msgid ""
 "Good morning! You slept for %dH %dM. Consistency is key; keep doing what "
 "you're doing 😃."
-msgstr "早上好！您睡了 %d小时 %d分。规律才是关键，就这样保持下去 😃。"
+msgstr ""
+"早上好！您睡了 %d小时 %d分。"
+"规律才是关键，就这样保持下去 😃。"
 
 #: src/fw/services/activity/activity_insights.c:1412
 #, c-format
 msgid ""
 "You're rockin' the shut eye! You slept for %dH %dM. Make it a nightly "
 "ritual. You deserve it."
-msgstr "睡得真香！您睡了 %d小时 %d分。把它变成每晚的习惯吧，您值得拥有。"
+msgstr ""
+"睡得真香！您睡了 %d小时 %d分。"
+"把它变成每晚的习惯吧，您值得拥有。"
 
 #: src/fw/services/activity/activity_insights.c:1414
 #, c-format
@@ -556,7 +599,9 @@ msgstr "感觉不错？您睡了 %d小时 %d分。现在谁也挡不住您 👊"
 msgid ""
 "Hey sleepy head. You slept for %dH %dM which is %d%% below your typical. Try "
 "to get more tonight!"
-msgstr "还困着吧。您睡了 %d小时 %d分，比平时少了 %d%%。今晚多睡一会儿！"
+msgstr ""
+"还困着吧。您睡了 %d小时 %d分，比平时少了 %d%%。"
+"今晚多睡一会儿！"
 
 #: src/fw/services/activity/activity_insights.c:1423
 #, c-format
@@ -564,8 +609,8 @@ msgid ""
 "Groggy? You slept for %dH %dM which is %d%% below your typical. Sleep is "
 "important for everything you do-try getting more shut eye tonight!"
 msgstr ""
-"迷迷糊糊？您睡了 %d小时 %d分，比平时少了 %d%%。睡眠对做什么都重要-今晚多睡一"
-"会儿！"
+"迷迷糊糊？您睡了 %d小时 %d分，比平时少了 %d%%。"
+"睡眠对什么都重要，今晚多睡一会儿！"
 
 #: src/fw/services/activity/activity_insights.c:1425
 #, c-format
@@ -589,8 +634,8 @@ msgid ""
 "You slept for %dH %dM which is %d%% below your typical. Sleep is vital for "
 "all your great ideas–how 'bout getting more tonight?"
 msgstr ""
-"您睡了 %d小时 %d分，比平时少了 %d%%。睡眠是好点子的源泉-今晚多睡一会儿怎么"
-"样？"
+"您睡了 %d小时 %d分，比平时少了 %d%%。"
+"睡眠是好点子的源泉，今晚多睡一会儿怎么样？"
 
 #: src/fw/services/activity/activity_insights.c:1436
 #, c-format
@@ -606,7 +651,9 @@ msgstr ""
 msgid ""
 "You slept for %dH %dM which is %d%% below your typical. We know stuff "
 "happens; take another crack at it tonight."
-msgstr "您睡了 %d小时 %d分，比平时少了 %d%%。谁都有意外，今晚再试一次。"
+msgstr ""
+"您睡了 %d小时 %d分，比平时少了 %d%%。"
+"谁都有意外，今晚再试一次。"
 
 #: src/fw/services/activity/activity_insights.c:1490
 #, c-format
@@ -639,7 +686,7 @@ msgstr "闪电侠，干得漂亮！"
 
 #: src/fw/services/activity/activity_insights.c:1586
 msgid "You're a machine!"
-msgstr "您真是台机器！"
+msgstr "您还真是不知疲倦！"
 
 #: src/fw/services/activity/activity_insights.c:1587
 msgid "Hey speedster, we can barely keep up!"
@@ -997,11 +1044,11 @@ msgstr "%p%l:%M"
 
 #: src/fw/services/clock/service.c:825
 msgid "Yesterday, %l:%M %p"
-msgstr "昨天, %l:%M %p"
+msgstr "昨天 %p%l:%M"
 
 #: src/fw/services/clock/service.c:833
 msgid "Yesterday, %R"
-msgstr "昨天, %R"
+msgstr "昨天 %R"
 
 #: src/fw/services/clock/service.c:844
 msgid "%b %e, %l:%M %p"
@@ -1162,7 +1209,9 @@ msgstr "日历联动会在日历事件期间自动开启勿扰时间。"
 msgid ""
 "Press and hold the Back button from a notification to turn Quiet Time on or "
 "off."
-msgstr "在通知界面长按返回键可开启或关闭勿扰时间。"
+msgstr ""
+"在通知界面长按返回键"
+"可开启或关闭勿扰时间。"
 
 #: src/fw/services/notifications/do_not_disturb_toggle.c:29
 msgid "Start Quiet Time?"
@@ -1282,7 +1331,9 @@ msgstr "失败"
 msgid ""
 "Quickly dismiss all notifications by holding the Select button for 2 seconds "
 "from any incoming notification."
-msgstr "收到通知时，长按选择键 2 秒即可快速关闭所有通知。"
+msgstr ""
+"收到通知时，长按选择键 2 秒"
+"即可快速关闭所有通知。"
 
 #: src/fw/services/timeline/timeline_actions.c:810
 msgid "Ok"
@@ -1335,17 +1386,17 @@ msgstr "最后更新"
 #. / Standard vibration pattern option that has a low intensity
 #: src/fw/services/vibes/vibe_intensity.c:39
 msgid "Standard - Low"
-msgstr "标准-低"
+msgstr "标准 - 低"
 
 #. / Standard vibration pattern option that has a medium intensity
 #: src/fw/services/vibes/vibe_intensity.c:43
 msgid "Standard - Medium"
-msgstr "标准-中"
+msgstr "标准 - 中"
 
 #. / Standard vibration pattern option that has a high intensity
 #: src/fw/services/vibes/vibe_intensity.c:47
 msgid "Standard - High"
-msgstr "标准-高"
+msgstr "标准 - 高"
 
 #: src/fw/applib/pbl_std/timelocal.c:38
 msgid "Jan"
@@ -1757,7 +1808,7 @@ msgstr " 年"
 
 #: src/fw/applib/ui/day_picker.c:239
 msgid "Check something first."
-msgstr "请先检查一下。"
+msgstr "请至少勾选一项。"
 
 #: src/fw/applib/ui/dialogs/bt_conn_dialog.c:96
 msgid "Check bluetooth connection"
@@ -1818,7 +1869,7 @@ msgstr "拒绝对话框。"
 #: src/fw/apps/system/alarms/alarm_detail.c:60
 #, c-format
 msgid "Snooze delay set to %d minutes"
-msgstr "稍后提醒延迟已设置为 %d 分钟"
+msgstr "稍后提醒间隔已设为 %d 分钟"
 
 #: src/fw/apps/system/alarms/alarm_detail.c:275
 msgid "Delete"
@@ -1842,7 +1893,7 @@ msgstr "更改时间"
 
 #: src/fw/apps/system/alarms/alarm_detail.c:290
 msgid "Change Days"
-msgstr "更改日期"
+msgstr "更改重复日"
 
 #: src/fw/apps/system/alarms/alarm_detail.c:295
 msgid "Convert to Basic Alarm"
@@ -1866,7 +1917,7 @@ msgstr "振动：关"
 
 #: src/fw/apps/system/alarms/alarm_detail.c:314
 msgid "Snooze Delay"
-msgstr "稍后提醒延迟"
+msgstr "稍后提醒间隔"
 
 #: src/fw/apps/system/alarms/alarm_detail.c:325
 msgid "5 minutes"
@@ -1904,11 +1955,11 @@ msgstr "新建闹钟"
 
 #: src/fw/apps/system/alarms/alarm_editor.c:163
 msgid "Wake up between"
-msgstr "起床时间在"
+msgstr "唤醒时段"
 
 #: src/fw/apps/system/alarms/alarm_editor.c:164
 msgid "Wake up interval"
-msgstr "起床间隔"
+msgstr "唤醒区间"
 
 #: src/fw/apps/system/alarms/alarm_editor.c:257
 msgid "Basic Alarm"
@@ -1935,8 +1986,8 @@ msgid ""
 "Let us wake you in your lightest sleep so you're fully refreshed! Smart "
 "Alarm wakes you up to 30min before your alarm."
 msgstr ""
-"让我们在您最轻的睡眠中唤醒您，让您精神焕发！智能闹钟会在您设定闹钟前30分钟内"
-"唤醒您。"
+"让我们在您睡眠最浅时唤醒您，让您神清气爽！"
+"智能闹钟最多可提前 30 分钟唤醒您。"
 
 #: src/fw/apps/system/app_fetch_ui.c:113
 msgid "Not connected"
@@ -1952,7 +2003,7 @@ msgstr ""
 
 #: src/fw/apps/system/app_fetch_ui.c:133
 msgid "Incompatible JS"
-msgstr "不兼容的JS"
+msgstr "不兼容的 JS"
 
 #: src/fw/apps/system/health/activity_detail_card.c:56
 #: src/fw/apps/system/health/sleep_detail_card.c:67
@@ -1991,18 +2042,22 @@ msgstr "日一二三四五六"
 msgid ""
 "Psst! Want smart tips about your activity and sleep? You can enable Insights "
 "in the mobile app."
-msgstr "悄悄说！想要关于活动和睡眠的贴心建议？请在手机应用中启用 Insights。"
+msgstr ""
+"悄悄告诉你！想要关于活动和睡眠的贴心建议？"
+"请在手机应用中启用 Insights。"
 
 #. / Health disabled text
 #: src/fw/apps/system/health/health.c:112
 msgid ""
 "Track your steps, sleep, and more! Enable Pebble Health in the mobile app."
-msgstr "追踪您的步数、睡眠等！在手机应用中启用Pebble Health。"
+msgstr ""
+"追踪您的步数、睡眠等！"
+"在手机应用中启用 Pebble Health。"
 
 #. / Health waiting for time sync
 #: src/fw/apps/system/health/health.c:120
 msgid "Health requires the time to be synced. Please connect your phone."
-msgstr "Pebble Health 需要同步时间。请连接手机。"
+msgstr "健康功能需要先同步时间。请连接手机。"
 
 #. / Resting HR
 #: src/fw/apps/system/health/hr_detail_card.c:77
@@ -2011,7 +2066,7 @@ msgstr "区间时间"
 
 #: src/fw/apps/system/health/hr_summary_card.c:112
 msgid "BPM"
-msgstr "每分钟心跳"
+msgstr "次/分"
 
 #. / HRM disabled
 #: src/fw/apps/system/health/hr_summary_card.c:156
@@ -2036,14 +2091,14 @@ msgid ""
 "wear your watch\n"
 "to sleep"
 msgstr ""
-"无睡眠数据，\n"
+"暂无睡眠数据，\n"
 "请佩戴手表\n"
 "睡觉"
 
 #: src/fw/apps/system/health/ui.c:65
 #, c-format
 msgid "TYPICAL %s"
-msgstr "典型 %s"
+msgstr "通常 %s"
 
 #. / Shown when the current temperature is unknown
 #: src/fw/apps/system/launcher/default/app_glance_weather.c:118
@@ -2089,7 +2144,7 @@ msgstr "全部清除"
 
 #: src/fw/apps/system/notifications.c:732
 msgid "No notifications"
-msgstr "无通知"
+msgstr "暂无通知"
 
 #: src/fw/apps/system/notifications.c:852
 msgid "Clear Notification History"
@@ -2130,7 +2185,7 @@ msgstr "发送短信"
 
 #: src/fw/apps/system/settings/activity_tracker.c:155
 msgid "No background apps"
-msgstr "无后台应用"
+msgstr "暂无后台应用"
 
 #. / No Notification Window Timeout
 #: src/fw/apps/system/settings/activity_tracker.c:164
@@ -2192,11 +2247,11 @@ msgstr "请关闭飞行模式以连接。"
 
 #: src/fw/apps/system/settings/bluetooth.c:440
 msgid "Open the Pebble app on your phone to connect."
-msgstr "打开手机上的Pebble应用以连接。"
+msgstr "打开手机上的 Pebble 应用以连接。"
 
 #: src/fw/apps/system/settings/bluetooth.c:449
 msgid "Forget this device to pair a new device."
-msgstr "请先忘记此设备，再配对新的设备。"
+msgstr "请先解除与此设备的配对，再配对新的设备。"
 
 #: src/fw/apps/system/settings/bluetooth.c:593
 msgid "Bluetooth"
@@ -2378,7 +2433,7 @@ msgstr "居中"
 
 #: src/fw/apps/system/settings/display.c:312
 msgid "Scaled (Nearest)"
-msgstr "缩放 (邻近)"
+msgstr "缩放 (最近邻)"
 
 #: src/fw/apps/system/settings/display.c:313
 msgid "Scaled (Bilinear)"
@@ -2408,7 +2463,7 @@ msgstr "关"
 
 #: src/fw/apps/system/settings/display.c:445
 msgid "Wake on motion"
-msgstr "运动唤醒"
+msgstr "动作唤醒"
 
 #. / Shows up in the Timeline settings as the status under the "Quick View" toggle.
 #: src/fw/apps/system/settings/display.c:446
@@ -2666,7 +2721,9 @@ msgstr "快捷启动"
 #: src/fw/apps/system/settings/quick_launch_setup_menu.c:47
 msgid ""
 "Open favorite apps quickly with a long button press from your watchface."
-msgstr "在表盘上长按按键即可快速打开常用应用。"
+msgstr ""
+"在表盘上长按按键"
+"即可快速打开常用应用。"
 
 #: src/fw/apps/system/settings/quiet_time.c:94
 msgid "Quiet All Notifications"
@@ -2711,7 +2768,7 @@ msgstr "开 - 持续显示"
 
 #: src/fw/apps/system/settings/quiet_time.c:365
 msgid "Motion"
-msgstr "动作"
+msgstr "动作感应"
 
 #: src/fw/apps/system/settings/quiet_time.c:430
 #: src/fw/apps/system/settings/time.c:363
@@ -2721,12 +2778,12 @@ msgstr "手动"
 
 #: src/fw/apps/system/settings/quiet_time.c:438
 msgid "Interruptions"
-msgstr "打扰"
+msgstr "允许打扰"
 
 #: src/fw/apps/system/settings/quiet_time.c:451
 #: src/fw/apps/system/toggle/motion_backlight.c:48
 msgid "Motion Backlight"
-msgstr "运动背光"
+msgstr "动作背光"
 
 #: src/fw/apps/system/settings/quiet_time.c:458
 #: src/fw/apps/system/settings/vibe_patterns.c:66
@@ -2849,7 +2906,7 @@ msgstr "核心转储快捷键"
 
 #: src/fw/apps/system/settings/system.c:496
 msgid "ALS Threshold"
-msgstr "ALS 门限"
+msgstr "环境光阈值"
 
 #: src/fw/apps/system/settings/system.c:500
 msgid "Shake Log Info"
@@ -2918,16 +2975,16 @@ msgstr "瓦时"
 
 #: src/fw/apps/system/settings/system.c:1060
 msgid "Canada IC"
-msgstr "加拿大IC"
+msgstr "加拿大 IC"
 
 #: src/fw/apps/system/settings/system.c:1067
 msgid "Canada ISED"
-msgstr "加拿大ISED"
+msgstr "加拿大 ISED"
 
 #: src/fw/apps/system/settings/system.c:1081
 #: src/fw/apps/system/settings/system.c:1188
 msgid "South Korea KCC"
-msgstr "韩国KCC"
+msgstr "韩国 KCC"
 
 #: src/fw/apps/system/settings/system.c:1278
 msgid "Do you want to shut down?"
@@ -3040,7 +3097,7 @@ msgstr "压缩上移"
 #: src/fw/apps/system/settings/timeline.c:123
 #: src/fw/apps/system/settings/timeline.c:193
 msgid "Timing"
-msgstr "时间"
+msgstr "显示时机"
 
 #. / Shows up in the Timeline settings as the title for unsupported watchface behavior.
 #. / Shows up in the Timeline settings for watchfaces that do not support Quick View.
@@ -3088,7 +3145,7 @@ msgstr "振动"
 
 #: src/fw/apps/system/timeline/timeline.c:907
 msgid "No events"
-msgstr "无事件"
+msgstr "暂无事件"
 
 #: src/fw/apps/system/timeline/timeline.c:1281
 msgid "Timeline Future"
@@ -3153,7 +3210,7 @@ msgid ""
 "Motion\n"
 "Backlight On"
 msgstr ""
-"运动\n"
+"动作\n"
 "背光开"
 
 #: src/fw/apps/system/toggle/motion_backlight.c:26
@@ -3161,12 +3218,12 @@ msgid ""
 "Motion\n"
 "Backlight Off"
 msgstr ""
-"运动\n"
+"动作\n"
 "背光关"
 
 #: src/fw/apps/system/watchfaces.c:84
 msgid "Active"
-msgstr "活动"
+msgstr "使用中"
 
 #: src/fw/apps/system/watchfaces.c:198
 msgid "Watchfaces"
@@ -3192,12 +3249,12 @@ msgstr "更新于 %s"
 
 #: src/fw/apps/system/weather/expanded_view.c:362
 msgid "PRECIPITATION: --"
-msgstr "降水: --"
+msgstr "降水概率：--"
 
 #: src/fw/apps/system/weather/expanded_view.c:363
 #, c-format
 msgid "PRECIPITATION: %d%%"
-msgstr "降水: %d%%"
+msgstr "降水概率：%d%%"
 
 #: src/fw/apps/system/weather/expanded_view.c:449
 msgid "CURRENT UV"
@@ -3239,7 +3296,7 @@ msgstr "天气预报"
 #. holds for any temp spread).
 #: src/fw/apps/system/weather/forecast_list.c:1478
 msgid "PRECIPITATION"
-msgstr "降水"
+msgstr "降水概率"
 
 #: src/fw/apps/system/weather/globe_view.c:2185
 msgid "Saved Location"
@@ -3268,7 +3325,7 @@ msgstr "位置"
 
 #: src/fw/apps/system/weather/saved_locations.c:240
 msgid "No Locations"
-msgstr "没有位置"
+msgstr "暂无位置"
 
 #: src/fw/apps/system/weather/saved_locations.c:241
 msgid "Add them in the app"
@@ -3311,31 +3368,33 @@ msgstr "雨夹雪"
 msgid ""
 "No location information available. To see weather, add locations in your "
 "Pebble mobile app."
-msgstr "位置信息不可用。要查看天气，请在Pebble手机应用中添加位置。"
+msgstr ""
+"位置信息不可用。"
+"要查看天气，请在 Pebble 手机应用中添加位置。"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:405
 msgid "Snow likely"
-msgstr "可能下雪"
+msgstr "预计有雪"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:406
 msgid "Sleet likely"
-msgstr "可能有雨夹雪"
+msgstr "预计有雨夹雪"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:407
 msgid "Rain likely"
-msgstr "可能下雨"
+msgstr "预计有雨"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:414
 msgid "Chance of snow"
-msgstr "或有雪"
+msgstr "可能有雪"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:415
 msgid "Chance of sleet"
-msgstr "或有雨夹雪"
+msgstr "可能有雨夹雪"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:416
 msgid "Chance of rain"
-msgstr "或有雨"
+msgstr "可能有雨"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:454
 msgid "Hail"
@@ -3343,7 +3402,7 @@ msgstr "冰雹"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:456
 msgid "Chance of storms"
-msgstr "可能有雷暴"
+msgstr "可能有雷雨"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:458
 msgid "Heavy snow"
@@ -3355,11 +3414,11 @@ msgstr "大雨"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:462
 msgid "Wintry mix"
-msgstr "雨雪混合"
+msgstr "雨夹雪"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:464
 msgid "Flood risk"
-msgstr "洪水风险"
+msgstr "洪涝风险"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:466
 msgid "Strong winds"
@@ -3371,7 +3430,7 @@ msgstr "零下"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:471
 msgid "Hard frost"
-msgstr "严霜"
+msgstr "霜冻"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:474
 msgid "Feels below freezing"
@@ -3399,7 +3458,7 @@ msgstr "湿度高"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:491
 msgid "Windy"
-msgstr "有风"
+msgstr "风大"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:496
 msgid "Clear skies"
@@ -3411,7 +3470,7 @@ msgstr "微风"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:501
 msgid "Calm breeze"
-msgstr "和风"
+msgstr "轻风"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:504
 msgid "Fair conditions"
@@ -3468,27 +3527,27 @@ msgstr "公里/时"
 #: src/fw/apps/system/weather/weather_app_layout.c:545
 #, c-format
 msgid "%s at %d%s."
-msgstr "%s %d%s。"
+msgstr "%s风 %d%s。"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:545
 #, c-format
 msgid "Winds %s at %d%s."
-msgstr "风向%s，风速%d%s。"
+msgstr "%s风，风速 %d%s。"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:550
 #, c-format
 msgid "At %d%s."
-msgstr "风速%d%s。"
+msgstr "风速 %d%s。"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:550
 #, c-format
 msgid "Winds at %d%s."
-msgstr "风速%d%s。"
+msgstr "风速 %d%s。"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:558
 #, c-format
 msgid "Precipitation %d%%."
-msgstr "降水概率%d%%。"
+msgstr "降水概率 %d%%。"
 
 #: src/fw/apps/system/weather/weather_app_layout.c:832
 #: src/fw/apps/system/weather/weather_app_layout.c:1127
@@ -3616,7 +3675,9 @@ msgstr "运动"
 msgid ""
 "Still sweating? Your workout is active and will be ended soon. Open the "
 "workout to keep it going."
-msgstr "还在流汗吗？您的锻炼正在进行中，将很快结束。请打开锻炼以继续。"
+msgstr ""
+"还在锻炼吗？您的锻炼仍在进行，很快就会自动结束。"
+"打开锻炼即可继续。"
 
 #: src/fw/apps/system/workout/utils.c:31
 msgid "End Workout"
@@ -3664,24 +3725,26 @@ msgstr ""
 #. / Workouts waiting for time sync
 #: src/fw/apps/system/workout/workout.c:185
 msgid "Workout requires the time to be synced. Please connect your phone."
-msgstr "锻炼需要同步时间。请连接手机。"
+msgstr "锻炼功能需要先同步时间。请连接手机。"
 
 #. / Health disabled text
 #: src/fw/apps/system/workout/workout.c:193
 msgid "Enable Pebble Health in the mobile app to track workouts"
-msgstr "在手机应用中启用Pebble Health以追踪锻炼"
+msgstr "在手机应用中启用 Pebble Health 以追踪锻炼"
 
 #. / Workout app first use text
 #: src/fw/apps/system/workout/workout.c:200
 msgid ""
 "Wear your watch snug and 2 fingers' width above your wrist bone for best "
 "results."
-msgstr "请将手表贴身佩戴，并在手腕骨上方约两指宽的位置，以获得最佳效果。"
+msgstr ""
+"请将手表贴身佩戴，"
+"并在手腕骨上方约两指宽处，以获得最佳效果。"
 
 #: src/fw/apps/watch/kickstart/kickstart.c:360
 #, c-format
 msgid "%d BPM"
-msgstr "%d BPM"
+msgstr "%d 次/分"
 
 #. / Step count greater than 1000 with a thousands separator
 #: src/fw/apps/watch/kickstart/kickstart.c:470
@@ -3692,7 +3755,9 @@ msgstr "%d,%03d"
 #~ msgid ""
 #~ "Remember to also forget your Pebble's Bluetooth connection from your "
 #~ "phone."
-#~ msgstr "请同时从您的手机中忘记Pebble的蓝牙连接。"
+#~ msgstr ""
+#~ "请同时解除手机"
+#~ "与 Pebble 的蓝牙配对。"
 
 #~ msgctxt "NotifVibe"
 #~ msgid "Disabled"
@@ -3734,7 +3799,9 @@ msgstr "%d,%03d"
 #~ msgid ""
 #~ "Unable to connect. Your weather data may be out of date; try checking the "
 #~ "connection on your phone."
-#~ msgstr "无法连接。您的天气数据可能已过期；请尝试检查手机上的连接。"
+#~ msgstr ""
+#~ "无法连接。您的天气数据可能已过期；"
+#~ "请尝试检查手机上的连接。"
 
 #~ msgid "Just Once"
 #~ msgstr "Just Once"
@@ -3757,38 +3824,41 @@ msgstr "%d,%03d"
 #~ msgid ""
 #~ "Bluetooth on your phone is in a high power state. Please report this "
 #~ "using 'Support' and reboot your phone."
-#~ msgstr "您手机的蓝牙处于高功耗状态。请使用'支持'报告此问题并重启手机。"
+#~ msgstr ""
+#~ "您手机的蓝牙处于高功耗状态。"
+#~ "请使用 'Support' 菜单报告此问题并重启手机。"
 
 #~ msgid ""
 #~ "This app requires Pebble Health to work. Enable Health in the Pebble "
 #~ "mobile app to continue."
 #~ msgstr ""
-#~ "此应用需要Pebble Health才能运行。请在Pebble手机应用中启用Health以继续。"
+#~ "此应用需要 Pebble Health 才能运行。请在 Pebble 手机应用中启用 Health 以继续。"
 
 #~ msgid ""
 #~ "Wanna know more about you? Track your activity and sleep with Pebble "
 #~ "Health."
-#~ msgstr "想更多地了解您自己吗？使用Pebble Health追踪您的活动和睡眠。"
+#~ msgstr ""
+#~ "想更多地了解您自己吗？"
+#~ "使用 Pebble Health 追踪您的活动和睡眠。"
 
 #~ msgid ""
 #~ "You like sleep, don't you? Get fun stats on your sleep and start waking "
 #~ "up less groggy with Pebble Health."
 #~ msgstr ""
-#~ "您喜欢睡觉，不是吗？使用Pebble Health获取有趣的睡眠数据，并开始以更清醒的"
-#~ "状态醒来。"
+#~ "您喜欢睡觉，不是吗？使用 Pebble Health 获取有趣的睡眠数据，让您醒来时更清醒。"
 
 #~ msgid ""
 #~ "Wish you could get daily updates on your activity and sleep progress? You "
 #~ "can! Check out your stats with Pebble Health."
 #~ msgstr ""
-#~ "希望每天都能收到您的活动和睡眠进度更新吗？您可以！使用Pebble Health查看您"
+#~ "希望每天都能收到您的活动和睡眠进度更新吗？您可以！使用 Pebble Health 查看您"
 #~ "的数据。"
 
 #~ msgid "Your screen may need calibration. Calibrate it now?"
 #~ msgstr "您的屏幕可能需要校准。现在校准吗？"
 
 #~ msgid "Pebble Updated!"
-#~ msgstr "Pebble已更新！"
+#~ msgstr "Pebble 已更新！"
 
 #~ msgid ""
 #~ "For activity and sleep tracking, press up from your watch face.\n"
@@ -3804,10 +3874,10 @@ msgstr "%d,%03d"
 #~ "详情请访问 blog.pebble.com"
 
 #~ msgid "No LE"
-#~ msgstr "无LE"
+#~ msgstr "无 LE"
 
 #~ msgid "LE Only"
-#~ msgstr "仅LE"
+#~ msgstr "仅 LE"
 
 #~ msgid "Now Discoverable"
 #~ msgstr "现在可被发现"

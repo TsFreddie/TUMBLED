@@ -59,11 +59,11 @@ TUMBLED_24
 
 TUMBLED_28
 
-- Directly generated from [Source Han Sans](https://github.com/adobe-fonts/source-han-sans). Due to the larger size, the generated ones are generally readable without any modification.
+- Generated from [Source Han Sans](https://github.com/adobe-fonts/source-han-sans), then run through the custom stem scripts in [PebbleFontTool](https://github.com/TsFreddie/PebbleFontTool) to adjust the stroke width to be more consistent.
 
 TUMBLED_36
 
-- Directly generated from [Source Han Sans](https://github.com/adobe-fonts/source-han-sans), for the Pebble Time 2 `GOTHIC_36_EXTENDED` slots.
+- Generated from [Source Han Sans](https://github.com/adobe-fonts/source-han-sans) for the Pebble Time 2 `GOTHIC_36_EXTENDED` slots, then run through the same custom stem scripts to adjust the stroke width to be more consistent.
 
 ## Preview
 

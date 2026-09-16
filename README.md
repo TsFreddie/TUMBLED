@@ -25,8 +25,8 @@ per language.
 
 | Pack                     | Watch         | Slots | Aliases                                        |
 | ------------------------ | ------------- | ----- | ---------------------------------------------- |
-| `TUMBLED_*_P2D.pbl`      | Pebble 2 Duo  | 19    | none (TUMBLED_14/18/24/28, regular and bold)   |
-| `TUMBLED_*_P2D_LITE.pbl` | Pebble 2 Duo  | 19    | `14_BOLD`→`14`, `24`→`24_BOLD`, `28_BOLD`→`28` |
+| `TUMBLED_*_P2D.pbl`      | Pebble 2 Duo  | 21    | none (TUMBLED_14/18/24/28, regular and bold)   |
+| `TUMBLED_*_P2D_LITE.pbl` | Pebble 2 Duo  | 21    | `14_BOLD`→`14`, `24`→`24_BOLD`, `28_BOLD`→`28` |
 | `TUMBLED_*_PT2.pbl`      | Pebble Time 2 | 21    | none (adds TUMBLED_36, regular and bold)       |
 | `TUMBLED_*_PT2_LITE.pbl` | Pebble Time 2 | 21    | `14_BOLD`→`14`, `36_BOLD`→`36`                 |
 | `TUMBLED_*_PT2_MINI.pbl` | Pebble Time 2 | 21    | LITE plus `18_BOLD`→`18`, only `Medium` uses   |

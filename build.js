@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 
 // Written into every pack's translation header.
-const VERSION = "1.10";
+const VERSION = "1.11";
 
 // Language packs to build. A `po` entry is a vendored catalog from
 // coredevices/pebbleos-translations (see locale/README.md). Older PBF-only
@@ -28,50 +28,70 @@ const LANGS = [
 //   ROBOTO_BOLD_SUBSET_49  (49) -> 36_BOLD / 28_BOLD
 //   DROID_SERIF_28_BOLD    (28) -> 28_BOLD
 // (36/36_BOLD exist on PT2 only; P2D tops out at 28.)
+//
+// The pack's resources are addressed by position: the firmware's `lang` file is
+// STRINGS followed by twenty font slots, in the order of
+// `resources/normal/base/resource_map.json` (which gained
+// GOTHIC_36_EXTENDED/GOTHIC_36_BOLD_EXTENDED in PebbleOS e61256bb6, 36 px
+// non-Latin text for the notification card's Larger size). Both lists below
+// must therefore stay twenty entries long.
 const P2D_SLOTS = [
-  "TUMBLED_14",
-  "TUMBLED_14_BOLD",
-  "TUMBLED_18",
-  "TUMBLED_18_BOLD",
-  "TUMBLED_24",
-  "TUMBLED_24_BOLD",
-  "TUMBLED_28",
-  "TUMBLED_28_BOLD",
-  "TUMBLED_18",            // BITHAM_18_LIGHT_SUBSET
-  "TUMBLED_28_BOLD",       // BITHAM_30_BLACK
-  "TUMBLED_28",            // BITHAM_34_LIGHT_SUBSET
-  "TUMBLED_28_BOLD",       // BITHAM_34_MEDIUM_NUMBERS
-  "TUMBLED_28_BOLD",       // BITHAM_42_BOLD
-  "TUMBLED_28",            // BITHAM_42_LIGHT
-  "TUMBLED_28_BOLD",       // BITHAM_42_MEDIUM_NUMBERS
-  "TUMBLED_18_BOLD",       // ROBOTO_CONDENSED_21
-  "TUMBLED_28_BOLD",       // ROBOTO_BOLD_SUBSET_49
-  "TUMBLED_28_BOLD",       // DROID_SERIF_28_BOLD
+  "TUMBLED_14",            // GOTHIC_14_EXTENDED
+  "TUMBLED_14_BOLD",       // GOTHIC_14_BOLD_EXTENDED
+  "TUMBLED_18",            // GOTHIC_18_EXTENDED
+  "TUMBLED_18_BOLD",       // GOTHIC_18_BOLD_EXTENDED
+  "TUMBLED_24",            // GOTHIC_24_EXTENDED
+  "TUMBLED_24_BOLD",       // GOTHIC_24_BOLD_EXTENDED
+  "TUMBLED_28",            // GOTHIC_28_EXTENDED
+  "TUMBLED_28_BOLD",       // GOTHIC_28_BOLD_EXTENDED
+  "TUMBLED_28",            // GOTHIC_36_EXTENDED (no 36 px font here: use the largest)
+  "TUMBLED_28_BOLD",       // GOTHIC_36_BOLD_EXTENDED
+  "TUMBLED_18",            // BITHAM_18_LIGHT_SUBSET (18)
+  "TUMBLED_28_BOLD",       // BITHAM_30_BLACK (30)
+  "TUMBLED_28",            // BITHAM_34_LIGHT_SUBSET (34)
+  "TUMBLED_28_BOLD",       // BITHAM_34_MEDIUM_NUMBERS (34)
+  "TUMBLED_28_BOLD",       // BITHAM_42_BOLD (42)
+  "TUMBLED_28",            // BITHAM_42_LIGHT (42)
+  "TUMBLED_28_BOLD",       // BITHAM_42_MEDIUM_NUMBERS (42)
+  "TUMBLED_18_BOLD",       // ROBOTO_CONDENSED_21 (21)
+  "TUMBLED_28_BOLD",       // ROBOTO_BOLD_SUBSET_49 (49)
+  "TUMBLED_28_BOLD",       // DROID_SERIF_28_BOLD (28)
 ];
 
 const PT2_SLOTS = [
-  "TUMBLED_14",
-  "TUMBLED_14_BOLD",
-  "TUMBLED_18",
-  "TUMBLED_18_BOLD",
-  "TUMBLED_24",
-  "TUMBLED_24_BOLD",
-  "TUMBLED_28",
-  "TUMBLED_28_BOLD",
-  "TUMBLED_36",
-  "TUMBLED_36_BOLD",
-  "TUMBLED_18",            // BITHAM_18_LIGHT_SUBSET
-  "TUMBLED_28_BOLD",       // BITHAM_30_BLACK
-  "TUMBLED_36",            // BITHAM_34_LIGHT_SUBSET
-  "TUMBLED_28_BOLD",       // BITHAM_34_MEDIUM_NUMBERS
-  "TUMBLED_36_BOLD",       // BITHAM_42_BOLD
-  "TUMBLED_36",            // BITHAM_42_LIGHT
-  "TUMBLED_36_BOLD",       // BITHAM_42_MEDIUM_NUMBERS
-  "TUMBLED_18_BOLD",       // ROBOTO_CONDENSED_21
-  "TUMBLED_36_BOLD",       // ROBOTO_BOLD_SUBSET_49
-  "TUMBLED_28_BOLD",       // DROID_SERIF_28_BOLD
+  "TUMBLED_14",            // GOTHIC_14_EXTENDED
+  "TUMBLED_14_BOLD",       // GOTHIC_14_BOLD_EXTENDED
+  "TUMBLED_18",            // GOTHIC_18_EXTENDED
+  "TUMBLED_18_BOLD",       // GOTHIC_18_BOLD_EXTENDED
+  "TUMBLED_24",            // GOTHIC_24_EXTENDED
+  "TUMBLED_24_BOLD",       // GOTHIC_24_BOLD_EXTENDED
+  "TUMBLED_28",            // GOTHIC_28_EXTENDED
+  "TUMBLED_28_BOLD",       // GOTHIC_28_BOLD_EXTENDED
+  "TUMBLED_36",            // GOTHIC_36_EXTENDED
+  "TUMBLED_36_BOLD",       // GOTHIC_36_BOLD_EXTENDED
+  "TUMBLED_18",            // BITHAM_18_LIGHT_SUBSET (18)
+  "TUMBLED_28_BOLD",       // BITHAM_30_BLACK (30)
+  "TUMBLED_36",            // BITHAM_34_LIGHT_SUBSET (34)
+  "TUMBLED_28_BOLD",       // BITHAM_34_MEDIUM_NUMBERS (34)
+  "TUMBLED_36_BOLD",       // BITHAM_42_BOLD (42)
+  "TUMBLED_36",            // BITHAM_42_LIGHT (42)
+  "TUMBLED_36_BOLD",       // BITHAM_42_MEDIUM_NUMBERS (42)
+  "TUMBLED_18_BOLD",       // ROBOTO_CONDENSED_21 (21)
+  "TUMBLED_36_BOLD",       // ROBOTO_BOLD_SUBSET_49 (49)
+  "TUMBLED_28_BOLD",       // DROID_SERIF_28_BOLD (28)
 ];
 
+// A silent off-by-one here shifts every font after it: the firmware maps the
+// pack's resources to its slots by position.
+const LANG_FONT_SLOTS = 20;
+for (const [name, slots] of [["P2D", P2D_SLOTS], ["PT2", PT2_SLOTS]]) {
+  if (slots.length !== LANG_FONT_SLOTS) {
+    throw new Error(
+      `${name} slot list has ${slots.length} fonts, expected ${LANG_FONT_SLOTS} ` +
+        `(the firmware's lang resource list)`,
+    );
+  }
+}
 // Reduced packs point the bold-only slots at the font notifications actually
 // reach, so every built-in text size stays a distinct design. MINI
 // additionally aliases 18_BOLD, which only the Medium content size uses.
